@@ -1,0 +1,40 @@
+  color: var(--light-font);
+  box-shadow: 0 2px 6px 0 rgba(136,148,171,.2),0 24px 20px -24px rgba(71,82,107,.1);
+  overflow: hidden;
+}
+
+.search-input {
+  border: none;
+  flex: 1;
+  outline: none;
+  height: 100%;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+
+.right-area {
+  flex-basis: 300px;
+  flex-grow: 0;
+  background: linear-gradient(180deg, rgba(224,233,253,1) 0%, rgba(233,236,241,1) 90%);
+  transition: all 300ms cubic-bezier(0.190, 1.000, 0.560, 1.000);
+  
+  &.show {
+    transform: translateX(0);
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.content-section {
+  display: block;
+  margin-top: 32px;
+  overflow-x: hidden;
+  padding: 0 40px;
+}
+
+.section-header {
+  font-size: 24px;
+  line-height: 32px;
+  margin-bottom: 16px;
+  
