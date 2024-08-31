@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #343a40;
+        }
+        .navbar {
+            background-color: #007bff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ffffff;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+        }
+        .navbar img {
+            height: 40px;
+            border-radius: 50%;
+        }
+        .navbar .store-name {
+            font-size: 20px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+            text-align: center;
+            flex-grow: 1;
+        }
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .product {
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            background-color: #f1f1f1;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .product:hover {
+            transform: translateY(-5px);
+        }
+        .product img {
+            width: 80%;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .product-info h2 {
+            margin: 0 0 10px 0;
+            color: #343a40;
+            font-size: 20px;
+            text-align: center;
+        }
+        .price-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 10px 0;
+        }
+        .price-list li {
+            background-color: #e9ecef;
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .price-list li:hover {
+            background-color: #d4d8dd;
+        }
+        .buy-btn {
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .buy-btn:hover {
+            background-color: #218838;
+        }
+        .price-after-btn {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #007bff;
+            text-align: right;
+            visibility: hidden;
+        }
+        .payment-info {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        .payment-info label, .payment-info input, .payment-info select {
+            display: block;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+        .payment-info select {
+            padding: 5px;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+    </style>
+    <script>
+        const basePrices = {
+            'free-fire': { 
+                Digi: { 2: 3.00, 3: 5.00, 207: 10.00, 265: 8.90, 210: 19.00, 150: 14.00, 200: 14.00, 200: 14.00, 200: 14.00, 200: 14.00, 200: 14.00, 200: 14.00, 200: 14.00, 200: 14.00, 200: 14.00 }, 
+                TNG: { 2: 2.00, 3: 4.00, 207: 7.80, 265: 8.90, 210: 19.00, 150: 8.00, 200: 14.00, 200: 14.00, 200: 14.00, 200: 14.00, 200: 14.00, 200: 14.00, 200: 14.00, 200: 14.00, 200: 14.00 } 
+            },
+            'free-fire2': { 
+                Digi: { 2: 3.00, 3: 5.00, 207: 10.00, 265: 11.00, 210: 19.00, 150: 8.00, 310: 12.00, 425: 18.00, 625: 25.00, 775: 28.00, 832: 30.00, 925: 35.00, 1132: 40.00, 1235: 45.00, 1350: 50.00, 1550: 60.00, 1860: 65.00, 1975: 70.00, 2175: 75.00, 2310: 80.00, 2175: 75.00, 2590: 90.00, 2900: 100.00, 3150: 110.00, 7: 5.00, 77: 10.00, 30: 40.00, 2590: 90.00 }, 
+                TNG: { 2: 2.00, 3: 4.00, 207: 7.80, 265: 8.90, 200: 19.00, 150: 5.00, 310: 10.00, 425: 15.00, 625: 20.00, 775: 25.00, 832: 28.00, 925: 30.00, 1132: 35.00, 1235: 40.00, 1350: 45.00, 1550: 50.00, 1860: 60.00, 1975: 65.00, 2175: 70.00, 2310: 80.00, 2590: 85.00, 1350: 45.00, 2900: 95.00, 3150: 100.00, 7: 2.00, 77: 8.00, 30: 35.00, 2590: 90.00 } 
+            }
+        };
+
+        let selectedPrice = null;
+
+        function selectPrice(price, productId) {
+            selectedPrice = price;
+            updatePrice(productId);
+        }
+
+        function updatePrice(productId) {
+            if (selectedPrice !== null) {
+                const paymentMethod = document.getElementById(productId + '-payment-method').value;
+                const priceElement = document.getElementById(productId + '-price');
+                const paymentInfoElement = document.getElementById(productId + '-payment-info');
+
+                const updatedPrice = basePrices[productId][paymentMethod][selectedPrice];
+                priceElement.textContent = "Harga: RM " + updatedPrice.toFixed(2);
+                priceElement.style.visibility = 'visible';
+                paymentInfoElement.style.visibility = 'visible';
+            }
+        }
+
+        function getWhatsAppURL(product, idInputId) {
+            const priceElement = document.getElementById(product + '-price');
+            const price = encodeURIComponent(priceElement.textContent.split('RM ')[1]);
+            const id = encodeURIComponent(document.getElementById(idInputId).value);
+            const paymentMethod = encodeURIComponent(document.querySelector(`#${product}-payment-method`).value);
+            
+            if (id === "" || price === "" || paymentMethod === "") {
+                alert("Sila masukkan ID anda, pilih jumlah diamond, dan kaedah pembayaran sebelum membeli.");
+                return;
+            }
+
+            return 'https://wa.me/601135268529?text=' +
+                encodeURIComponent('Saya ingin membeli ' + product.replace('-', ' ') + ' sebanyak RM ' + price + '.\n' +
+                'ID saya adalah ' + id + '.\n' +
+                'Kaedah pembayaran: ' + paymentMethod);
+        }
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">
+            <img src="https://h.top4top.io/p_3163fivq30.jpg" alt="Logo">
+            <span class="store-name">ICEDRAGONSTORE</span>
+        </a>
+        <h1>Jual Diamond Game</h1>
+    </div>
+
+    <div class="container">
+        <h1>Reload Games</h1>
+        
+        <!-- Free Fire Diamond TOUCH N GO NGAN BANK -->
+        <div class="product">
+            <img src="https://h.top4top.io/p_3163fivq30.jpg" alt="Free Fire Diamond">
+            <div class="product-info">
+                <h2>Free Fire Diamond</h2>
+                <ul class="price-list">
+                    <li onclick="selectPrice(2, 'free-fire2')" data-price="2">
+                        <span>57 Diamond</span>
+                        <span>RM 2.00</span>
+                    </li>
+                    <li onclick="selectPrice(3, 'free-fire2')" data-price="3">
+                        <span>115 Diamond</span>
+                        <span>RM 4.00</span>
+                    </li>
+                    <li onclick="selectPrice(150, 'free-fire2')" data-price="150">
+                        <span>150 Diamond</span>
+                        <span>RM 5.00</span>
+                    </li>
+                    </li>
+                    <li onclick="selectPrice(207, 'free-fire2')" data-price="207">
+                        <span>207 Diamond</span>
+                        <span>RM 7.80</span>
+                                      </li>
+                    <li onclick="selectPrice(265, 'free-fire2')" data-price="265">
+                        <span>265 Diamond</span>
+                        <span>RM 8.90</span>
+                                            </li>
+                    <li onclick="selectPrice(310, 'free-fire2')" data-price="310">
+                        <span>310 Diamond</span>
+                        <span>RM 10.00</span>
+                    </li>
+                    <li onclick="selectPrice(425, 'free-fire2')" data-price="425">
+                        <span>425 Diamond</span>
+                        <span>RM 15.00</span>
+                    </li>
+                    </li>
+                    <li onclick="selectPrice(625, 'free-fire2')" data-price="625">
+                        <span>625 Diamond</span>
+                        <span>RM 20.00</span>
+                                      </li>
+                    <li onclick="selectPrice(775, 'free-fire2')" data-price="775">
+                        <span>775 Diamond</span>
+                        <span>RM 25.00</span>
+                                            </li>
+                    <li onclick="selectPrice(832, 'free-fire2')" data-price="832">
+                        <span>832 Diamond</span>
+                        <span>RM 28.00</span>
+                    </li>
+                    <li onclick="selectPrice(925, 'free-fire2')" data-price="925">
+                        <span>925 Diamond</span>
+                        <span>RM 30.00</span>
+                    </li>
+                    </li>
+                    <li onclick="selectPrice(1132, 'free-fire2')" data-price="1132">
+                        <span>1132 Diamond</span>
+                        <span>RM 35.00</span>
+                                      </li>
+                    <li onclick="selectPrice(1235, 'free-fire2')" data-price="1235">
+                        <span>1235 Diamond</span>
+                        <span>RM 40.00</span>
+                                            </li>
+                    <li onclick="selectPrice(1350, 'free-fire2')" data-price="1350">
+                        <span>1350 Diamond</span>
+                        <span>RM 45.00</span>
+                    </li>
+                    <li onclick="selectPrice(1550, 'free-fire2')" data-price="1550">
+                        <span>1550 Diamond</span>
+                        <span>RM 50.00</span>
+                    </li>
+                    </li>
+                    <li onclick="selectPrice(1860, 'free-fire2')" data-price="1860">
+                        <span>1860 Diamond</span>
+                        <span>RM 60.00</span>
+                                      </li>
+                    <li onclick="selectPrice(1975, 'free-fire2')" data-price="1975">
+                        <span>1975 Diamond</span>
+                        <span>RM 65.00</span>
+                                            </li>
+                    <li onclick="selectPrice(2175, 'free-fire2')" data-price="2175">
+                        <span>2175 Diamond</span>
+                        <span>RM 70.00</span>
+                    </li>
+                    <li onclick="selectPrice(2310, 'free-fire2')" data-price="2310">
+                        <span>2310 Diamond</span>
+                        <span>RM 75.00</span>
+                    </li>
+                    </li>
+                    <li onclick="selectPrice(2590, 'free-fire2')" data-price="2590">
+                        <span>2590 Diamond</span>
+                        <span>RM 90.00</span>
+                                      </li>
+                    <li onclick="selectPrice(2900, 'free-fire2')" data-price="2900">
+                        <span>2900 Diamond</span>
+                        <span>RM 95.00</span>
+                                            </li>
+                    <li onclick="selectPrice(3150, 'free-fire2')" data-price="3150">
+                        <span>3150 Diamond</span>
+                        <span>RM 100.00</span>
+                    </li>
+                    </li>
+                    <li onclick="selectPrice(7, 'free-fire2')" data-price="7">
+                        <span>membership lite</span>
+                        <span>RM 2.00</span>
+                                      </li>
+                    <li onclick="selectPrice(77, 'free-fire2')" data-price="77">
+                        <span>membership minggu</span>
+                        <span>RM 8.00</span>
+                                            </li>
+                    <li onclick="selectPrice(30, 'free-fire2')" data-price="30">
+                        <span>membership bulanan</span>
+                        <span>RM 35.00</span>
+                    </li>
+                    </li>
+                </ul>
+                <div class="payment-info" id="free-fire2-payment-info" style="visibility: hidden;">
+                    <label for="free-fire2-id">ID Free Fire:</label>
+                    <input type="text" id="free-fire2-id" placeholder="Masukkan ID Free Fire">
+                    <label for="free-fire2-payment-method">Kaedah Pembayaran:</label>
+                    <select id="free-fire2-payment-method" onchange="updatePrice('free-fire2')">
+                    	                <option value="Digi">Digi</option>
+                        <option value="TNG">Touch 'n Go</option>
+                    </select>
+                </div>
+                <button class="buy-btn" onclick="const url = getWhatsAppURL('free-fire2', 'free-fire2-id'); if (url) window.location.href=url;">Beli Sekarang</button>
+                <div id="free-fire2-price" class="price-after-btn">Harga: RM 4.00</div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="footer">
+        © 2024 ICEDRAGONSTORE
+                          </div>
