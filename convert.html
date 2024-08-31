@@ -1,0 +1,170 @@
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penukaran Duit DIGI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .result, .contact-info, .back-to-home {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+        }
+        .contact-info {
+            text-align: center;
+            font-size: 16px;
+        }
+        .contact-info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-to-home {
+            text-align: center;
+            font-size: 16px;
+        }
+        .back-to-home a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-to-home a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Penukaran Duit DIGI</h1>
+        <form id="conversionForm">
+            <div class="form-group">
+                <label for="amount">Jumlah Duit DIGI (RM):</label>
+                <input type="number" id="amount" name="amount" min="1" step="0.01" max="1000" required>
+            </div>
+            <div class="form-group">
+                <label for="conversionType">Jenis Penukaran:</label>
+                <select id="conversionType" name="conversionType" required>
+                    <option value="tng">DIGI ke TNG</option>
+                    <option value="BANK">DIGI ke BANK</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Kira</button>
+            </div>
+            <div id="result" class="result"></div>
+            <div class="contact-info">
+                <p>Untuk penukaran duit TNG atau BANK, sila hubungi kami di <a href="https://wa.me/601135268529">011-35268529</a> melalui WhatsApp.</p>
+            </div>
+            <div class="back-to-home">
+                <p><a href="index.html">Kembali ke Laman Utama</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('conversionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const amount = parseFloat(document.getElementById('amount').value);
+            const conversionType = document.getElementById('conversionType').value;
+
+            if (isNaN(amount) || amount <= 0 || amount > 1000) {
+                document.getElementById('result').innerText = 'Sila masukkan jumlah yang sah (maksimum RM1000).';
+                return;
+            }
+
+                      let fee;
+            if (amount <= 10) {
+                fee =4;
+            } else if (amount <= 20) {
+                fee = 5;
+            } else if (amount <= 30) {
+                fee = 6;
+            } else if (amount <= 40) {
+                fee = 7;
+            } else if (amount <= 50) {
+                fee = 8;
+            } else if (amount <= 60) {
+                fee = 9;
+            } else if (amount <= 70) {
+                fee = 10;
+            } else if (amount <= 80) {
+                fee = 11;
+            } else if (amount <= 90) {
+                fee = 12;
+            } else if (amount <= 100) {
+                fee = 20;
+            } else if (amount <= 200) {
+                fee = 21;
+            } else if (amount <= 300) {
+                fee = 25;
+            } else if (amount <= 400) {
+                fee = 50;
+            } else if (amount <= 500) {
+                fee = 80;
+            } else if (amount <= 600) {
+                fee = 100;
+            } else if (amount <= 700) {
+                fee = 120;
+            } else if (amount <= 800) {
+                fee = 150;
+            } else if (amount <= 900) {
+                fee = 180;
+            } else if (amount <= 1000) {
+                fee =200;
+            } else {
+                fee = 60; // Caj maksimum untuk lebih dari RM1000
+            }
+
+            const totalAmount = amount - fee;
+
+            if (totalAmount < 0) {
+                document.getElementById('result').innerText = 'Jumlah duit tidak mencukupi untuk menampung caj.';
+            } else {
+                document.getElementById('result').innerText = `Jumlah ${conversionType === 'tng' ? 'TNG' : 'BANK'} yang akan diterima adalah RM${totalAmount.toFixed(2)} (Caj RM${fee})`;
+            }
+        });
+    </script>
+</body>
+</html>
