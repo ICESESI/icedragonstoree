@@ -1,0 +1,140 @@
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #343a40;
+        }
+        .navbar {
+            background-color: #007bff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ffffff;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+        }
+        .navbar img {
+            height: 40px;
+            border-radius: 50%;
+        }
+        .navbar .store-name {
+            font-size: 20px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+            text-align: center;
+            flex-grow: 1;
+        }
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .product {
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            background-color: #f1f1f1;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .product:hover {
+            transform: translateY(-5px);
+        }
+        .product img {
+            width: 80%;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .product-info h2 {
+            margin: 0 0 10px 0;
+            color: #343a40;
+            font-size: 20px;
+            text-align: center;
+        }
+        .price-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 10px 0;
+        }
+        .price-list li {
+            background-color: #e9ecef;
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .price-list li:hover {
+            background-color: #d4d8dd;
+        }
+        .buy-btn {
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .buy-btn:hover {
+            background-color: #218838;
+        }
+        .price-after-btn {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #007bff;
+            text-align: right;
+            visibility: hidden;
+        }
+        .payment-info {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        .payment-info label, .payment-info input, .payment-info select {
+            display: block;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+        .payment-info select {
+            padding: 5px;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #6c757d;
+        }
