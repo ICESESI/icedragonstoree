@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jual Diamond Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">
+            <img src="logo.jpg" alt="Logo">
+            <span class="store-name">ICEDRAGONSTORE</span>
+        </a>
+        <h1>Jual Diamond Game</h1>
+    </div>
+
+    <div class="container">
+        <h1>Produk Kami</h1>
+        
+        <!-- Free Fire Diamond -->
+        <div class="product">
+            <img src="free-fire2-diamond.jpg" alt="Free Fire Diamond">
+            <div class="product-info">
+                <h2>Free Fire Diamond</h2>
+                <ul class="price-list">
+                    <li onclick="selectPrice(5, 'free-fire2')" data-price="5">
+                        <span>5 Diamond</span>
+                        <span>RM 0.18</span>
+                    </li>
+                    <li onclick="selectPrice(10, 'free-fire2')" data-price="10">
+                        <span>10 Diamond</span>
+                        <span>RM 0.36</span>
+                    </li>
+                    <li onclick="selectPrice(20, 'free-fire2')" data-price="20">
+                        <span>20 Diamond</span>
+                        <span>RM 0.72</span>
+                    </li>
+                    <li onclick="selectPrice(50, 'free-fire2')" data-price="50">
+                        <span>50 Diamond</span>
+                        <span>RM 1.80</span>
+                    </li>
+                    <li onclick="selectPrice(100, 'free-fire2')" data-price="100">
+                        <span>100 Diamond</span>
+                        <span>RM 3.50</span>
+                    </li>
+                </ul>
+                <div id="free-fire2-price" class="price-after-btn">Harga: RM 0.00</div>
+                <div class="payment-info" id="free-fire2-payment-info">
+                    <label for="free-fire2-id">Masukkan ID:</label>
+                    <input type="text" id="free-fire2-id" placeholder="Masukkan ID anda">
+
+                    <label for="free-fire2-payment-method">Kaedah Pembayaran:</label>
+                    <select id="free-fire2-payment-method" onchange="updatePrice('free-fire2')">
+                        <option value="Digi">Digi</option>
+                        <option value="TNG">Touch 'n Go</option>
+                    </select>
+
+                    <button class="buy-btn" onclick="window.location.href=getWhatsAppURL('free-fire2', 'free-fire2-id')">Beli Sekarang</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2024 ICEDRAGONSTORE
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
