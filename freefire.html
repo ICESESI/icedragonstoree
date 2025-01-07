@@ -1,401 +1,303 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Fire</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg,
-);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container {
-            max-width: 500px;
-            width: 100%;
-            margin: auto;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 24px;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .form-group {
-            margin: 20px 0;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: #333;
-        }
-
-        .form-group select, .form-group input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .form-group button {
-            width: 100%;
-            padding: 12px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .form-group button:hover {
-            background-color: #218838;
-        }
-
-        .result {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #e9f7ef;
-            color: #333;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .image-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-.container {
-    max-width: 500px;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    <title>LIST HARGA DM FF</title>
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #2a2a2a; /* Kelabu gelap */
+    color: #fafafa; /* Putih cerah */
     text-align: center;
 }
-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #333333; /* Kelabu lebih gelap */
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
-header, footer {
-        text-align: center;
-        padding: 10px;
-        background-color: #;
-        color: #333;
-    }
 
-    footer {
-        margin-top: 20px;
-        font-size: 12px;
-    }
-        .faq-section {
-        margin: 20px 0;
-        background-color: #f8f9fa;
-        padding: 15px;
-        border-radius: 5px;
-        text-align: left;
-    }
+.header-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
 
-    .faq-section h2 {
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
+h1 {
+    font-size: 2rem;
+    color: #48c6ef; /* Biru terang */
+    margin-bottom: 20px;
+}
 
-    details summary {
-        font-weight: bold;
-        cursor: pointer;
-        margin-bottom: 5px;
-    }
+.price-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
 
-    details p {
-        margin-left: 20px;
+.price-item {
+    padding: 12px;
+    margin: 10px 0;
+    background: #444444; /* Kelabu lebih lembut */
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #e4e4e4; /* Putih lembut */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.promo {
+    background: linear-gradient(90deg, #e4b800, #ef4d48); /* Gabungan kuning dan merah */
+    color: white;
+    font-weight: bold;
+    padding: 16px;
+    margin-top: 20px;
+    border-radius: 8px;
+    animation: promoGlow 2s infinite alternate;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.promo:before {
+    content: "SLOT TERHAD🔥";
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 2px;
+    animation: moveText 4s infinite linear;
+}
+
+@keyframes promoGlow {
+    from {
+        box-shadow: 0 0 10px rgba(255, 69, 58, 0.5);
     }
-    </style>
+    to {
+        box-shadow: 0 0 20px rgba(255, 115, 28, 0.8);
+    }
+}
+
+@keyframes moveText {
+    from {
+        top: -30%;
+    }
+    to {
+        top: 130%;
+    }
+}
+
+.btn-whatsapp {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #2c9f9f; /* Biru kehijauan */
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    background: #238f8f; /* Biru kehijauan lebih gelap */
+}
+
+.payment-info {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #60a5fa; /* Biru muda */
+    font-style: italic;
+}
+
+.purchase-info {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #f1f5f9; /* Putih lembut */
+    text-align: left;
+}
+
+.footer {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: #f1f5f9; /* Putih lembut */
+}
+
+.promo-ended {
+    background: #9b2c2c;
+    animation: none;
+}
+
+header {
+    background-color: #1c1c1c; /* Kelabu lebih gelap */
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+nav {
+    display: flex;
+    gap: 12px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+}
+
+nav a:hover {
+    background-color: #ffce00; /* Kuning terang */
+    color: #000;
+}
+
+.banner {
+    background-color: #ffedb6; /* Kuning lembut */
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.logo-link:hover {
+    opacity: 0.8;
+}
+
+.verification-badge {
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+    object-fit: contain;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="image-container">
-            <!-- Gambar penuh Free fire-->
-            <img src="https://h.top4top.io/p_3163fivq30.jpg" alt="Free fire">
-        </div>
-        <h1>Diamond Free fire</h1>
-        <form id="diamondForm">
-        	<div class="stats">
-    <p><strong>Statistik:</strong> <span id="transactionCount">1,200</span>+ transaksi berjaya minggu ini!</p>
+<header>
+    <div class="logo-container">
+        <a href="index.html" class="logo-link">
+            <img src="https://c.top4top.io/p_3294hb2sk0.jpg" alt="Logo" class="logo-img">
+            <div class="logo">ICEDRAGONSTORE</div>
+        </a>
+        <img src="https://j.top4top.io/p_3294m6cak0.png" alt="Verified Badge" class="verification-badge">
+    </div>
+</header>
+
+<div class="container">
+    <div class="header-img">
+        <img src="https://j.top4top.io/p_329491phv0.jpeg" alt="Free Fire Banner" />
+    </div>
+    <h1>LIST DIAMOND FF</h1>
+    <ul class="price-list" id="diamond-list"></ul>
+
+    <div id="promo" class="promo">
+    	MEMBERSIP LITE RM2.50🔥 <br>
+        MEMBERSHIP WEEKLY RM8🔥 <br>
+        MEMBERSHIP BULANAN RM39.99🔥
+        <br>
+        <strong id="promo-end-date"></strong>
+    </div>
+    <a href="https://wa.me/601135268529?text=Hi%20saya%20nak%20beli%20diamond%20ML%20" class="btn-whatsapp">Beli Sekarang</a>
+    <p class="payment-info">*Pembayaran hanya melalui Touch 'n Go*</p>
+
+    <div class="purchase-info">
+        <h3>Cara Pembelian:</h3>
+        <p>1. Lihat harga diamond yang diinginkan. <br>
+        2. Klik butang "Beli" untuk jumlah diamond yang ingin beli. <br>
+        3. Anda akan dibawa ke WhatsApp untuk membuat pembelian. <br>
+        4. Selesaikan pembayaran melalui Touch 'n Go. <br>
+        5. Anda akan menerima diamond </p>
+    </div>
 </div>
 
-<style>
-    .stats {
-        margin-top: 20px;
-        padding: 15px;
-        background-color: #f0f8ff;
-        color: #333;
-        border-radius: 5px;
-        font-size: 16px;
-        text-align: center;
-    }
-        .steps {
-        margin: 20px 0;
-        padding: 15px;
-        background-color: #e3f2fd;
-        border-radius: 5px;
-        text-align: left;
-    }
-
-    .steps h2 {
-        font-size: 18px;
-        color: #1976d2;
-        margin-bottom: 10px;
-    }
-
-    .steps ol {
-        margin: 0;
-        padding-left: 20px;
-    }
-
-    .steps li {
-        margin-bottom: 5px;
-    }
-    
-</style>
+<div class="footer">
+    <p>© 2024 Icedragonstore. Semua hak cipta terpelihara.</p>
+</div>
 
 <script>
-    // Jumlah transaksi permulaan
-    let transactionCount = 1200;
+    const diamondPrices = [
+        { diamonds: 125, price: 5.00 },
+        { diamonds: 250, price: 10.00 },
+        { diamonds: 375, price: 15.00 },
+        { diamonds: 520, price: 20.00 },
+        { diamonds: 645, price: 25.00 },
+        { diamonds: 770, price: 30.00 },
+        { diamonds: 895, price: 35.00 },
+        { diamonds: 1060, price: 40.00 },
+        { diamonds: 1185, price: 45.00 },
+        { diamonds: 1360, price: 50.00 },
+        { diamonds: 1435, price: 55.00 },
+        { diamonds: 1580, price: 60.00 },
+        { diamonds: 1705, price: 65.00 },
+        { diamonds: 1830, price: 70.00 },
+        { diamonds: 1955, price: 75.00 },
+        { diamonds: 2180, price: 80.00 },
+        { diamonds: 2305, price: 85.00 },
+        { diamonds: 2430, price: 90.00 },
+        { diamonds: 2555, price: 95.00 },
+        { diamonds: 2775, price: 100.00 }
+    ];
 
-    // Tarikh terakhir statistik dikemaskini
-    const lastUpdateKey = 'lastUpdateDate';
-    const transactionCountKey = 'transactionCount';
-    const today = new Date().toISOString().split('T')[0]; // Format tarikh hari ini: YYYY-MM-DD
+    const diamondList = document.getElementById('diamond-list');
 
-    // Periksa jika statistik telah dikemaskini hari ini
-    const lastUpdateDate = localStorage.getItem(lastUpdateKey);
-    if (lastUpdateDate !== today) {
-        // Tambah jumlah transaksi dan simpan
-        transactionCount = parseInt(localStorage.getItem(transactionCountKey) || transactionCount) + Math.floor(Math.random() * 200 + 88); // Naik 1-50 setiap hari
-        localStorage.setItem(transactionCountKey, transactionCount);
-        localStorage.setItem(lastUpdateKey, today);
-    } else {
-        // Ambil jumlah transaksi dari storan tempatan
-        transactionCount = parseInt(localStorage.getItem(transactionCountKey));
+    diamondPrices.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('price-item');
+        listItem.innerHTML = `<span>💎 ${item.diamonds} Diamonds</span><span>RM${item.price.toFixed(2)}</span>`;
+        diamondList.appendChild(listItem);
+    });
+
+    const promoEndDate = new Date('2026-01-01T23:59:59');
+    const currentDate = new Date();
+    const promoEndText = document.getElementById('promo-end-date');
+    const promoElement = document.getElementById('promo');
+
+    promoEndText.innerHTML = 'Tamat pada: ' + promoEndDate.toLocaleDateString();
+
+    if (currentDate > promoEndDate) {
+        promoElement.classList.add('promo-ended');
+        promoElement.innerHTML = '🔥 PROMOSI TAMAT!📌';
     }
-
-    // Paparkan jumlah transaksi
-    document.getElementById('transactionCount').innerText = transactionCount;
 </script>
-
-
-            <div class="form-group">
-                <label for="diamondAmount">Pilih Jumlah Diamond:</label>
-<select id="diamondAmount" name="diamondAmount" required>
-    <option value="">-- Pilih Diamond --</option>
-    <    <option value="p57" disabled style="color: red; font-weight: bold;">💎57 Diamond - RM 0.10 promo🔥 (Sold Out)</option>
-    <option value="p115" disabled style="color: red; font-weight: bold;">💎150 Diamond - RM 0.50 promo  🔥(Sold Out)</option>
-    <option value="p150" disabled style="color: red; font-weight: bold;">💎310 Diamond - RM 1.50 promo 🔥(Sold Out)</option>
-    <option value="115">💎115 Diamond - RM 4</option>
-    <option value="150">💎150 Diamond - RM 5 </option>
-            <option value="310">💎310 Diamond - RM 10 </option>
-        <option value="425">💎425 Diamond - RM 15 </option>
-    <option value="625">💎625 Diamond - RM 20</option>
-        <option value="775">💎775 Diamond - RM 25</option>
-    <option value="832">💎832 Diamond - RM 30</option>
-        <option value="1132">💎1132 Diamond - RM 35</option>
-    <option value="1235">💎1235 Diamond - RM 40</option>
-        <option value="1550">💎1550 Diamond - RM 50</option>
-    <option value="1860">💎1860 Diamond - RM 60</option>
-        <option value="1975">💎1975 Diamond - RM 65</option>
-    <option value="2175">💎2175 Diamond - RM 70</option>
-        <option value="2310">💎2310 Diamond - RM 75</option>
-    <option value="2590">💎2590 Diamond - RM 90</option>
-        <option value="2900">💎2900 Diamond - RM 95</option>
-    <option value="3150">💎3150 Diamond - RM 100</option>
-    option>
-    <option value="M.L">💎MEMBERSHIP LITE- RM 3</option>
-        <option value="M.W">💎MEMBERSHIP WEEKLY - RM 10</option>
-    <option value="M.M">💎MEMBERSHIP MONTHLY - RM 35</option>
-</select>
-   
-            </div>
-            <div class="form-group">
-                <label for="mlId">Masukkan ID Free fire:</label>
-                <input type="text" id="mlId" name="mlId" placeholder="Contoh: 12345678" required>
-                <p style="font-size: 12px; color: red;">*Pastikan maklumat yang dimasukkan betul sebelum membuat pesanan.</p>
-            <div class="form-group">
-                <label for="paymentMethod">Kaedah Pembayaran:</label>
-                <select id="paymentMethod" name="paymentMethod" required>
-                    <option value="">-- Pilih Kaedah Pembayaran --</option>
-                    <option value="touchngo">Touch 'n Go (QR) / PIN / ONLINE TRF</option> 
-                </select>
-            </div>
-            <div class="form-group">
-                <button type="button" onclick="calculatePrice()">Kira dan Beli</button>
-            </div>
-            <div id="result" class="result"></div>
-            <div class="form-group" id="confirmButton" style="display: none;">
-                <button type="button" onclick="confirmPurchase()">Sahkan</button>
-            </div>
-        </form>
-    </div>
-
-    <script>
-        function calculatePrice() {
-            const diamondAmount = document.getElementById('diamondAmount').value;
-            const mlId = document.getElementById('mlId').value;
-            const paymentMethod = document.getElementById('paymentMethod').value;
-            
-            if (!diamondAmount || !mlId || !paymentMethod) {
-                document.getElementById('result').innerText = 'Sila lengkapkan semua maklumat sebelum meneruskan.';
-                return;
-            }
-
-            let price;
-            switch (diamondAmount) {
-                case 'p57':
-                    price = 5;
-                    break;
-                case 'p115':
-                    price = 10;
-                    break;
-                case 'p150':
-                    price = 25;
-                    break;
-                case '115':
-                    price = 4.20;
-                    break;
-                case '150':
-                    price = 5.40;
-                    break;
-                    case '425':
-                    price = 15.2;
-                    break;
-                case '625':
-                    price = 21;
-                    break;
-                case '775':
-                    price = 25;
-                    break;
-                case '832':
-                    price = 30;
-                    break;
-                case '1132':
-                    price = 35;
-                    break;
-                    case '11':
-                    price = 5;
-                    break;
-                case '1550':
-                    price = 50;
-                    break;
-                case '1860':
-                    price = 60;
-                    break;
-                case '1975':
-                    price = 65;
-                    break;
-                case '2175':
-                    price = 70;
-                    break;
-                    case '2310':
-                    price = 75;
-                    break;
-                case '2590':
-                    price = 90;
-                    break;
-                case '2900':
-                    price = 95;
-                    break;
-                case '3150':
-                    price = 100;
-                    break;
-                case '310':
-                    price = 10.8;
-                    break;
-               case 'M.L':
-                    price = 3;
-                    break;
-                case 'M.W':
-                    price = 10;
-                    break;
-                case 'M.M':
-                    price = 35;
-                    break;
-                case '23':
-                    price = 35;
-                    break;
-                default:
-                    price = 0;
-            }
-
-            document.getElementById('result').innerText = `Jumlah yang perlu dibayar adalah RM${price}. Tekan "Sahkan" untuk meneruskan pembelian.`;
-            document.getElementById('confirmButton').style.display = 'block';
-
-            // Store details for WhatsApp message
-            window.purchaseDetails = {
-                diamondAmount: diamondAmount,
-                mlId: mlId,
-                price: price,
-                paymentMethod: paymentMethod
-            };
-        }
-
-        function confirmPurchase() {
-            const { diamondAmount, mlId, price, paymentMethod } = window.purchaseDetails;
-            const message = `halo bang saya nak beli ${diamondAmount} Diamond Free Fire ID saya ${mlId} dengan harga RM${price} payment ${paymentMethod}.`;
-
-            // Redirect to WhatsApp
-            window.location.href = `https://wa.me/601135268529?text=${encodeURIComponent(message)}`;
-        }
-        
-    </script>
 </body>
-
-<div class="steps">
-<img src="https://shell777a.com/media/2408449a05356f32848a5.gif" alt="red" style="width:20px;height:auto; display:inline-block;"><b style="color:black;">LANGKAH PEMBELIAN</b>
-    <ol>
-        <li>Pilih jumlah diamond yang anda ingin beli.</li>
-        <li>Masukkan ID Mobile Legends anda.</li>
-        <li>Pilih kaedah pembayaran dan tekan "Kira dan Beli".</li>
-        <li>Tekan "Sahkan" dan teruskan pembayaran melalui WhatsApp.</li>
-    </ol>
-</div>
-
-<footer>
-<p>Hak Cipta &copy; 2024 icedragonstore</p>
-</footer>
-
 </html>
