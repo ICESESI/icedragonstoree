@@ -1,1 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senarai Harga Diamond ML</title>
+    <style>
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #0f172a, #1e293b);
+    color: white;
+    text-align: center;
+}
+.container {
+    max-width: 600px;
+    margin: 20px auto; /* Kurangkan jarak luar */
+    padding: 15px; /* Kurangkan padding dalam */
+    background: #1e293b;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.header-img {
+    margin-bottom: 10px; /* Kurangkan margin bawah */
+}
+.header-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+h1 {
+    font-size: 1.5rem; /* Kurangkan saiz font */
+    color: #38bdf8;
+    margin-bottom: 10px; /* Kurangkan margin bawah */
+}
+.price-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0; /* Kurangkan jarak */
+}
+.price-item {
+    padding: 8px 12px; /* Kurangkan padding */
+    margin: 8px 0; /* Kurangkan margin */
+    background: #334155;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem; /* Kurangkan saiz font */
+    color: #f1f5f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.promo {
+    background: linear-gradient(90deg, #f43f5e, #f59e0b);
+    color: white;
+    font-weight: bold;
+    padding: 12px; /* Kurangkan padding */
+    margin-top: 10px; /* Kurangkan margin */
+    border-radius: 6px;
+    animation: promoGlow 2s infinite alternate;
+    position: relative;
+    overflow: hidden;
+}
+.promo:before {
+    content: "SLOT TERHAD🔥";
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem; /* Kurangkan saiz font */
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 2px;
+    animation: moveText 4s infinite linear;
+}
+@keyframes promoGlow {
+    from {
+        box-shadow: 0 0 10px rgba(255, 69, 58, 0.5);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(255, 115, 28, 0.8);
+    }
+}
+@keyframes moveText {
+    from {
+        top: -30%;
+    }
+    to {
+        top: 130%;
+    }
+}
+.btn-whatsapp {
+    display: inline-block;
+    margin-top: 10px; /* Kurangkan margin atas */
+    padding: 8px 16px; /* Kurangkan padding */
+    background: #22c55e;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem; /* Kurangkan saiz font */
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+.btn-whatsapp:hover {
+    background: #16a34a;
+}
+.payment-info {
+    margin-top: 15px; /* Kurangkan jarak */
+    font-size: 0.8rem; /* Kurangkan saiz font */
+    color: #60a5fa;
+    font-style: italic;
+}
+.purchase-info {
+    margin-top: 20px; /* Kurangkan jarak */
+    font-size: 0.8rem; /* Kurangkan saiz font */
+    color: #f1f5f9;
+    text-align: left;
+}
+.footer {
+    margin-top: 20px; /* Kurangkan jarak */
+    font-size: 0.8rem; /* Kurangkan saiz font */
+    color: #f1f5f9;
+}
+.promo-ended {
+    background: #9b2c2c;
+    animation: none;
+}
+header {
+    background-color: #10121C;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px; /* Kurangkan padding */
+}
+.logo {
+    font-weight: bold;
+    font-size: 1rem; /* Kurangkan saiz font */
+}
+nav {
+    display: flex;
+    gap: 10px; /* Kurangkan jarak */
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 6px 12px; /* Kurangkan padding */
+    border-radius: 5px;
+}
+nav a:hover {
+    background-color: #ffce00;
+    color: #000;
+}
+.banner {
+    background-color: #ffedb6;
+    text-align: center;
+    padding: 8px; /* Kurangkan padding */
+    font-size: 0.8em; /* Kurangkan saiz font */
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Kurangkan jarak */
+}
+.logo-img {
+    width: 35px; /* Kurangkan saiz gambar */
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Kurangkan jarak */
+    text-decoration: none;
+    color: white;
+}
+.logo-link:hover {
+    opacity: 0.8;
+}
+.verification-badge {
+    width: 18px; /* Kurangkan saiz gambar */
+    height: 18px;
+    margin-left: -8px; /* Kurangkan jarak */
+    object-fit: contain;
+}
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo-container">
+        <a href="index.html" class="logo-link">
+            <img src="https://c.top4top.io/p_3294hb2sk0.jpg" alt="Logo" class="logo-img">
+            <div class="logo">ICEDRAGONSTORE</div>
+        </a>
+        <img src="https://j.top4top.io/p_3294m6cak0.png" alt="Verified Badge" class="verification-badge">
+    </div>
+</header>
+<body>
+    <div class="container">
+        <div class="header-img">
+            <img src="https://i.pinimg.com/736x/17/8a/2e/178a2e2c54bf34859a0a2d4be749e52b.jpg" alt="Mobile Legends Banner" />
+        </div>
+        <h1>LIST DIAMOND ML</h1>
+        <ul class="price-list" id="diamond-list"></ul>
 
+        <div id="promo" class="promo">
+           WDP RM9.99🔥 <br>
+           TWL  RM44.44🔥
+            <br>
+            <strong id="promo-end-date"></strong>
+        </div>
+        <a href="https://wa.me/601135268529?text=Hi%20saya%20nak%20beli%20diamond%20ML%20" class="btn-whatsapp">Beli Sekarang</a>
+        <p class="payment-info">*Pembayaran hanya melalui Touch 'n Go*</p>
+
+        <div class="purchase-info">
+            <h3>Cara Pembelian:</h3>
+            <p>1. Lihat harga diamond yang diinginkan. <br>
+            2. Klik butang "Beli" untuk jumlah diamond yang ingin beli. <br>
+            3. Anda akan dibawa ke WhatsApp untuk membuat pembelian. <br>
+            4. Selesaikan pembayaran melalui Touch 'n Go. <br>
+            5. Anda akan menerima diamond </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2024 Icedragonstore. Semua hak cipta terpelihara.</p>
+    </div>
+
+    <script>
+        // Diamond price list
+        const diamondPrices = [
+    { diamonds: 56, price: 5.00 },
+    { diamonds: 112, price: 10.00 },
+    { diamonds: 168, price: 15.00 },
+    { diamonds: 223, price: 20.00 },
+    { diamonds: 279, price: 25.00 },
+        { diamonds: 336, price: 30.00 },
+    { diamonds: 392, price: 35.00 },
+    { diamonds: 448, price: 40.00 },
+        { diamonds: 504, price: 45.00 },
+    { diamonds: 570, price: 50.00 },
+    { diamonds: 626, price: 55.00 },
+        { diamonds: 682, price: 60.00 },
+         { diamonds: 738, price: 65.00 },
+    { diamonds: 793, price: 70.00 },
+    { diamonds: 849, price: 75.00 },
+        { diamonds: 906, price: 80.00 },
+    { diamonds: 962, price: 85.00 },
+        { diamonds: 1018, price: 90.00 },
+        { diamonds: 1074, price: 95.00 },
+         { diamonds: 1163, price: 100.00 },
+    { diamonds: 793, price: 20.00 },
+    { diamonds: 849, price: 20.00 },
+        { diamonds: 906, price: 25.00 },
+    { diamonds: 962, price: 20.00 },
+    { diamonds: 1018, price: 200.00 }
+];
+
+        const diamondList = document.getElementById('diamond-list');
+
+        // Generate price list
+        diamondPrices.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.classList.add('price-item');
+            listItem.innerHTML = `<span>💎 ${item.diamonds} Diamonds</span><span>RM${item.price.toFixed(2)}</span>`;
+            diamondList.appendChild(listItem);
+        });
+
+        // Set the promotion end date
+        const promoEndDate = new Date('2026-01-01T23:59:59');
+        const currentDate = new Date();
+        const promoEndText = document.getElementById('promo-end-date');
+        const promoElement = document.getElementById('promo');
+
+        // Display the promotion end date
+        promoEndText.innerHTML = 'Tamat pada: ' + promoEndDate.toLocaleDateString();
+
+        // Check if the promotion has ended
+        if (currentDate > promoEndDate) {
+            promoElement.classList.add('promo-ended');
+            promoElement.innerHTML = '🔥 PROMOSI TAMAT!📌';
+        }
+    </script>
+</body>
+</html>
