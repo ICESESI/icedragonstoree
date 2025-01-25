@@ -7,7 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICEDRAGONSTORE - LIST HARGA DM FF</title>
     <style>
-    	
+    	/* Font keluarga modern */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Tanda soal dengan efek */
+h3:after {
+    content: "?";  /* Simbol tanda soal */
+    font-size: 40px; /* Saiz lebih besar */
+    color: #48c6ef; /* Warna moden */
+    margin-left: 10px;
+}
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -204,42 +215,8 @@
             font-size: 1.5rem;
             color: #f4d03f;
             margin: 20px 0 10px;
-        }    
-.notification {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;  /* Dark background for modern look */
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: bold;
-    z-index: 9999;
-    opacity: 0;
-    pointer-events: none;  /* Prevents interaction with the page */
-    animation: fadeInOut 4s ease-in-out forwards;  /* Animation */
-}
+        }
 
-@keyframes fadeInOut {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-20px);
-    }
-    10% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-    90% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
-    }
-}
     </style>
 </head>
 <body>
@@ -252,10 +229,7 @@
             <img src="https://j.top4top.io/p_3294m6cak0.png" alt="Verified Badge" class="verification-badge">
         </div>
     </header>
-<!-- Notification -->
-<div id="notification" class="notification">
-    Diamond FF via Digi - Not Available
-</div>
+
     <div class="container">
         <!-- Banner -->
         <div class="banner">
@@ -276,9 +250,40 @@
         <ul class="price-list" id="diamond-list"></ul>
 
         <!-- Senarai Harga Membership -->
-        <h2>Membership</h2>
+<h2>Membership <span id="membership-tooltip" style="cursor: pointer;">❓</span></h2>
         <ul class="price-list" id="membership-list"></ul>
+<!-- Modal untuk pertanyaan tentang Membership -->
+<div id="membership-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); justify-content: center; align-items: center;">
+    <div style="background: #fff; padding: 20px; border-radius: 8px; width: 300px; text-align: center; color: #333; font-family: Arial, sans-serif;">
+        <h3 style="color: #333; font-size: 18px;">Pertanyaan Mengenai Membership</h3>
+        <p style="color: #555; font-size: 14px;"> <strong>NOTA:</strong><br>
+            1. Membership Mingguan/Bulanan dapat menikmati banyak hadiah harian dan instan.<br>
+            2. Membership Mingguan valid untuk 7 hari, sedangkan Membership Bulanan valid untuk 30 hari. Reset setiap hari pada 03:00.<br>
+            3. Hadiah harian dapat diklaim setiap hari di masa berlangganan. Jika kamu login tetapi melewatkan hari itu, kamu dapat mengklaim dalam waktu 7 hari melalui mail.<br>
+            	4.Jika kamu tidak login pada suatu hari, kamu dapat menggunakan gold untuk klaim mengklaim hadiah check-in dalam waktu 7 hari.
+<div class="membership-info">
+    <h2 style="color: #333; font-size: 24px; font-weight: bold; text-align: center;">MEMBERSHIP</h2>
+    
+    <div class="membership-prices" style="text-align: center; font-size: 16px;">
+        <p><strong>• RM 35 - 1,000💎 INSTAN  MEMBERSHIP M.M (50💎 x30 day) TOTAL 2500🔥 <span style="font-size: 22px; color: #ff0000;"></span></strong></p>
+        <p><strong>• RM 1.50 - 20💎 INSTAN  MEMBERSHIP M.L (10💎 x7 day)  TOTAL 90🔥<span style="font-size: 22px; color: #ff0000;"></span></strong></p>
+        <p><strong>• RM 8 - 200💎 INSTAN  MEMBERSHIP M.W (35💎 x7 day) TOTAL 445🔥 <span style="font-size: 22px; color: #ff0000;"></span></strong></p>
+    </div>
+</div>
+        <button onclick="closeModal()" style="background-color: #48c6ef; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">Tutup</button>
+    </div>
+</div>
+<script>
+    // Fungsi untuk buka modal
+    document.getElementById('membership-tooltip').onclick = function() {
+        document.getElementById('membership-modal').style.display = 'flex';
+    }
 
+    // Fungsi untuk tutup modal
+    function closeModal() {
+        document.getElementById('membership-modal').style.display = 'none';
+    }
+</script>
         <!-- Buy Now Button -->
         <a href="https://wa.me/601135268529?text=Hi%20saya%20nak%20beli%20diamond%20FF%20" class="btn-whatsapp" id="btn-buy-now" style="display: none;">Buy Now</a>
 
@@ -313,7 +318,7 @@
                 { type: 'Lite', price: 2.50 },
                 { type: 'Mingguan', price: 8.00 },
                 { type: 'Bulanan', price: 35.00 },
-                { type: 'Combo all MM (Slow Proses)', price: 42.99 }
+                { type: 'Combo all MM (Slow Proses)', price: 44.99 }
             ]
         },
         digi: {
@@ -321,74 +326,40 @@
                 { diamonds: 100, price: 5.00 },
                 { diamonds: 200, price: 10.00 },
                 { diamonds: 310, price: 15.00 },
-                { diamonds: 520, price: 20.00 },
-                { diamonds: 620, price: 25.00 },
-                { diamonds: 745, price: 30.00 },
-                { diamonds: 845, price: 35.00 },
-                { diamonds: 1060, price: 40.00 },
-                { diamonds: 1185, price: 45.00 },
-                { diamonds: 1360, price: 50.00 },
-                { diamonds: 1435, price: 55.00 },
-                { diamonds: 1580, price: 60.00 },
-                { diamonds: 1705, price: 65.00 },
-                { diamonds: 1830, price: 70.00 },
-                { diamonds: 1955, price: 75.00 },
-                { diamonds: 2180, price: 80.00 },
-                { diamonds: 2305, price: 85.00 },
-                { diamonds: 2430, price: 90.00 },
-                { diamonds: 2555, price: 95.00 },
-                { diamonds: 2775, price: 100.00 }
+                { diamonds: 410, price: 20.00 },
+                { diamonds: 520, price: 25.00 },
+                { diamonds: 620, price: 30.00 },
+                { diamonds: 720, price: 35.00 },
+                { diamonds: 830, price: 40.00 },
+                { diamonds: 930, price: 45.00 },
+                { diamonds: 1060, price: 50.00 },
+                { diamonds: 1160, price: 55.00 },
+                { diamonds: 1260, price: 60.00 },
+                { diamonds: 1370, price: 65.00 },
+                { diamonds: 1370, price: 70.00 },
+                { diamonds: 1580, price: 75.00 },
+                { diamonds: 1680, price: 80.00 },
+                { diamonds: 1780, price: 85.00 },
+                { diamonds: 1890, price: 90.00 },
+                { diamonds: 1990, price: 95.00 },
+                { diamonds: 2180, price: 100.00 }
             ],
             membership: [
-                { type: 'Lite', price: 5.00 },
+                { type: 'Lite', price: 3.00 },
                 { type: 'Mingguan', price: 10.00 },
                 { type: 'Bulanan', price: 40.00 }
             ]
         }
     };
-    function showDigiNotification() {
-    const notification = document.getElementById('notification');
-    
-    // Show notifikasi hanya bila butang Digi ditekan
-    notification.classList.add('show');
-    
-    // Ubah teks butang/tajuk hanya untuk Digi
-    const paymentTitle = document.getElementById('payment-title');
-    paymentTitle.textContent = "Diamond FF via Digi - Not Available";
 
-    // Hapus notifikasi selepas 4 saat
-    setTimeout(() => {
-        notification.classList.remove('show');
-    }, 4000);
-
-    // Hide all other notifications or elements if needed
-    // Contoh: Hide or reset any other payment methods
-    // ...
-}
     function showPrices(method, buttonId, methodName) {
-    const notification = document.getElementById('notification');
-    
-    if (method === 'digi') {
-        notification.style.display = 'block'; // Show the notification
-        setTimeout(() => {
-            notification.style.display = 'none'; // Hide after 4 seconds
-        }, 4000);
-    } else {
-        notification.style.display = 'none'; // Hide notification if method is not Digi
-    }
-
-    // Kemaskini tajuk
-    const paymentTitle = document.getElementById('payment-title');
-    if (method === 'digi') {
-        paymentTitle.textContent = `Diamond FF via ${methodName} - Not Available`;
-    } else {
+        // Kemaskini tajuk
+        const paymentTitle = document.getElementById('payment-title');
         paymentTitle.textContent = `List Diamond FF via ${methodName}`;
-    }
 
-    // Papar harga Diamond hanya untuk selain Digi
-    const diamondList = document.getElementById('diamond-list');
-    diamondList.innerHTML = '';
-    if (method !== 'digi') {
+        // Papar harga Diamond
+        const diamondList = document.getElementById('diamond-list');
+        diamondList.innerHTML = '';
         const diamonds = paymentMethods[method].diamonds;
         diamonds.forEach(item => {
             const listItem = document.createElement('li');
@@ -396,12 +367,10 @@
             listItem.innerHTML = `<span>💎 ${item.diamonds} Diamonds</span><span>RM${item.price.toFixed(2)}</span>`;
             diamondList.appendChild(listItem);
         });
-    }
 
-    // Papar harga Membership hanya untuk selain Digi
-    const membershipList = document.getElementById('membership-list');
-    membershipList.innerHTML = '';
-    if (method !== 'digi') {
+        // Papar harga Membership
+        const membershipList = document.getElementById('membership-list');
+        membershipList.innerHTML = '';
         const memberships = paymentMethods[method].membership;
         memberships.forEach(item => {
             const listItem = document.createElement('li');
@@ -409,17 +378,18 @@
             listItem.innerHTML = `<span>💳 Membership ${item.type}</span><span>RM${item.price.toFixed(2)}</span>`;
             membershipList.appendChild(listItem);
         });
+
+        // Highlight button aktif
+        const buttons = document.querySelectorAll('.payment-method-buttons img');
+        buttons.forEach(button => button.classList.remove('active'));
+        document.getElementById(buttonId).classList.add('active');
+
+        // Show the Buy Now button
+        const buyNowButton = document.getElementById('btn-buy-now');
+        buyNowButton.style.display = 'inline-block';
     }
 
-    // Highlight button aktif
-    const buttons = document.querySelectorAll('.payment-method-buttons img');
-    buttons.forEach(button => button.classList.remove('active'));
-    document.getElementById(buttonId).classList.add('active');
-
-    // Show the Buy Now button
-    const buyNowButton = document.getElementById('btn-buy-now');
-    buyNowButton.style.display = method !== 'digi' ? 'inline-block' : 'none';
-}
+    showPrices('tng', 'btn-tng', 'Touch \'n Go');
 </script>
 </body>
 <footer>
