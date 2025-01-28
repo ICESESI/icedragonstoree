@@ -1,12 +1,14 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICEDRAGONSTORE</title>
 <meta name="description" content="ALL SERVICE ICEDRAGONSTORE">
     <link rel="shortcut icon" href="https://h.top4top.io/s_3151vzau50.jpg" type="image/x-icon">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -381,6 +383,14 @@ i.notification::after {
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
     background-image: linear-gradient(#0081ff,#0081ff);
 }
+
+</style>
+        <style>
+
+    body{
+      margin: 0;
+      padding: 0;
+    }
     .popup{
       top: 0;
       width: 100%;
@@ -417,43 +427,8 @@ i.notification::after {
     .popup--close{
       display: none;
       transition: all .2s ease-out;
-            }
-        nav a:hover {. 
-            background-color: #ffce00;
-            color: #000;
-        }
-        .banner {
-            background-color: #ffedb6;
-            text-align: center;
-            padding: 10px;
-            font-size: 0.9em;
-        
-        }
-  .text-berjalan {
-    background-color: #333; /* Warna latar belakang */
-    color: #fff; /* Warna teks */
-    padding: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 5px; /* Bucu melengkung */
-    margin: 10px 0;
-    display: flex;
-    justify-content: center; /* Teks di tengah secara mendatar */
-    align-items: center; /* Teks di tengah secara menegak */
-  }
-
-  marquee {
-    width: 100%; /* Penuhi ruang penuh */
-    display: flex;
-    justify-content: center; /* Teks dalam marquee di tengah */
-    align-items: center;
-  }
-
-  marquee span {
-    display: inline-block;
-    text-align: center; /* Teks dalam span di tengah */
-  }
-  .nav-brand {
+    }
+      .nav-brand {
     display: flex;
     align-items: center;
     gap: 10px; /* Jarak antara gambar dan teks */
@@ -465,7 +440,7 @@ i.notification::after {
     border-radius: 50%; /* Bentuk bulat */
     object-fit: cover; /* Supaya gambar fit elok */
 }
-</style>
+  </style>
 </head>
 <body>
   
@@ -475,6 +450,22 @@ i.notification::after {
       <img class="popup__dismiss" src="https://i.top4top.io/p_2227qosd01.png" alt="Close">
     </div>
   </div>
+  <script>
+    var popup = document.querySelector(".popup");
+    var dismiss = document.querySelector(".popup__dismiss");
+
+    setTimeout(function(){
+      popup.classList.add("popup--show");
+    },1000);
+
+    dismiss.addEventListener("click",function(){
+      console.log("kil dismiss");
+      popup.classList.remove("popup--show");
+      popup.classList.add("popup--close");
+    })
+  </script>
+</head>
+<body>
 </head>
 <nav class="navbar navbar-light fixed-top white-color-nav">
   <div class="container-fluid">
@@ -526,12 +517,6 @@ i.notification::after {
         <div class="row">
             <div class="ps-lg-5 ps-sm-4 py-4 pe-3 col-md-12 d-flex flex-row align-items-center font-16 purple-color-2">
             </div>
-                </header>
-    <div class="banner">
-        👋 Hey Guyss! Welcome back to <a href="#" style="color: #000; font-weight: bold;">ICEDRAGONSTORE</a>
-    </div>
-    </header>
-    <ul>
         </div>
             
         <div class="row">
@@ -676,4 +661,18 @@ i.notification::after {
       popup.classList.remove("popup--show");
       popup.classList.add("popup--close");
     })
-  <
+  </script>
+        </div>
+        <body>
+      </div>
+    <hrml>
+    
+    
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></sc
