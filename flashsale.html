@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Promosi Khas - Jangan Lepaskan! 🔥</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212;
+    color: white;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 12px 20px;
+    background: #1a1a1a;
+    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logo-container img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ffcc00;
+    margin-right: 12px;
+    transition: 0.3s;
+}
+
+.logo-container:hover img {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+}
+
+.logo-container h1 {
+    font-size: 15px;
+    color: #FFFFFF;
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.logo-container:hover h1 {
+    color: #ff6600;
+    text-shadow: 0 0 8px rgba(255, 102, 0, 0.7);
+}
+
+/* Untuk elak kandungan tertutup oleh header */
+.content {
+    margin-top: 80px;
+}
+
+/* Tajuk Promosi */
+h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ffcc00;
+    text-shadow: 0 0 20px rgba(255, 204, 0, 0.9);
+    animation: glowText 1.5s infinite alternate;
+    background: linear-gradient(90deg, #ffcc00, #ff6600);
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 100px;
+}
+
+@keyframes glowText {
+    from {
+        text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(255, 204, 0, 1);
+    }
+}
+
+/* Grid Promosi */
+.promo-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+/* Kotak Produk */
+.product {
+    background: linear-gradient(145deg, #222, #1a1a1a);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(255, 204, 0, 0.6);
+}
+
+.product img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #ffcc00;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+    color: #ffcc00;
+}
+
+.price {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.new-price {
+    font-size: 18px;
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+/* Countdown Timer */
+.countdown {
+    font-size: 14px;
+    color: #ff4500;
+    font-weight: bold;
+    background: rgba(255, 69, 0, 0.1);
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: inline-block;
+}
+
+/* Butang Beli */
+.buy-button {
+    display: inline-block;
+    background: linear-gradient(90deg, #ffcc00, #ff6600);
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+    box-shadow: 0 0 8px rgba(255, 102, 0, 0.7);
+}
+
+.buy-button:hover {
+    background: linear-gradient(90deg, #ff6600, #ffcc00);
+    box-shadow: 0 0 12px rgba(255, 102, 0, 1);
+}
+
+/* Jika Promosi Tamat */
+.expired {
+    background: #333;
+    color: #aaa;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.product.expired {
+    filter: grayscale(80%) blur(1.5px);
+    box-shadow: none;
+}
+
+.product.expired .buy-button {
+    display: none;
+}
+
+.product.expired:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Hak Cipta */
+.copyright {
+    text-align: center;
+    font-size: 12px;
+    color: #aaa;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #121212;
+}
+    </style>
+</head>
+<audio autoplay="autoplay" hidden="hidden" src="https://g.top4top.io/m_20127erd70.mp3"></audio>
+<body>
+    <!-- Header dengan link ke Home -->
+    <div class="header">
+        <a href="index.html" class="logo-container"> <!-- Ganti index.html dengan URL utama -->
+            <img src="https://c.top4top.io/p_3294hb2sk0.jpg" alt="Logo ICEDRAGONSTORE"> 
+            <h1>ICEDRAGONSTORE</h1>
+        </a>
+    </div>
+
+</nav>
+    </div>
+</nav>
+<h2>🔥 Promosi February! 🔥</h2>
+
+<div class="promo-container">
+    <div class="product" id="product1">
+        <img src="https://icesesi.github.io/icedragonstoree/image/images (8).jpeg" alt="Produk 2">
+        <p class="product-name">UNLOCK SESI / BNDNG</p>
+        <p class="price"><span class="old-price">RM50</span> → <span class="new-price">RM30</span>
+        <p class="countdown" id="timer1"></p>
+        <a href="https://wa.me/60123456789?text=Saya%20nak%20guna%20servis%20Sesi%201200" class="buy-button" id="btn1">Beli Sekarang</a>
+    </div>
+
+    <div class="product" id="product2">
+        <img src="https://i.top4top.io/p_3317poadw0.png">
+        <p class="product-name">Diamond FF 310💎</p>
+        <p class="price"><span class="old-price">RM15</span> → <span class="new-price">RM9</span></p>
+        <p class="countdown" id="timer2"></p>
+        <a href="https://wa.me/60123456789?text=Saya%20nak%20beli%20Diamond%20ML%201200" class="buy-button" id="btn2">Beli Sekarang</a>
+    </div>
+    
+    <div class="product" id="product3">
+        <img src="https://e.top4top.io/p_31636c4ac0.jpg" alt="Produk 2">
+        <p class="product-name">Diamond ML 570</p>
+        <p class="price"><span class="old-price">RM50</span> → <span class="new-price">RM40</span></p>
+        <p class="countdown" id="timer3"></p>
+        <a href="https://wa.me/60123456789?text=Saya%20nak%20beli%20Diamond%20ML%201200" class="buy-button" id="btn3">Beli Sekarang</a>
+    </div>
+
+    <div class="product" id="product4">
+        <img src="https://i.top4top.io/p_3317poadw0.png">
+        <p class="product-name">Diamond FF 310💎</p>
+        <p class="price"><span class="old-price">RM15</span> → <span class="new-price">RM9</span></p>
+        <p class="countdown" id="timer4"></p>
+        <a href="https://wa.me/60123456789?text=Saya%20nak%20guna%20servis%20Sesi%201200" class="buy-button" id="btn4">Beli Sekarang</a>
+    </div>
+
+<script>
+    const promoTimes = [
+        new Date(2025, 9, 11, 23, 59, 59), 
+        new Date(2024, 1, 12, 23, 59, 59),
+        new Date(2024, 1, 12, 23, 59, 59),
+        new Date(2024, 1, 15, 23, 59, 59)
+    ];
+
+    function updateCountdown(index, timerId, btnId, productId) {
+        const now = new Date().getTime();
+        const distance = promoTimes[index] - now;
+        const timerElement = document.getElementById(timerId);
+        const btnElement = document.getElementById(btnId);
+        const productElement = document.getElementById(productId);
+
+        if (distance < 0) {
+            timerElement.innerHTML = "Promosi Tamat!";
+            btnElement.outerHTML = `<p class="expired">Maaf, item ini telah tamat tempoh</p>`;
+            productElement.classList.add("expired");
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        timerElement.innerHTML = `${days}h ${hours}j ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(() => {
+        updateCountdown(0, "timer1", "btn1", "product1");
+        updateCountdown(1, "timer2", "btn2", "product2");
+        updateCountdown(1, "timer3", "btn3", "product3");
+        updateCountdown(1, "timer4", "btn4", "product4");
+    }, 1000);
+</script>
+<div class="copyright">© 2025 ICEDRAGONSTORE. Semua Hak Cipta Terpelihara.</div>
+</p>
+</body>
+</html>
