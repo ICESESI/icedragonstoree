@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Transfer ML Topup</title>
+<style>
+    body { 
+        font-family: Arial, sans-serif; 
+        text-align: center; 
+        padding: 20px; 
+        background-color: #f8f9fa; 
+    }
+    .container { 
+        background: white; 
+        padding: 20px; 
+        border-radius: 10px; 
+        box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+        max-width: 400px; 
+        margin: auto; 
+        text-align: center; 
+    }
+    img { 
+        width: 250px; 
+        margin-bottom: 15px; 
+        border-radius: 10px; 
+        cursor: pointer; 
+        transition: transform 0.3s; 
+    }
+    img:hover { transform: scale(1.1); }
+
+    .form-group { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        width: 100%; 
+    }
+
+    select, input { 
+        margin-top: 10px; 
+        padding: 10px; 
+        font-size: 16px; 
+        width: 100%; 
+        max-width: 300px; 
+        border-radius: 5px; 
+        border: 1px solid #ccc; 
+        text-align: center; 
+        display: block; 
+        margin: auto; 
+    }
+
+    button { 
+        background-color: green; 
+        color: white; 
+        border: none; 
+        cursor: pointer; 
+        width: 100%; 
+        max-width: 300px; 
+        margin-top: 10px; 
+        padding: 10px; 
+        border-radius: 5px; 
+    }
+
+    button:hover { background-color: darkgreen; }
+    
+    #jumlahSendiri { 
+        display: none; 
+    }
+    
+</style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Scan QR untuk Transfer</h2>
+        <a href="https://k.top4top.io/p_3088xrdhn0.jpg" target="_blank">
+            <img src="https://k.top4top.io/p_3088xrdhn0.jpg" alt="QR Transfer" id="qrCode">
+        </a>        
+        <h3>Pilih Jumlah Bayaran</h3>
+        <select id="jumlahBayaran" onchange="tukarJumlah()">
+            <option value="5">RM5</option>
+            <option value="10">RM10</option>
+            <option value="20">RM20</option>
+            <option value="30">RM30</option>
+            <option value="50">RM50</option>
+            <option value="100">RM100</option>
+            <option value="lain">Masukkan Jumlah Sendiri</option>
+        </select>
+
+        <input type="number" id="jumlahSendiri" placeholder="Masukkan jumlah RM">
+
+        <h3>Masukkan ID ML & Zone ID</h3>
+        <input type="text" id="userId" placeholder="User ID (Contoh: 12345678)" oninput="autoCheckID()">
+        <input type="text" id="zoneId" placeholder="Zone ID (Contoh: 1234)" oninput="autoCheckID()">
+        <p id="namaML" style="font-weight: bold; color: blue;">⚠️ Masukkan User ID & Zone <div style="background-color: red; padding: 10px; border-radius: 5px; margin-top: 10px;">
+    <p style="color: black; font-weight: bold; font-size: 16px;">
+        ⚠️ Sila isi semua maklumat dengan betul! Jika tidak, top-up tidak akan diproses!
+    </p>
+    <p style="color: black; font-weight: bold; font-size: 16px;">
+        ⚠️ Sila hantar bukti transfer di WhatsApp, jika tidak, duit anda akan burn!
+    </p>
+</div>
+</div>
+        <button onclick="hantarWhatsApp()">Hantar WhatsApp</button>
+    </div>
+
+    <script>
+        function tukarJumlah() {
+            let jumlahBayaran = document.getElementById("jumlahBayaran").value;
+            let jumlahSendiri = document.getElementById("jumlahSendiri");
+
+            jumlahSendiri.style.display = (jumlahBayaran === "lain") ? "block" : "none";
+        }
+
+        async function muatTurunQR() {
+    let qrImageURL = document.getElementById("qrCode").src;
+
+    try {
+        let response = await fetch(qrImageURL, { mode: 'cors' });
+        if (!response.ok) throw new Error("Gagal mengambil imej.");
+
+        let blob = await response.blob();
+        let qrLink = document.createElement("a");
+        qrLink.href = URL.createObjectURL(blob);
+        qrLink.download = "https://postimg.cc/9rX9jT75";
+        document.body.appendChild(qrLink);
+        qrLink.click();
+        document.body.removeChild(qrLink);
+    } catch (error) {
+        alert("Gagal memuat turun QR. Sila cuba lagi!");
+        console.error("Ralat muat turun:", error);
+    }
+}
+
+        let timer;
+        function autoCheckID() {
+            clearTimeout(timer);
+            timer = setTimeout(checkID, 1000);
+        }
+
+        async function checkID() {
+            let userId = document.getElementById("userId").value;
+            let zoneId = document.getElementById("zoneId").value;
+            let namaML = document.getElementById("namaML");
+
+            if (!userId || !zoneId) {
+                namaML.innerHTML = "⚠️ Masukkan User ID & Zone ID.";
+                return;
+            }
+
+            namaML.innerHTML = "⏳ Loading...";
+
+            try {
+                let response = await fetch("https://slrmyshop.com.my/mlreg/mlbbcheckerapi.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams({ userId, zoneId })
+                });
+
+                let data = await response.json();
+                if (data.status === "success" && data.data.message) {
+                    let nickname = data.data.message.split('\n').find(line => line.includes("In-Game Nickname:"))?.split(": ")[1] || "Tidak Dijumpai";
+                    namaML.innerHTML = `Nama ML: ${nickname}`;
+                } else {
+                    namaML.innerHTML = "❌ ID ML tidak sah atau tidak ditemui!";
+                }
+            } catch (error) {
+                namaML.innerHTML = "⚠️ Ralat semasa semakan ID.";
+            }
+        }
+
+        function hantarWhatsApp() {
+            let jumlahBayaran = document.getElementById("jumlahBayaran").value;
+            let jumlahSendiri = document.getElementById("jumlahSendiri").value;
+            let userId = document.getElementById("userId").value.trim();
+            let zoneId = document.getElementById("zoneId").value.trim();
+            let namaML = document.getElementById("namaML").innerText.replace("✅ Nama ML: ", "");
+
+            if (jumlahBayaran === "lain") {
+                if (jumlahSendiri === "" || jumlahSendiri <= 0) {
+                    alert("Sila masukkan jumlah bayaran yang betul!");
+                    return;
+                }
+                jumlahBayaran = "RM" + jumlahSendiri;
+            } else {
+                jumlahBayaran = "RM" + jumlahBayaran;
+            }
+
+            if (!userId || !zoneId) {
+                alert("Sila masukkan User ID & Zone ID!");
+                return;
+            }
+
+            let phone = "601135268529"; // Tukar dengan nombor WhatsApp admin
+            let text = `Saya sudah transfer sebanyak ${jumlahBayaran}.\n\nUser ID: ${userId}\nZone ID: ${zoneId}\nNama ML: ${namaML}\n\nBukti transfer akan dihantar dalam chat. Sila proses dalam 10 minit ya!`;
+
+            let url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+            window.open(url, "_blank");
+        }
+    </script>
+
+</body>
+<style>
+    /* Copyright Footer */
+    footer {
+        background-color: #00000;
+        color: black;
+        text-align: center;
+        padding: 10px;
+        margin-top: 20px;
+        font-size: 14px;
+    }
+</style>
+
+<footer>
+    <p>© 2025 ICEDRAGONSTORE. Semua Hak Cipta Terpelihara.</p>
+</footer>
+</html>
