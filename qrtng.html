@@ -3,71 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Transfer ML Topup</title>
-<style>
-    body { 
-        font-family: Arial, sans-serif; 
-        text-align: center; 
-        padding: 20px; 
-        background-color: #f8f9fa; 
-    }
-    .container { 
-        background: white; 
-        padding: 20px; 
-        border-radius: 10px; 
-        box-shadow: 0 0 10px rgba(0,0,0,0.1); 
-        max-width: 400px; 
-        margin: auto; 
-        text-align: center; 
-    }
-    img { 
-        width: 250px; 
-        margin-bottom: 15px; 
-        border-radius: 10px; 
-        cursor: pointer; 
-        transition: transform 0.3s; 
-    }
-    img:hover { transform: scale(1.1); }
-
-    .form-group { 
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        width: 100%; 
-    }
-
-    select, input { 
-        margin-top: 10px; 
-        padding: 10px; 
-        font-size: 16px; 
-        width: 100%; 
-        max-width: 300px; 
-        border-radius: 5px; 
-        border: 1px solid #ccc; 
-        text-align: center; 
-        display: block; 
-        margin: auto; 
-    }
-
-    button { 
-        background-color: green; 
-        color: white; 
-        border: none; 
-        cursor: pointer; 
-        width: 100%; 
-        max-width: 300px; 
-        margin-top: 10px; 
-        padding: 10px; 
-        border-radius: 5px; 
-    }
-
-    button:hover { background-color: darkgreen; }
-    
-    #jumlahSendiri { 
-        display: none; 
-    }
-    
-</style>
+    <title>QR Transfer Game Topup</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f8f9fa; }
+        .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); max-width: 400px; margin: auto; text-align: center; }
+        img { width: 250px; margin-bottom: 15px; border-radius: 10px; cursor: pointer; transition: transform 0.3s; }
+        img:hover { transform: scale(1.1); }
+        .form-group { display: flex; flex-direction: column; align-items: center; width: 100%; }
+        select, input { margin-top: 10px; padding: 10px; font-size: 16px; width: 100%; max-width: 300px; border-radius: 5px; border: 1px solid #ccc; text-align: center; display: block; }
+        button { background-color: green; color: white; border: none; cursor: pointer; width: 100%; max-width: 300px; margin-top: 10px; padding: 10px; border-radius: 5px; }
+        button:hover { background-color: darkgreen; }
+        #jumlahSendiri, #mlInputs, #ffInputs { display: none; }
+    </style>
 </head>
 <body>
 
@@ -76,6 +23,14 @@
         <a href="https://k.top4top.io/p_3088xrdhn0.jpg" target="_blank">
             <img src="https://k.top4top.io/p_3088xrdhn0.jpg" alt="QR Transfer" id="qrCode">
         </a>        
+
+        <h3>Pilih Game</h3>
+        <select id="pilihGame" onchange="tukarGame()">
+            <option value="">-- Pilih Game --</option>
+            <option value="ml">Mobile Legends</option>
+            <option value="ff">Free Fire</option>
+        </select>
+
         <h3>Pilih Jumlah Bayaran</h3>
         <select id="jumlahBayaran" onchange="tukarJumlah()">
             <option value="5">RM5</option>
@@ -89,17 +44,26 @@
 
         <input type="number" id="jumlahSendiri" placeholder="Masukkan jumlah RM">
 
-        <h3>Masukkan ID ML & Zone ID</h3>
-        <input type="text" id="userId" placeholder="User ID (Contoh: 12345678)" oninput="autoCheckID()">
-        <input type="text" id="zoneId" placeholder="Zone ID (Contoh: 1234)" oninput="autoCheckID()">
-        <p id="namaML" style="font-weight: bold; color: blue;">⚠️ Masukkan User ID & Zone <div style="background-color: red; padding: 10px; border-radius: 5px; margin-top: 10px;">
+        <!-- Input ID untuk Mobile Legends -->
+        <div id="mlInputs">
+            <h3>Masukkan ID ML & Zone ID</h3>
+            <input type="text" id="userId" placeholder="User ID (Contoh: 12345678)" oninput="autoCheckID()">
+            <input type="text" id="zoneId" placeholder="Zone ID (Contoh: 1234)" oninput="autoCheckID()">
+            <p id="namaML" style="font-weight: bold; color: blue;">⚠️ Masukkan User ID & Zone ID</p>
+        </div>
+
+        <!-- Input ID untuk Free Fire -->
+        <div id="ffInputs">
+            <h3>Masukkan ID Free Fire</h3>
+            <input type="text" id="ffId" placeholder="Masukkan Free Fire ID">
+            <p id="namaFF" style="font-weight: bold; color: blue;">⚠️ Masukkan User ID & Zone ID</p>
+        </div>
     <p style="color: black; font-weight: bold; font-size: 16px;">
-        ⚠️ Sila isi semua maklumat dengan betul! Jika tidak, top-up tidak akan diproses!
+        ⚡ Sila isi semua maklumat dengan betul! Jika tidak, top-up tidak akan diproses!
     </p>
     <p style="color: black; font-weight: bold; font-size: 16px;">
-        ⚠️ Sila hantar bukti transfer di WhatsApp, jika tidak, duit anda akan burn!
+        ⚡ Sila Ss Qr di Atas Dan Scan Melalui Tng Dan hantar Resit Selepas Transfer di WhatsApp, jika tidak, duit anda akan burn!
     </p>
-</div>
 </div>
         <button onclick="hantarWhatsApp()">Hantar WhatsApp</button>
     </div>
@@ -108,29 +72,75 @@
         function tukarJumlah() {
             let jumlahBayaran = document.getElementById("jumlahBayaran").value;
             let jumlahSendiri = document.getElementById("jumlahSendiri");
-
             jumlahSendiri.style.display = (jumlahBayaran === "lain") ? "block" : "none";
         }
 
-        async function muatTurunQR() {
-    let qrImageURL = document.getElementById("qrCode").src;
+function tukarGame() {
+    let gameDipilih = document.getElementById("pilihGame").value;
+    let mlInputs = document.getElementById("mlInputs");
+    let ffInputs = document.getElementById("ffInputs");
+    let namaML = document.getElementById("namaML");
 
-    try {
-        let response = await fetch(qrImageURL, { mode: 'cors' });
-        if (!response.ok) throw new Error("Gagal mengambil imej.");
-
-        let blob = await response.blob();
-        let qrLink = document.createElement("a");
-        qrLink.href = URL.createObjectURL(blob);
-        qrLink.download = "https://postimg.cc/9rX9jT75";
-        document.body.appendChild(qrLink);
-        qrLink.click();
-        document.body.removeChild(qrLink);
-    } catch (error) {
-        alert("Gagal memuat turun QR. Sila cuba lagi!");
-        console.error("Ralat muat turun:", error);
+    if (gameDipilih === "ml") {
+        mlInputs.style.display = "block";
+        ffInputs.style.display = "none";
+        namaML.innerHTML = "⚠️ Masukkan User ID & Zone ID"; // Reset teks untuk ML
+    } else if (gameDipilih === "ff") {
+        mlInputs.style.display = "none";
+        ffInputs.style.display = "block";
+        namaFF.innerHTML = "⚠️ Masukkan Free Fire ID"; // Tukar teks untuk FF
+    } else {
+        mlInputs.style.display = "none";
+        ffInputs.style.display = "none";
+        namaML.innerHTML = ""; // Kosongkan jika tiada game dipilih
     }
 }
+
+        function hantarWhatsApp() {
+            let gameDipilih = document.getElementById("pilihGame").value;
+            let jumlahBayaran = document.getElementById("jumlahBayaran").value;
+            let jumlahSendiri = document.getElementById("jumlahSendiri").value;
+
+            if (jumlahBayaran === "lain") {
+                if (jumlahSendiri === "" || jumlahSendiri <= 0) {
+                    alert("Sila masukkan jumlah bayaran yang betul!");
+                    return;
+                }
+                jumlahBayaran = "RM" + jumlahSendiri;
+            } else {
+                jumlahBayaran = "RM" + jumlahBayaran;
+            }
+
+            let phone = "601135268529"; // Tukar dengan nombor WhatsApp admin
+            let text = `Saya sudah transfer sebanyak ${jumlahBayaran}.\n\n`;
+
+            if (gameDipilih === "ml") {
+                let userId = document.getElementById("userId").value.trim();
+                let zoneId = document.getElementById("zoneId").value.trim();
+                let namaML = document.getElementById("namaML").innerText.replace("⚠️ Masukkan User ID & Zone ID", "");
+
+                if (!userId || !zoneId) {
+                    alert("Sila masukkan User ID & Zone ID!");
+                    return;
+                }
+
+                text += `Game: Mobile Legends\nUser ID: ${userId}\nZone ID: ${zoneId}\nNama ML: ${namaML}\n\n`;
+            } else if (gameDipilih === "ff") {
+                let ffId = document.getElementById("ffId").value.trim();
+                if (!ffId) {
+                    alert("Sila masukkan Free Fire ID!");
+                    return;
+                }
+                text += `Game: Free Fire\nFree Fire ID: ${ffId}\n\n`;
+            } else {
+                alert("Sila pilih game!");
+                return;
+            }
+
+            text += "Bukti transfer akan dihantar dalam chat. Sila proses dalam 10 minit ya!";
+            let url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+            window.open(url, "_blank");
+        }
 
         let timer;
         function autoCheckID() {
@@ -168,51 +178,10 @@
                 namaML.innerHTML = "⚠️ Ralat semasa semakan ID.";
             }
         }
-
-        function hantarWhatsApp() {
-            let jumlahBayaran = document.getElementById("jumlahBayaran").value;
-            let jumlahSendiri = document.getElementById("jumlahSendiri").value;
-            let userId = document.getElementById("userId").value.trim();
-            let zoneId = document.getElementById("zoneId").value.trim();
-            let namaML = document.getElementById("namaML").innerText.replace("✅ Nama ML: ", "");
-
-            if (jumlahBayaran === "lain") {
-                if (jumlahSendiri === "" || jumlahSendiri <= 0) {
-                    alert("Sila masukkan jumlah bayaran yang betul!");
-                    return;
-                }
-                jumlahBayaran = "RM" + jumlahSendiri;
-            } else {
-                jumlahBayaran = "RM" + jumlahBayaran;
-            }
-
-            if (!userId || !zoneId) {
-                alert("Sila masukkan User ID & Zone ID!");
-                return;
-            }
-
-            let phone = "601135268529"; // Tukar dengan nombor WhatsApp admin
-            let text = `Saya sudah transfer sebanyak ${jumlahBayaran}.\n\nUser ID: ${userId}\nZone ID: ${zoneId}\nNama ML: ${namaML}\n\nBukti transfer akan dihantar dalam chat. Sila proses dalam 10 minit ya!`;
-
-            let url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-
-            window.open(url, "_blank");
-        }
+     
     </script>
 
 </body>
-<style>
-    /* Copyright Footer */
-    footer {
-        background-color: #00000;
-        color: black;
-        text-align: center;
-        padding: 10px;
-        margin-top: 20px;
-        font-size: 14px;
-    }
-</style>
-
 <footer>
     <p>© 2025 ICEDRAGONSTORE. Semua Hak Cipta Terpelihara.</p>
 </footer>
