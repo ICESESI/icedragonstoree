@@ -1,0 +1,444 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIST HARGA DM ML</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #0f172a, #1e293b);
+    color: white;
+    text-align: center;
+}
+header {
+    background-color: #10121C;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px; /* Kurangkan padding */
+}
+.logo {
+    font-weight: bold;
+    font-size: 1rem; /* Kurangkan saiz font */
+}
+nav {
+    display: flex;
+    gap: 10px; /* Kurangkan jarak */
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 6px 12px; /* Kurangkan padding */
+    border-radius: 5px;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Kurangkan jarak */
+}
+.logo-img {
+    width: 35px; /* Kurangkan saiz gambar */
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Kurangkan jarak */
+    text-decoration: none;
+    color: white;
+}
+.logo-link:hover {
+    opacity: 0.8;
+}
+.verification-badge {
+    width: 18px; /* Kurangkan saiz gambar */
+    height: 18px;
+    margin-left: -8px; /* Kurangkan jarak */
+    object-fit: contain;
+}
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+        }
+        .header img {
+            width: 100%;
+            border-radius: 12px;
+        }
+        h2 {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+        .input-box {
+            background: #1e293b;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+            border-radius: 8px;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+            background: #334155;
+            color: white;
+        }
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            padding: 12px 18px;
+            margin: 6px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .list-item:hover, .selected {
+            background: linear-gradient(135deg, #334155, #475569);
+            transform: scale(1.05);
+        }
+        .diamond {
+            color: #38bdf8;
+        }
+        .payment-options {
+            margin-top: 15px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .payment-button {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 6px;
+        }
+        .payment-button:hover {
+            background: linear-gradient(135deg, #16a34a, #065f46);
+        }
+        .cara-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.cara-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: auto;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #2d3b55;
+    padding: 15px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.step:hover {
+    transform: scale(1.05);
+}
+
+.icon {
+    font-size: 24px;
+    background: #22c55e;
+    color: #ffffff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.text h3 {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.text p {
+    font-size: 14px;
+    color: #cbd5e1;
+}
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo-container">
+        <a href="index.html" class="logo-link">
+            <img src="https://c.top4top.io/p_3294hb2sk0.jpg" alt="Logo" class="logo-img">
+            <div class="logo">ICEDRAGONSTORE</div>
+        </a>
+        <img src="https://j.top4top.io/p_3294m6cak0.png" alt="Verified Badge" class="verification-badge">
+    </div>
+</header>
+<body>
+	<div class="marquee-container">
+    <div class="marquee">
+        ⚡ LIST DIAMOND MOBILE LAGENDS PEMBAYARAN HANYA MELALUI TOUCH N GO SAHAJA ⚡
+    </div>
+</div>
+
+<style>
+    .marquee-container {
+        width: 100%;
+        overflow: hidden;
+        background: linear-gradient(90deg, #ff5f6d, #ffc371);
+        padding: 8px 0;
+        white-space: nowrap;
+    }
+
+    .marquee {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        animation: scrollText 12s linear infinite;
+    }
+
+    @keyframes scrollText {
+        from { transform: translateX(100%); }
+        to { transform: translateX(-100%); }
+    }
+</style>
+    <div class="container">
+        <div class="header">
+            <img src="https://i.pinimg.com/736x/17/8a/2e/178a2e2c54bf34859a0a2d4be749e52b.jpg" alt="Mobile Legends Banner">
+        </div>
+        <h2>TOP UP MOBILE LEGENDS</h2>
+
+        <div class="input-box">
+            <input type="text" id="userId" placeholder="Masukkan User ID">
+            <input type="text" id="zoneId" placeholder="Masukkan Zone ID" oninput="autoCheckID()">
+        </div>
+        <p id="namaML">💬 Masukkan Zone ID untuk semakan tanpa ()</p>
+
+        <h2>LIST DIAMOND ML</h2>
+        <div id="dmList">
+            </div>
+        </div>
+
+        <div class="payment-options" id="paymentOptions">
+            <h2>Pilih Pembayaran</h2>
+            <button class="payment-button" id="payWA">📲 WhatsApp</button>
+        </div>
+    </div>
+
+    <script>
+        let timer;
+        function autoCheckID() {
+            clearTimeout(timer);
+            timer = setTimeout(checkID, 1000);
+        }
+
+        async function checkID() {
+            let userId = document.getElementById("userId").value;
+            let zoneId = document.getElementById("zoneId").value;
+            let namaML = document.getElementById("namaML");
+
+            if (!userId || !zoneId) {
+                namaML.innerHTML = "⚠️ Masukkan User ID & Zone ID.";
+                return;
+            }
+
+            namaML.innerHTML = "⏳ Loading...";
+
+            try {
+                let response = await fetch("https://slrmyshop.com.my/mlreg/mlbbcheckerapi.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams({ userId, zoneId })
+                });
+
+                let data = await response.json();
+                if (data.status === "success" && data.data.message) {
+                    let nickname = data.data.message.split('\n').find(line => line.includes("In-Game Nickname:"))?.split(": ")[1] || "Tidak Dijumpai";
+                    namaML.innerHTML = `✅ Nama ML: ${nickname}`;
+                } else {
+                    namaML.innerHTML = "❌ ID ML tidak sah atau tidak ditemui!";
+                }
+            } catch (error) {
+                namaML.innerHTML = "⚠️ Ralat semasa semakan ID.";
+            }
+        }
+
+        function beliDM(diamond, harga, element) {
+            let userId = document.getElementById("userId").value;
+            let zoneId = document.getElementById("zoneId").value;
+            let namaML = document.getElementById("namaML").innerText.replace("✅ Nama ML: ", "");
+
+            if (!userId || !zoneId || !namaML) {
+                alert("Sila semak ID ML dahulu.");
+                return;
+            }
+
+            document.querySelectorAll('.list-item').forEach(item => item.classList.remove('selected'));
+            element.classList.add('selected');
+
+            let paymentSection = document.getElementById("paymentOptions");
+            paymentSection.style.display = "block";
+            setTimeout(() => paymentSection.style.opacity = "1", 100);
+
+            let whatsappNumber = "601135268529"; 
+            let message = `Saya ingin membeli ${diamond} diamond untuk MLBB.\n\nNama ML: ${namaML}\nUser ID: ${userId}\nZone ID: ${zoneId}\nHarga: RM${harga}`;
+            let whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+            document.getElementById("payWA").onclick = function() {
+                window.open(whatsappLink, "_blank");
+            };
+        }
+    const dmPrices = [
+    { diamond: 56, price: 5.00 },
+    { diamond: 112, price: 10.00 },
+    { diamond: 168, price: 15.00 },
+    { diamond: 223, price: 20.00 },
+    { diamond: 279, price: 25.00 },
+        { diamond: 336, price: 30.00 },
+    { diamond: 392, price: 35.00 },
+    { diamond: 448, price: 40.00 },
+        { diamond: 504, price: 45.00 },
+    { diamond: 570, price: 50.00 },
+    { diamond: 626, price: 55.00 },
+        { diamond: 682, price: 60.00 },
+         { diamond: 738, price: 65.00 },
+    { diamond: 793, price: 70.00 },
+    { diamond: 849, price: 75.00 },
+        { diamond: 906, price: 80.00 },
+    { diamond: 962, price: 85.00 },
+        { diamond: 1018, price: 90.00 },
+        { diamond: 1074, price: 95.00 },
+         { diamond: 1163, price: 100.00 }
+    ];
+
+    let dmListHTML = "";
+    dmPrices.forEach(({ diamond, price }) => {
+        dmListHTML += `
+            <div class="list-item" onclick="beliDM(${diamond}, ${price}, this)">
+                <span class="diamond">💎 ${diamond} diamond</span>
+                <span>RM${price.toFixed(2)}</span>
+            </div>
+        `;
+    });
+
+    document.getElementById("dmList").innerHTML = dmListHTML;
+</script>
+    </script>
+    <h2 class="payment-title">KAEDAH PEMBAYARAN</h2>
+    <div class="payment-container">
+        <a href="qrtng.html"><img src="https://c.top4top.io/p_3326a774a0.png" alt="Touch 'n Go"></a>
+        <a href="#"><img src="https://c.top4top.io/p_3346sakbq0.png" alt="FPX"></a>
+        <a href="#"><img src="https://h.top4top.io/p_3326ekmz80.png" alt="Boost"></a>
+        <a href="#"><img src="https://e.top4top.io/p_3326d0u830.png" alt="GrabPay"></a>
+    </div>
+
+<style>
+    .payment-title {
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        color: white;
+        margin-top: 20px;
+    }
+
+    .payment-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    .payment-container img {
+        width: 80px;
+        height: auto;
+        border-radius: 8px;
+        background: white;
+        padding: 5px;
+        box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .payment-container img:hover {
+        transform: scale(1.1);
+    }
+</style>
+    <h2 class="cara-title">CARA PEMBELIAN</h2>
+<div class="cara-container">
+    <div class="step">
+        <div class="icon">📌</div>
+        <div class="text">
+            <h3>Masukkan User ID & Zone ID</h3>
+            <p>Masukkan ID & Zone ID Mobile Legends anda.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="icon">💎</div>
+        <div class="text">
+            <h3>Pilih Jumlah Diamond</h3>
+            <p>Pilih jumlah diamond yang ingin dibeli.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="icon">✅</div>
+        <div class="text">
+            <h3>Sahkan Nama MLBB</h3>
+            <p>Nama Mobile Legends akan dipaparkan untuk semakan.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="icon">⚡</div>
+        <div class="text">
+            <h3>Pilih Kaedah Pembayaran</h3>
+            <p>SELESAIKAN PEMBAYARAN MELALUI WHATSAPP</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="icon">⚡</div>
+        <div class="text">
+            <h3>Diamond Dihantar</h3>
+            <p>Dalam 10-20 minit, diamond akan masuk ke akaun anda.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
