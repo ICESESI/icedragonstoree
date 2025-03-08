@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="ms">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥 Promosi Khas - Jangan Lepaskan! 🔥</title>
+    <title>PROMOSI RAMADHAN 2025</title>
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
@@ -77,7 +78,7 @@ body {
 h2 {
     font-size: 26px;
     font-weight: bold;
-    color: #ffcc00;
+    color: #000000;
     text-shadow: 0 0 20px rgba(255, 204, 0, 0.9);
     animation: glowText 1.5s infinite alternate;
     background: linear-gradient(90deg, #ffcc00, #ff6600);
@@ -236,7 +237,7 @@ h2 {
 </nav>
     </div>
 </nav>
-<h2>🔥 Promosi! 🔥</h2>
+<h2 class="promo-title">⚡ SLOT TERHAD JOM GRAB SEKARANG ⚡</h2>
 
 <div class="promo-container">
     <div class="product" id="product1">
@@ -249,8 +250,8 @@ h2 {
 
     <div class="product" id="product2">
         <img src="https://i.top4top.io/p_3317poadw0.png">
-        <p class="product-name">Diamond FF 310💎</p>
-        <p class="price"><span class="old-price">RM15</span> → <span class="new-price">RM9</span></p>
+        <p class="product-name">M.WEEKLY+M.LITE💎</p>
+        <p class="price"><span class="old-price">RM12</span> → <span class="new-price">RM10</span></p>
         <p class="countdown" id="timer2"></p>
         <a href="https://wa.me/60123456789?text=Saya%20nak%20beli%20Diamond%20ML%201200" class="buy-button" id="btn2">Beli Sekarang</a>
     </div>
@@ -274,7 +275,7 @@ h2 {
 <script>
     const promoTimes = [
         new Date(2025, 9, 11, 23, 59, 59), 
-        new Date(2024, 1, 12, 23, 59, 59),
+        new Date(2025, 3, 12, 23, 59, 59),
         new Date(2024, 1, 12, 23, 59, 59),
         new Date(2024, 1, 15, 23, 59, 59)
     ];
@@ -288,7 +289,7 @@ h2 {
 
         if (distance < 0) {
             timerElement.innerHTML = "Promosi Tamat!";
-            btnElement.outerHTML = `<p class="expired">Maaf, item ini telah tamat tempoh</p>`;
+            btnElement.outerHTML = `<p class="expired">Maaf, item ini telah habis stock</p>`;
             productElement.classList.add("expired");
             return;
         }
@@ -304,8 +305,8 @@ h2 {
     setInterval(() => {
         updateCountdown(0, "timer1", "btn1", "product1");
         updateCountdown(1, "timer2", "btn2", "product2");
-        updateCountdown(1, "timer3", "btn3", "product3");
-        updateCountdown(1, "timer4", "btn4", "product4");
+        updateCountdown(2, "timer3", "btn3", "product3");
+        updateCountdown(3, "timer4", "btn4", "product4");
     }, 1000);
 </script>
 <div class="copyright">© 2025 ICEDRAGONSTORE. Semua Hak Cipta Terpelihara.</div>
