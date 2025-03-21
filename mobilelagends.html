@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -263,6 +264,18 @@ h2 {
     height: 100%; /* Pastikan gambar ikut ketinggian container */
     object-fit: cover; /* Elak gambar terdistorsi, pastikan dia isi container */
 }
+/* Hak Cipta */
+.copyright {
+    text-align: center;
+    font-size: 12px;
+    color: #aaa;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #333333;
+}
     </style>
 </head>
 <body>
@@ -276,15 +289,15 @@ h2 {
         </div>
     </header>
 <!-- Pop-up -->
-<div id="popup" class="popup">
-    <div class="popup-content"> 
+<!--<div id="popup" class="popup">
+    <!--<div class="popup-content"> 
         <!-- Gambar iklan -->
-        <img id="adImage" src="https://k.top4top.io/p_331495rg61.jpg" alt="ICE NAK STOCK GESS">
+      <!--  <img id="adImage" src="https://k.top4top.io/p_331495rg61.jpg" alt="ICE NAK STOCK GESS">
         
         <!-- Butang Close -->
-        <button id="closePopup" class="close-btn">
-            <img src="https://i.top4top.io/p_2227qosd01.png" alt="Close">
-        </button>
+      <!--  <button id="closePopup" class="close-btn">
+      <!--      <img src="https://i.top4top.io/p_2227qosd01.png" alt="Close">
+      <!--  </button>
     </div>
 </div>
 <!-- Notification -->
@@ -444,12 +457,11 @@ setInterval(() => {
         });
     </script>
 </body>
-<footer>
-    <p>© <span id="currentYear"></span> ICEDRAGONSTORE. All rights reserved</a>
-</footer>
+<div class="copyright">© <span id="currentYear"></span> ICEDRAGONSTORE. Semua Hak Cipta Terpelihara.</div>
 <script>
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 </script>
   </html>
 </body>
-</html>
+    </html>
+    
