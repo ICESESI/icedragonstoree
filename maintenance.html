@@ -1,55 +1,351 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Maintenance</title>
-    <meta charset="utf-8"/>
-    <meta name="robots" content="noindex"/>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <link rel="shortcut icon" href="https://h.top4top.io/s_3151vzau50.jpg" type="image/x-icon">
+    <meta name="description" content="Laman Web Dalam Penyelenggaraan">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance</title>
     <style>
-      body { text-align: center; padding: 20px; font: 20px Helvetica, sans-serif; color: #efe8e8; }
-      @media (min-width: 768px){
-        body{ padding-top: 150px; }
-      }
-      h1 { font-size: 50px; }
-      article { display: block; text-align: left; max-width: 650px; margin: 0 auto; }
-      a { color: #dc8100; text-decoration: none; }
-      a:hover { color: #efe8e8; text-decoration: none; }
-    </style>
-  </head>
-  <body bgcolor="2e2929">
-    <article>
-        <h1>We&rsquo;ll be back soon!</h1>
-        <div>
-            <p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. If you need to you can always <a href="mailto: icedragonstoretrusted@gmail.com">contact us</a>, otherwise we&rsquo;ll be back online shortly!</p>
-            <p>&mdash; The Team</p>
-            
-        </div>
-        <div style="display: flex; flex-direction: row; justify-content: space-between;">
-            <p class="day"></p>
-            <p class="hour"></p>
-            <p class="minute"></p>
-            <p class="second"></p>
-        </div>
-    </article>
-    <script>
-        const countDown = () => {
-            const countDay = new Date('July 1, 2030 00:00:00');
-            const now = new Date();
-            const counter = countDay - now;
-            const second = 1000;
-            const minute = second * 60;
-            const hour = minute * 60;
-            const day = hour * 24;
-            const textDay = Math.floor(counter / day);
-            const textHour = Math.floor((counter % day) / hour);
-            const textMinute = Math.floor((counter % hour) / minute);
-            const textSecond = Math.floor((counter % minute) / second)
-            document.querySelector(".day").innerText = textDay + ' Days';
-            document.querySelector(".hour").innerText = textHour + ' Hours';
-            document.querySelector(".minute").innerText = textMinute + ' Minutes';
-            document.querySelector(".second").innerText = textSecond + ' Seconds';
+/* CSS untuk Pop-up */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2a2a2a;
+    color: #fafafa;
+    text-align: center;
+    padding-top: 60px; /* Laraskan mengikut ketinggian header */
+}
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    display: none;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px #48c6ef;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    position: relative;
+    overflow: hidden;
+        border: 2px solid #48c6ef;
+}
+
+.popup-content img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.close-btn img {
+    width: 50px;
+    height: 50px;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #48c6ef;
+    box-shadow: 0 0 10px #48c6ef;
+    z-index: 1000; /* Pastikan header sentiasa di atas elemen lain */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.logo {
+    font-size: 1.0rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.verification-badge {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+/* Container */
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #333333;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px #48c6ef;
+    border: 2px solid #48c6ef;
+}
+
+/* Banner */
+.banner {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+}
+
+/* Headings */
+h1 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #f4d03f;
+    margin: 20px 0 10px;
+}
+
+/* Price List */
+.price-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.price-item {
+    padding: 12px;
+    margin: 10px 0;
+    background: #444444;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #e4e4e4;
+    box-shadow: 0 4px 6px #48c6ef;
+    border: 2px solid #48c6ef;
+}
+
+/* Payment Methods */
+.payment-method-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.payment-method-buttons img {
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, border 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.payment-method-buttons img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #48c6ef;
+}
+
+.payment-method-buttons img.active {
+    border: 2px solid #48c6ef;
+}
+
+/* WhatsApp Button */
+.btn-whatsapp {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #2c9f9f;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    background: #238f8f;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    animation: fadeInOut 4s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    10% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    90% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+}
+.slider-container {
+    border-radius: 15px; /* Pastikan bulatannya seragam */
+    overflow: hidden; /* Pastikan gambar tak lari keluar */
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Pastikan gambar ngam dengan container */
+    border-radius: 15px; /* Pastikan gambar pun ikut bulatannya */
+}
+
+.slider {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    width: 100%;
+    height: 100%; /* Pastikan gambar ikut ketinggian container */
+    object-fit: cover; /* Elak gambar terdistorsi, pastikan dia isi container */
+}
+/* Hak Cipta */
+.copyright {
+    text-align: center;
+    font-size: 12px;
+    color: #aaa;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #333333;
+}
+.center-container {
+    display: flex; /* Aktifkan flexbox */
+    justify-content: center; /* Center secara horizontal */
+    align-items: center; /* Center secara vertical */
+    height: 100vh; /* Biar ketinggian penuh skrin */
+    background: #2a2a2a; /* Warna latar */
+    text-align: center; /* Centerkan teks */
+}
+
+.center-box {
+    background: #333; /* Kotak latar */
+    color: #fff; /* Warna teks */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #48c6ef; /* Efek shadow */
+    width: 80%; /* Lebar kotak */
+    max-width: 400px; /* Had maksimum lebar */
+}
+        .countdown {
+            font-size: 16px;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #d9534f;
         }
-        setInterval(countDown, 1000);
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="https://c.top4top.io/p_3294hb2sk0.jpg" alt="Logo" class="logo-img">
+                <div class="logo">ICEDRAGONSTORE</div>
+            </a>
+            <img src="https://j.top4top.io/p_3294m6cak0.png" alt="Verified Badge" class="verification-badge">
+        </div>
+    </header>
+    <div class="center-container">
+    <div class="center-box">
+        <h1>Produk Dalam Penyelenggaraan</h1>
+        <p>Harap bersabar, laman web ini sedang dikemas kini.</p>
+                <p class="countdown">Anda akan dialihkan dalam <span id="countdown">5</span> saat...</p>
+    </div>
+    </div>
+    <script>
+        let timeLeft = 5;
+        function updateCountdown() {
+            document.getElementById("countdown").innerText = timeLeft;
+            if (timeLeft === 0) {
+                window.location.href = "index.html"; // Ganti dengan URL homepage sebenar
+            } else {
+                timeLeft--;
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+        window.onload = updateCountdown;
     </script>
-  </body>
-</html>
+</body>
+<div class="copyright">© <span id="currentYear"></span> ICEDRAGONSTORE. Semua Hak Cipta Terpelihara.</div>
+<script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+  </html>
+  
