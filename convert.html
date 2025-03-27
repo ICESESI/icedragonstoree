@@ -1,0 +1,330 @@
+
+<html lang="ms">
+<head>
+	<link rel="shortcut icon" href="https://h.top4top.io/s_3151vzau50.jpg" type="image/x-icon">
+    <meta name="description" content="Jom tukar kredit Digi ke e-Wallet seperti bank atau Touch 'n Go dengan mudah dan pantas!">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONVERT</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.container {
+    max-width: 500px; /* Kurangkan saiz max-width supaya lebih fit */
+    width: 90%;
+    margin: 60px auto 20px; /* Kurangkan margin supaya tak terlalu turun */
+    background: #fff;
+    padding: 15px; /* Kurangkan padding supaya tak nampak besar */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.verification-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.verification-logo img {
+    width: 80px; /* Besarkan sikit gambar */
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #48c6ef; /* Tambah border biru */
+    box-shadow: 0 0 10px rgba(72, 198, 239, 0.5);
+}
+
+.verification-logo p {
+    font-size: 14px; /* Besarkan sikit teks */
+    font-weight: bold;
+    color: #48c6ef; /* Tukar warna biru */
+    text-transform: uppercase; /* Jadikan huruf besar */
+    letter-spacing: 1px; /* Jarakkan sikit huruf */
+}
+
+h1 {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 0;
+    border-bottom: 3px solid #48c6ef;
+    display: inline-block;
+}
+
+.form-group {
+    margin-bottom: 12px; /* Kurangkan spacing */
+}
+
+.form-group label {
+    font-size: 16px; /* Besarkan sikit teks */
+    font-weight: bold; /* Jadikan bold */
+    color: #black; /* Tukar warna */
+}
+}
+
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+}
+
+.result, .contact-info, .back-to-home {
+    margin-top: 15px; /* Kurangkan spacing */
+    padding: 12px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+}
+
+.result, .contact-info, .back-to-home {
+    margin-top: 15px;
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 6px;
+    border: 2px solid #48c6ef;
+    box-shadow: 0 2px 10px rgba(72, 198, 239, 0.3);
+    text-align: center;
+}
+
+.contact-info p, .back-to-home p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.contact-info a, .back-to-home a {
+    color: #007bff;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.contact-info a:hover, .back-to-home a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.back-to-home {
+    text-align: center;
+    font-size: 14px;
+}
+
+.back-to-home a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-to-home a:hover {
+    text-decoration: underline;
+}
+
+/* --- HEADER FIX --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #2a2a2a, #444);
+    padding: 12px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #48c6ef;
+    box-shadow: 0 0 12px rgba(72, 198, 239, 0.7);
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    width: 45px; /* Kurangkan saiz logo */
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.logo {
+    font-size: 0.9rem; /* Kurangkan font header */
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.verification-badge {
+    width: 25px; /* Kurangkan size */
+    height: 25px;
+    margin-left: 8px;
+}
+#conversionType {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #48c6ef;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#conversionType:focus {
+    border-color: #1e90ff;
+    outline: none;
+    box-shadow: 0 0 10px rgba(30, 144, 255, 0.6);
+}
+#amount {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #48c6ef;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+}
+
+#amount:focus {
+    border-color: #1e90ff;
+    outline: none;
+    box-shadow: 0 0 10px rgba(30, 144, 255, 0.6);
+}
+.copyright {
+    text-align: center;
+    font-size: 12px;
+    color: #black;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: white;
+}
+    </style>
+    <header>
+        <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="https://c.top4top.io/p_3294hb2sk0.jpg" alt="Logo" class="logo-img">
+                <div class="logo">ICEDRAGONSTORE</div>
+            </a>
+            <img src="https://j.top4top.io/p_3294m6cak0.png" alt="Verified Badge" class="verification-badge">
+        </div>
+    </header>
+<body>
+    <div class="container">
+        <div class="verification-logo">
+            <img src="https://c.top4top.io/p_3294hb2sk0.jpg" alt="ICESESI">
+            <p>Convert by Icedragonstore</p>
+        </div>
+        <h1>CONVERT DIGI - TNG/BANK</h1>
+        <form id="conversionForm">
+            <div class="form-group">
+                <label for="amount">Jumlah Topup DIGI (RM):</label>
+<input type="number" id="amount" name="amount" min="1" step="0.01" max="1000" required placeholder="Masukkan jumlah topup">
+            </div>
+            <div class="form-group">
+                <label for="conversionType">Jenis Penukaran:</label>
+                <select id="conversionType" name="conversionType" required>
+                    <option value="tng">DIGI ke TNG</option>
+                    <option value="BANK">DIGI ke BANK</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Kira</button>
+            </div>
+<div id="result" class="result">Sila masukkan jumlah topup dan tekan butang kira⚠️.</div>
+            <div class="contact-info">
+                <p>FOR CONVERT TOPUP DIGI KE TNG / BANK CHAT ICE <a href="https://wa.me/601135268529">TEKAN SINI</a> TQ.</p>
+            </div>
+            <div class="back-to-home">
+                <p><a href="index.html">Kembali ke Laman Utama</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('conversionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const amount = parseFloat(document.getElementById('amount').value);
+            const conversionType = document.getElementById('conversionType').value;
+
+            if (isNaN(amount) || amount <= 0 || amount > 1000) {
+                document.getElementById('result').innerText = 'Sila masukkan jumlah yang sah (maksimum RM1000).';
+                return;
+            }
+
+            let fee;
+            if (amount <= 10) {
+                fee = 4;
+            } else if (amount <= 20) {
+                fee = 8;
+            } else if (amount <= 30) {
+                fee = 9;
+            } else if (amount <= 40) {
+                fee = 10;
+            } else if (amount <= 50) {
+                fee = 14;
+            } else if (amount <= 100) {
+                fee = 20;
+            } else if (amount <= 200) {
+                fee = 30;
+            } else if (amount <= 1000) {
+                fee = 200;
+            } else {
+                fee = 60;
+            }
+
+            const totalAmount = amount - fee;
+
+            if (totalAmount < 0) {
+                document.getElementById('result').innerText = 'Jumlah duit tidak mencukupi untuk menampung caj.';
+            } else {
+                document.getElementById('result').innerText = `Jumlah ${conversionType === 'tng' ? 'TNG' : 'BANK'} yang akan diterima adalah RM${totalAmount.toFixed(2)} (Caj RM${fee})`;
+            }
+        });
+    </script>
+</body>
+<div class="copyright">© <span id="currentYear"></span> ICEDRAGONSTORE. Semua Hak Cipta Terpelihara.</div>
+<script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+</html>
