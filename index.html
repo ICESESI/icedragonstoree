@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ms">
 <head>
@@ -7,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICEDRAGONSTORE</title>
-        <!-- Link Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
@@ -21,95 +20,170 @@ body {
     text-align: center;
 }
 
-/* Header */
-.header {
+/* === GAYA NAVBAR BAHARU === */
+.navbar {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 12px 20px;
-    background: #1a1a1a;
-    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
+    /* Kesan kaca fros (glassmorphism) */
+    background: rgba(26, 26, 26, 0.7); /* Disesuaikan dengan tema asal */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 204, 0, 0.2);
+    /* Lekatkan navbar di bahagian atas */
     position: fixed;
     top: 0;
     width: 100%;
     left: 0;
     z-index: 1000;
+    box-sizing: border-box; /* Memastikan padding tidak menambah lebar */
 }
 
-.logo-container {
+/* Logo di sebelah kiri */
+.navbar .logo-container {
     display: flex;
     align-items: center;
+    gap: 12px;
     text-decoration: none;
-    cursor: pointer;
 }
 
-.logo-container img {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
+.navbar .logo-container img {
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     border: 2px solid #ffcc00;
-    margin-right: 12px;
-    transition: 0.3s;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.logo-container:hover img {
-    transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+.navbar .logo-container:hover img {
+    transform: scale(1.1) rotate(360deg);
+    box-shadow: 0 0 15px #ffcc00;
 }
 
-.logo-container h1 {
-    font-size: 15px;
-    color: #FFFFFF;
-    margin: 0;
-    font-weight: bold;
+.navbar .logo-container .store-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: 0.3s;
+    letter-spacing: 1.5px;
 }
 
-.logo-container:hover h1 {
-    color: #ff6600;
-    text-shadow: 0 0 8px rgba(255, 102, 0, 0.7);
+/* Senarai Pautan Navigasi */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
 }
 
-/* Untuk elak kandungan tertutup oleh header */
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    padding-bottom: 5px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Kesan garis bawah semasa hover */
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ffcc00;
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #ffcc00;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+/* Ikon Menu Hamburger (untuk mobile) */
+.hamburger-menu {
+    display: none; /* Sembunyi pada desktop */
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+/* Rekaan Responsif untuk Skrin Kecil (Mobile) */
+@media (max-width: 768px) {
+    /* Sembunyikan pautan dan tunjukkan ikon hamburger */
+    .nav-links {
+        display: none; /* Sembunyikan senarai pautan */
+        flex-direction: column; /* Susun pautan secara menegak */
+        position: absolute;
+        top: 70px; /* Jarak dari atas navbar */
+        left: 0;
+        width: 100%;
+        background: rgba(26, 26, 26, 0.9); /* Latar belakang lebih gelap */
+        backdrop-filter: blur(10px);
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(255, 204, 0, 0.2);
+    }
+
+    /* Kelas 'active' untuk menunjukkan menu */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    /* Tunjukkan ikon hamburger */
+    .hamburger-menu {
+        display: block;
+    }
+}
+/* === AKHIR GAYA NAVBAR BAHARU === */
+
+
 .content {
     margin-top: 80px;
 }
 
-        /* Tajuk Promosi */
-        h2 {
-            font-size: 26px;
-            font-weight: bold;
-            color: #ffcc00;
-            text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
-            padding: 15px;
-            border-radius: 10px;
-            display: inline-block;
-            margin-top: 100px;
+h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ffcc00;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 100px;
 }
 
-@keyframes glowText {
-    from {
-        text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
-    }
-    to {
-        text-shadow: 0 0 20px rgba(255, 204, 0, 1);
-    }
-}
-
-/* Grid Promosi */
 .promo-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
     gap: 20px;
     max-width: 800px;
     margin: auto;
     margin-top: 20px;
 }
 
-/* Kotak Produk */
+@media (min-width: 768px) {
+    .promo-container {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns for desktop */
+    }
+}
+
+
 .product {
     background: linear-gradient(145deg, #222, #1a1a1a);
     padding: 15px;
@@ -141,108 +215,34 @@ body {
     color: #ffcc00;
 }
 
-.price {
-    font-size: 16px;
-    margin: 5px 0;
+.product-description {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 5px;
 }
 
-.old-price {
-    text-decoration: line-through;
-    color: #888;
-}
-
-.new-price {
-    font-size: 18px;
-    color: #ffcc00;
-    font-weight: bold;
-}
-
-/* Countdown Timer */
-.countdown {
-    font-size: 14px;
-    color: #ff4500;
-    font-weight: bold;
-    background: rgba(255, 69, 0, 0.1);
-    padding: 5px;
-    border-radius: 5px;
-    margin: 10px 0;
-    display: inline-block;
-}
-
-/* Butang Beli */
-.buy-button {
-    display: inline-block;
-    background: linear-gradient(90deg, #ffcc00, #ff6600);
-    color: black;
-    padding: 8px 12px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: 0.3s;
-    box-shadow: 0 0 8px rgba(255, 102, 0, 0.7);
-}
-
-.buy-button:hover {
-    background: linear-gradient(90deg, #ff6600, #ffcc00);
-    box-shadow: 0 0 12px rgba(255, 102, 0, 1);
-}
-
-/* Jika Promosi Tamat */
-.expired {
-    background: #333;
-    color: #aaa;
-    padding: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 5px;
-}
-
-.product.expired {
-    filter: grayscale(80%) blur(1.5px);
-    box-shadow: none;
-}
-
-.product.expired .buy-button {
-    display: none;
-}
-
-.product.expired:hover {
-    transform: none;
-    box-shadow: none;
-}
-
-/* Hak Cipta */
 .copyright {
     text-align: center;
     font-size: 12px;
     color: #aaa;
-    padding: 10px 0;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background: #121212;
+    padding-bottom: 10px;
 }
 
 .promo-title {
     font-size: 0px;
     font-weight: bold;
     margin-bottom: 0px;
-    margin-top: 25px; /* Tukar nilai ni ikut keperluan */
+    margin-top: 25px; 
 }
 
-        /* SWIPER SLIDER */
 .swiper {
     width: 100%;
-    max-width: 800px; /* Saiz maksimum slider */
-    height: auto; /* Auto ikut saiz gambar */
+    max-width: 800px; 
+    height: auto;
     margin: auto;
     border-radius: 15px;
     overflow: hidden;
-    display: flex; /* Pastikan slider fit */
-    align-items: center; /* Tengah-tengahkan gambar */
-    justify-content: center;
+    aspect-ratio: 16/7;
 }
 
 .swiper-slide {
@@ -253,20 +253,20 @@ body {
 
 .swiper-slide img {
     width: 100%;
-    max-height: 200px; /* Tukar ikut keperluan */
-    object-fit: contain; /* Pastikan gambar tak crop */
+    height: 100%;
+    object-fit: cover; 
     display: block;
 }
 .product {
-    position: relative; /* Supaya label boleh guna absolute */
+    position: relative; 
     display: inline-block;
     overflow: hidden;
 }
 
 .label-close {
     position: absolute;
-    top: 5px; /* Jarak dari atas */
-    left: 5px; /* Jarak dari kiri */
+    top: 5px; 
+    left: 5px; 
     background: red;
     color: white;
     font-size: 14px;
@@ -285,24 +285,22 @@ a:hover {
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); 
-    gap: 8px; /* Jarak antara kotak */
+    gap: 8px; 
     justify-content: center;
     text-align: center;
     padding: 10px;
-    background: #121212; /* Latar belakang hitam */
+    background: #121212;
 }
 
-/* Kotak kecil */
 .item {
-    background: #1a1a1a; /* Warna kotak gelap */
+    background: #1a1a1a; 
     border-radius: 8px;
     padding: 10px;
     position: relative;
-    box-shadow: 0px 2px 6px rgba(255, 255, 0, 0.5); /* Bayang kuning */
+    box-shadow: 0px 2px 6px rgba(255, 255, 0, 0.5); 
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Efek border kuning bercahaya (kurang terang) */
 .item::before {
     content: "";
     position: absolute;
@@ -311,48 +309,40 @@ a:hover {
     right: -2px;
     bottom: -2px;
     border-radius: 10px;
-    border: 2px solid rgba(255, 215, 0, 0.7); /* Garisan kuning kurang terang */
-    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); /* Cahaya kuning kurang terang */
+    border: 2px solid rgba(255, 215, 0, 0.7); 
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
     pointer-events: none;
 }
 
-/* Hover Effect (kurangkan cahaya) */
 .item:hover {
     transform: translateY(-3px);
-    box-shadow: 0px 4px 8px rgba(255, 215, 0, 0.6); /* Kurangkan cahaya hover */
+    box-shadow: 0px 4px 8px rgba(255, 215, 0, 0.6);
 }
 
-/* Gambar dalam kotak */
 .item img {
-    width: 50px; /* Ikut saiz yang sesuai */
+    width: 50px; 
     height: auto;
     margin-bottom: 5px;
 }
 
-/* Text dalam kotak */
 .item p {
     font-size: 12px;
     font-weight: bold;
-    color: #ffd700; /* Teks warna kuning */
+    color: #ffd700; 
     margin: 0;
 }
 .extra-section {
-    background: #222; /* Tukar warna ikut tema */
+    background: #222; 
     padding: 30px 0;
 }
 
 .footer-sections {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
     max-width: 1200px;
     margin: auto;
     padding: 20px;
-}
-
-.footer-section {
-    width: 20%;
-    min-width: 150px;
     text-align: left;
 }
 
@@ -360,7 +350,8 @@ a:hover {
     color: yellow;
     border-bottom: 2px solid yellow;
     padding-bottom: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    display: inline-block;
 }
 
 .footer-section ul {
@@ -369,7 +360,7 @@ a:hover {
 }
 
 .footer-section ul li {
-    margin: 8px 0;
+    margin: 10px 0;
 }
 
 .footer-section ul li a {
@@ -377,25 +368,23 @@ a:hover {
     color: white;
     opacity: 0.8;
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .footer-section ul li a:hover {
     color: yellow;
     opacity: 1;
 }
-
-/* Footer Styling */
-footer {
-    background: #111;
+.footer-section ul li a i {
+    width: 20px;
     text-align: center;
-    padding: 15px;
-    color: white;
-    font-size: 14px;
-    border-top: 1px solid #444;
 }
+
 .top-info {
     text-align: center;
-    background: #222; /* Warna background */
+    background: #222; 
     padding: 10px 20px;
     margin-top: -10px;
     color: yellow;
@@ -403,24 +392,26 @@ footer {
     font-weight: bold;
     border-radius: 10px;
 }
-/* Styling untuk kotak carian */
+
 .search-container {
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-left: auto;
-    background: #333;
-    padding: 5px;
+    margin: 20px auto; 
+    background: #1a1a1a;
+    padding: 10px;
     border-radius: 8px;
+    max-width: 400px; 
 }
 .search-container input {
     border: none;
     outline: none;
     padding: 8px;
     font-size: 14px;
-    width: 150px;
-    background: #1a1a1a;
+    width: 70%; 
+    background: #333;
     color: white;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
 }
 
 .search-container button {
@@ -428,7 +419,7 @@ footer {
     color: black;
     border: none;
     padding: 8px 12px;
-    border-radius: 5px;
+    border-radius: 0 5px 5px 0;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
@@ -438,23 +429,23 @@ footer {
     background: #ffaa00;
 }
 .popular-section {
-    text-align: left; /* Letak ke tepi kiri */
-    margin-left: 10px; /* Jarak dari tepi */
-    margin-top: -100px; /* Rapatkan ke atas */
+    text-align: left; 
+    margin-left: 10px; 
+    margin-top: -100px; 
 }
 
 .popular-title {
-    font-size: 14px; /* Kecilkan saiz teks */
+    font-size: 14px; 
     font-weight: bold;
-    color: #FF4500; /* Warna oren api */
+    color: #FF4500; 
     text-transform: uppercase;
-    margin-bottom: 1px; /* Rapatkan dengan teks bawah */
+    margin-bottom: 1px; 
 }
 
 .popular-text {
-    font-size: 11px; /* Kecilkan saiz teks */
-    color: #666; /* Warna lebih pudar supaya nampak kemas */
-    margin-top: 0px; /* Buang jarak atas */
+    font-size: 11px;
+    color: #666;
+    margin-top: 0px; 
 }
 .popup {
     display: none;
@@ -508,24 +499,47 @@ footer {
 .icedragon-title {
     position: relative;
     display: inline-block;
-    font-size: 24px; /* Boleh ubah ikut kesesuaian */
+    font-size: 24px;
     font-weight: bold;
     color: white;
     text-transform: uppercase;
-    padding: 0px 20px; /* Kecilkan padding atas */
-    margin-top: 15px; /* Kurangkan margin atas supaya naik ke atas */
+    padding: 0px 20px;
+    margin-top: 15px; 
 }
 
 .icedragon-title::before {
     content: "";
     position: absolute;
-    top: -5px; /* Boleh ubah nilai ni supaya jalur lagi dekat */
+    top: -5px; 
     left: 0;
     width: 100%;
     height: 4px;
     background-color: yellow;
 }
+
+#loadMoreBtn {
+    display: inline-block;
+    background: linear-gradient(90deg, #ffcc00, #ff6600);
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+    box-shadow: 0 0 8px rgba(255, 102, 0, 0.7);
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#loadMoreBtn:hover {
+    background: linear-gradient(90deg, #ff6600, #ffcc00);
+    box-shadow: 0 0 12px rgba(255, 102, 0, 1);
+}
+
     </style>
+    
 </head>
 <audio autoplay="autoplay" hidden="hidden" src="-"></audio>
 <body>
@@ -537,21 +551,26 @@ footer {
         <img src="https://icesesi.github.io/icedragonstoree/image/images (8).jpeg" alt="Iklan Promosi">
     </a>
 </div>
-    <!-- Header dengan link ke Home -->
-    <div class="header">
-        <a href="#" class="logo-container"> <!-- Ganti index.html dengan URL utama -->
-            <img src="https://c.top4top.io/p_3294hb2sk0.jpg" alt="Logo ICEDRAGONSTORE"> 
-            <h1>ICEDRAGONSTORE</h1>
+    
+    <!-- NAVBAR BAHARU DIMASUKKAN DI SINI -->
+    <nav class="navbar">
+        <a href="#" class="logo-container">
+            <img src="https://c.top4top.io/p_3294hb2sk0.jpg" alt="Logo">
+            <span class="store-name">ICEDRAGONSTORE</span>
         </a>
-        <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Cari produk..." onkeyup="searchProduct()">
-    <button onclick="searchProduct()">Cari</button>
-</div>
-    </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Product</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact us</a></li>
+        </ul>
+        <button class="hamburger-menu" id="hamburgerMenu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
 
     <h2 class="promo-title"></h2>
 
-    <!-- SWIPER SLIDER -->
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -567,13 +586,12 @@ footer {
     <h2 class="popular-title">🔥 POPULER!</h2>
     <p class="popular-text">Beberapa produk yang paling hot saat ini.</p>
 </div>
-
 <div class="container">
     <div class="item">
-        <a href="https://icesesi.github.io/icedragonstoree/flashsale.html" target="_blank">
-            <img src="https://c.top4top.io/p_3294hb2sk0.jpg" alt="PROMOSI">
+        <a href="roblox.html" target="_blank">
+            <img src="https://icesesi.github.io/icedragonstoree/image/Roblox_0cef252a63.avif" alt="Roblox">
         </a>
-        <p>PROMO🔥</p>
+        <p>Roblox</p>
     </div>
     <div class="item">
         <a href="convert.html" target="_blank">
@@ -612,19 +630,25 @@ footer {
         <p>STOCK ACC FF</p>
     </div>
     <div class="item">
-        <a href="midmanmalaysia.html" target="_blank">
-            <img src="https://c.top4top.io/p_3294hb2sk0.jpg" alt="Trusted Midman">
+        <a href="#" target="_blank">
+            <img src="https://placehold.co/60x60/f87171/white?text=Not Available" alt="Not Available">
         </a>
-        <p>TRUSTED MIDMAN (MY)</p>
+        <p>Not Available</p>
     </div>
+</div>
+
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="Cari produk..." onkeyup="searchProduct()">
+    <button onclick="searchProduct()">Cari</button>
 </div>
 
 <div class="promo-container">
     <div class="product">
-    	<span class="label-close">CLOSED</span>
+    	<span class="label-close">Hot</span>
         <a href="https://wa.me/601135268529" target="_blank">
             <img src="https://icesesi.github.io/icedragonstoree/image/images (8).jpeg" alt="Produk 1">
             <p class="product-name">UNLOCK SESI/BNDNG</h2>
+            <p class="product-description">Servis Unlock Acc Facebook</p>
         </a>
     </div>
 
@@ -632,13 +656,15 @@ footer {
         <a href="freefire.html" target="_blank">
             <img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/icon.png" alt="FF">
             <p class="product-name">FREE FIRE</h2>
+            <p class="product-description">Topup Diamond Free Fire Murah Dan Pantas</p>
         </a>
     </div>
     
     <div class="product">
         <a href="https://icesesi.github.io/icedragonstoree/mobilelagends.html" target="_blank">
             <img src="https://e.top4top.io/p_31636c4ac0.jpg" alt="ML">
-            <p class="product-name">MOBILE LAGENDS</h2>
+            <p class="product-name">MOBILE LEGENDS</h2>
+            <p class="product-description">Topup diamond Mobile Lagends murah</p>
         </a>
     </div>
 
@@ -646,14 +672,31 @@ footer {
         <a href="roblox.html" target="_blank">
             <img src="https://icesesi.github.io/icedragonstoree/image/Roblox_0cef252a63.avif" alt="ROBLOX">
             <p class="product-name">ROBLOX</h2>
+            <p class="product-description">Via Log in</p>
         </a>
     </div>
     
+          <div class="product">
+        <a href="/pubgmobile.html" target="_blank">
+            <img src="https://d2q6p243gvtoqd.cloudfront.net/Pubg_f122b4fabf.avif" alt="PUBG MOBILE">
+            <p class="product-name">PUBG MOBILE</h2>
+            <p class="product-description">Top up game Pubg Mobile</p>
+        </a>
+    </div>
+    
+              <div class="product">
+        <a href="/honorofking.html" target="_blank">
+            <img src="https://e.top4top.io/p_35502a6wx0.jpg" alt="HOK">
+            <p class="product-name">HONOR OF KING</h2>
+            <p class="product-description">Topup Game HOK</p>
+        </a>
+    </div>
     
         <div class="product">
         <a href="#" target="_blank">
             <img src="https://cdn-gop.garenanow.com/gop/app/0000/100/105/icon.png" alt="GARENA UNDAWN">
             <p class="product-name">GARENA UNDAWN</h2>
+            <p class="product-description">Topup Game Garena Undawn</p>
         </a>
     </div>
     
@@ -661,6 +704,7 @@ footer {
         <a href="#" target="_blank">
             <img src="https://cdn-gop.garenanow.com/gop/app/0000/100/151/icon.png" alt="DELTA FORCE">
             <p class="product-name">DELTA FORCE</h2>
+            <p class="product-description">Topup Game Delta Force</p>
         </a>
     </div>
     
@@ -668,16 +712,22 @@ footer {
         <a href="#" target="_blank">
             <img src="https://cdn-gop.garenanow.com/gop/app/0000/100/130/icon.png" alt="BCM">
             <p class="product-name">BLACK CLOVER M</h2>
+            <p class="product-description">Topup Game Black Clover M</p>
         </a>
     </div>
     
         <div class="product">
         <a href="https://icesesi.github.io/icedragonstoree/donate.html" target="_blank">
             <img src="https://a.top4top.io/p_3163ahtug0.jpg" alt="Donate">
-            <p class="product-name">DONATE</h2>
+            <p class="product-name">TABUNG SUMBANGAN</h2>
+            <p class="product-description">Sumbangan untuk menyokong kami.</p>
         </a>
     </div>
 </div>
+<button id="loadMoreBtn">More</button>
+
+<div style="padding-bottom: 50px;"></div> <!-- Spacer for copyright -->
+
 <script>
     function showPopup() {
         document.getElementById("popup").style.display = "block";
@@ -689,10 +739,8 @@ footer {
         document.getElementById("overlay").style.display = "none";
     }
 
-    // Paparkan popup selepas 3 saat
     setTimeout(showPopup, 300000);
 </script>
-    <!-- Link Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
@@ -709,11 +757,7 @@ footer {
     },
     on: {
         init: function () {
-            document.querySelectorAll('.swiper-slide img').forEach(img => {
-                img.onload = function() {
-                    this.parentElement.style.height = this.clientHeight + "px";
-                };
-            });
+            this.el.style.height = 'auto'; // Let Swiper calculate height
         }
     }
 });
@@ -721,64 +765,101 @@ footer {
     <script>
 function searchProduct() {
     let input = document.getElementById("searchInput").value.toLowerCase();
-    let products = document.querySelectorAll(".product");
+    let products = document.querySelectorAll(".promo-container .product");
 
     products.forEach(product => {
         let productName = product.querySelector(".product-name").innerText.toLowerCase();
         if (productName.includes(input)) {
-            product.style.display = "block"; // Tunjuk jika nama ada
+            product.style.display = "block"; 
         } else {
-            product.style.display = "none"; // Sembunyikan jika tiada
+            product.style.display = "none"; 
         }
     });
 }
 </script>
-    <!-- Tajuk Utama -->
-<h2 class="icedragon-title">ICEDRAGONSTORE</h2>
-    <!-- Bahagian Info Atas Tajuk Utama -->
-<div class="top-info">
-    <p>The #1 provider of game top-ups & vouchers—best-selling, affordable, safe, 100% legitimate, available 24/7, with the easiest payment options via Touch 'n Go & Digi.
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const products = document.querySelectorAll('.promo-container .product');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const productsPerLoad = 4;
+        let visibleProducts = productsPerLoad;
+
+        products.forEach((product, index) => {
+            if (index >= visibleProducts) {
+                product.style.display = 'none';
+            }
+        });
+
+        if (products.length <= visibleProducts) {
+            loadMoreBtn.style.display = 'none';
+        }
+
+        loadMoreBtn.addEventListener('click', () => {
+            const newVisibleLimit = visibleProducts + productsPerLoad;
+
+            products.forEach((product, index) => {
+                if (index >= visibleProducts && index < newVisibleLimit) {
+                    product.style.display = 'grid'; // Use grid to respect the layout
+                }
+            });
+
+            visibleProducts = newVisibleLimit;
+
+            if (visibleProducts >= products.length) {
+                loadMoreBtn.style.display = 'none';
+            }
+        });
+    });
+</script>
+    <h2 class="icedragon-title">ICEDRAGONSTORE</h2>
+    <div class="top-info">
+    <p>fast, secure, and trusted top-up platform for all your favorite games.
 
 </p>
 </div>
 
     <div class="footer-sections">
-    <div class="footer-section">
-        <h3>CS</h3>
-        <ul>
-            <li><a href="#">email</a></li>
-            <li><a href="https://wa.me/601135268529">Hubungi Kami</a></li>
-        </ul>
+        <div class="footer-section">
+            <h3>CS</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-envelope"></i>email</a></li>
+                <li><a href="https://wa.me/601135268529"><i class="fas fa-headset"></i>Hubungi Kami</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>SUPPORT</h3>
+            <ul>
+                <li><a href="https://wa.me/601135268529"><i class="fab fa-whatsapp"></i>WhatsApp</a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i>Instagram</a></li>
+                <li><a href="#"><i class="fab fa-tiktok"></i>TikTok</a></li>
+                <li><a href="#"><i class="fab fa-facebook"></i>Facebook</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>T&S</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-shield-alt"></i>Kebijakan Privasi</a></li>
+                <li><a href="https://icesesi.github.io/icedragonstoree/terma&syarat.html"><i class="fas fa-file-contract"></i>Syarat & Ketentuan</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>FEEDBACK</h3>
+            <ul>
+                <li><a href="https://t.me/feedbackreselleraccff"><i class="fab fa-telegram-plane"></i>Feedback reseller</a></li>
+                <li><a href="https://t.me/icedragonstore"><i class="fas fa-comments"></i>Feedback dm / sesi</a></li>
+            </ul>
+        </div>
     </div>
-
-    <div class="footer-section">
-        <h3>SUPPORT</h3>
-        <ul>
-            <li><a href="https://wa.me/601135268529">WhatsApp</a></li>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">TikTok</a></li>
-            <li><a href="#">Facebook</a></li>
-        </ul>
-    </div>
-
-    <div class="footer-section">
-        <h3>T&S</h3>
-        <ul>
-            <li><a href="#">Kebijakan Privasi</a></li>
-            <li><a href="https://icesesi.github.io/icedragonstoree/terma&syarat.html">Syarat & Ketentuan</a></li>
-        </ul>
-    </div>
-
-    <div class="footer-section">
-        <h3>FEEDBACK</h3>
-        <ul>
-            <li><a href="https://t.me/feedbackreselleraccff">Feedback reseller acc ff</a></li>
-            <li><a href="https://t.me/icedragonstore">Feedback dm ff / sesi</a></li>
-        </ul>
-    </div>
-</div>
 <div class="copyright">© 2025 ICEDRAGONSTORE. Semua Hak Cipta Terpelihara.</div>
-</p>
+
+<!-- Skrip untuk Hamburger Menu -->
+<script>
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const navLinks = document.getElementById('navLinks');
+    hamburgerMenu.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
 </body>
-              </html>
-              
+</html>
+
