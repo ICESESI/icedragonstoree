@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICEDRAGONSTORE - Top Up Free Fire</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap');
+
+        :root {
+            --background-dark: #0A0A0A;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-primary: #EAEAEA;
+            --text-secondary: #888888;
+            --accent-blue: #00BFFF;
+            --accent-pink: #FF00FF;
+            --accent-yellow: #FFD700;
+            --accent-orange: #FFA500;
+            --accent-gradient: linear-gradient(90deg, var(--accent-blue), var(--accent-pink));
+            --success-color: #3FB950;
+            --error-color: #F85149;
+            --warning-color: #F8B449;
+            --info-color: #3B82F6;
+            --font-main: 'Sora', sans-serif;
+            --font-logo: 'Teko', sans-serif;
+            
+            --glass-bg: rgba(20, 20, 20, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-blur: 10px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(-45deg, #1d132a, #0a0a0a, #1a0f30, #0a0a0a);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+        }
+
+        main {
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .step-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .step-card.highlight {
+            border-color: var(--error-color);
+            box-shadow: 0 0 12px rgba(248, 81, 73, 0.3);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .step-number {
+            background: var(--accent-gradient);
+            color: var(--background-dark);
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* --- SIDE MENU MODERN DESIGN --- */
+        .side-menu {
+            position: fixed; top: 0; left: 0; height: 100%; width: 280px;
+            background: rgba(10, 10, 10, 0.7); /* Slightly darker for better contrast */
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            z-index: 1002;
+            transform: translateX(-100%); 
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            padding: 1.5rem; 
+            border-right: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.3);
+        }
+        .side-menu.open { transform: translateX(0); }
+        .side-menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        .side-menu-header .logo-img { height: 100px; }
+        .close-menu-btn { font-size: 2rem; color: var(--text-secondary); cursor: pointer; background: none; border: none; transition: color 0.2s, transform 0.2s; }
+        .close-menu-btn:hover { color: var(--text-primary); transform: rotate(90deg); }
+        
+        .side-menu-nav {
+             flex-grow: 1;
+             overflow-y: auto; /* for smaller screens */
+        }
+         .side-menu-nav::-webkit-scrollbar {
+             width: 4px;
+        }
+        .side-menu-nav::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .side-menu-nav .nav-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 2rem 0 1rem 0.5rem;
+            position: relative;
+        }
+        
+         .side-menu-nav ul { list-style: none; padding: 0; margin: 0; }
+        
+        .side-menu-nav ul li a { 
+            display: flex; 
+            align-items: center;
+            gap: 1rem;
+            padding: 0.9rem 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none; 
+            font-weight: 600; 
+            border-radius: 0.5rem; 
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .side-menu-nav ul li a::before {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: 50%;
+            width: 4px;
+            height: 0%;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--accent-blue);
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: height 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s;
+        }
+
+        .side-menu-nav ul li a:hover {
+            color: var(--text-primary);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .side-menu-nav ul li a.active,
+        .side-menu-nav ul li a:hover {
+            color: var(--text-primary);
+        }
+        .side-menu-nav ul li a.active::before,
+        .side-menu-nav ul li a:hover::before {
+            height: 60%;
+            opacity: 1;
+        }
+
+
+        .side-menu-nav ul li a i {
+            width: 40px; /* Give icon more space */
+            text-align: center;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        .side-menu-nav ul li a:hover i,
+        .side-menu-nav ul li a.active i {
+            color: var(--accent-blue);
+        }
+
+        .side-menu-footer {
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        /* --- END SIDE MENU MODERN DESIGN --- */
+
+        .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 1001; opacity: 0; visibility: hidden; transition: opacity 0.3s; }
+        .menu-overlay.open { opacity: 1; visibility: visible; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            margin-bottom: 1rem;
+        }
+        .header-logo-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        .header-logo-group img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-yellow);
+        }
+        .header-logo-group .store-name {
+            font-family: var(--font-logo);
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+        .header .nav-icon {
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+        .header .nav-icon:hover { color: var(--accent-blue); }
+
+        .banner-slider-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            aspect-ratio: 16 / 9;
+        }
+        .banner-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+        .banner-slides img {
+            width: 100%;
+            flex-shrink: 0;
+            object-fit: cover;
+            height: 100%;
+        }
+        .banner-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+        .banner-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .banner-dot.active {
+            background-color: white;
+        }
+        
+        .game-details-card { display: flex; gap: 1.5rem; align-items: center; }
+        .game-details-card .game-icon { width: 80px; height: 80px; border-radius: 1rem; }
+        .game-details-card .info h3 { margin: 0 0 0.5rem 0; font-weight: 600; font-size: 1.5rem; }
+        .game-details-card .info p { margin: 0.25rem 0; color: var(--text-secondary); display: flex; align-items: center; gap: 0.5rem; }
+        
+        .input-group { margin-bottom: 1rem; }
+        .input-group label { display: block; margin-bottom: 0.75rem; font-weight: 500; }
+        .input-group input[type="tel"], .input-group input[type="text"] {
+            width: 100%; padding: 0.8rem 1rem; background-color: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color); border-radius: 0.5rem; color: var(--text-primary);
+            font-size: 1rem; box-sizing: border-box; transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .input-group input:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.2); outline: none; }
+        
+        .voucher-input { display: flex; }
+        .voucher-input input { flex-grow: 1; border-top-right-radius: 0; border-bottom-right-radius: 0; }
+        .voucher-input button {
+            padding: 0.8rem 1.2rem; border: none; background: var(--accent-blue); color: var(--background-dark);
+            border-top-right-radius: 0.5rem; border-bottom-right-radius: 0.5rem; cursor: pointer; font-weight: 600;
+        }
+        .voucher-input input:disabled { background-color: rgba(255,255,255,0.05); cursor: not-allowed; }
+        .voucher-input button:disabled { background-color: var(--text-secondary); cursor: not-allowed; }
+
+        .tag-buttons-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .tag-buttons {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin: 0;
+            flex-grow: 1;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
+        }
+        .tag-buttons::-webkit-scrollbar { display: none; }
+
+        .scroll-btn {
+            background: linear-gradient(45deg, var(--accent-blue), var(--accent-pink));
+            border: none;
+            color: var(--background-dark);
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s, transform 0.2s, box-shadow 0.2s;
+            opacity: 0;
+            pointer-events: none;
+            flex-shrink: 0;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        .scroll-btn:hover { transform: scale(1.1); }
+        .scroll-btn#scroll-left-btn { margin-right: 8px; }
+        .scroll-btn#scroll-right-btn { margin-left: 8px; }
+        .scroll-btn.visible { opacity: 1; pointer-events: auto; }
+
+        .tag-button { padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 9999px; background-color: transparent; color: var(--text-secondary); cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+        .tag-button.active { background-color: var(--accent-blue); color: var(--background-dark); border-color: var(--accent-blue); font-weight: 600; }
+        .tag-button.flash-sale.active {
+            background: var(--accent-orange);
+            color: var(--background-dark);
+            border-color: var(--accent-yellow);
+        }
+
+        #countdown-timer {
+            display: none; 
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--glass-border);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            margin-top: 1.5rem;
+        }
+        #countdown-timer p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        #countdown-timer #timer-display {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            background-color: rgba(0,0,0,0.4);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-family: monospace;
+        }
+
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem; margin-top: 1.5rem;}
+        .product-item {
+            background-color: transparent; border: 2px solid var(--border-color); border-radius: 0.75rem;
+            padding: 1rem; text-align: center; cursor: pointer; transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative; 
+            overflow: hidden;
+        }
+        .product-item.selected { border-color: var(--accent-blue); transform: translateY(-4px); box-shadow: 0 8px 16px rgba(88, 166, 255, 0.1); }
+        
+        .product-item.promo.selected {
+            border-color: var(--accent-orange);
+            box-shadow: 0 8px 16px rgba(255, 165, 0, 0.2);
+        }
+
+        .product-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 75%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: left 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .product-item:hover::before {
+            left: 150%;
+        }
+
+        .product-item img { width: 100%; max-width: 60px; margin-bottom: 0.75rem; transition: transform 0.2s; }
+        .product-item:hover img { transform: scale(1.1); }
+        .product-item p { margin: 0; font-size: 0.875rem; }
+        .product-item .price { margin-top: 0.25rem; font-weight: 600; color: var(--accent-blue); }
+
+        .product-item .original-price {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            margin-bottom: 0.25rem;
+        }
+        .product-item .promo-price {
+            color: var(--accent-orange);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .product-item.out-of-stock {
+            filter: grayscale(100%);
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+        .product-item.out-of-stock .product-item-content {
+            opacity: 0.5;
+        }
+        .product-item.out-of-stock:hover .product-item-content {
+            transform: none;
+        }
+        .product-item.out-of-stock:hover::before {
+            left: -150%;
+        }
+        .stock-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 10, 10, 0.7);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border-radius: 0.75rem;
+            z-index: 5;
+        }
+        .product-item .stock-display {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            background-color: rgba(0,0,0,0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+        .product-item.promo .stock-display {
+            color: var(--accent-yellow);
+        }
+
+        @keyframes subtle-glow {
+            0%, 100% { box-shadow: 0 0 8px 2px rgba(255, 0, 255, 0.3); }
+            50% { box-shadow: 0 0 12px 4px rgba(0, 191, 255, 0.4); }
+        }
+        .modern-tag {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: linear-gradient(45deg, var(--accent-pink), var(--accent-blue));
+            color: #fff;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 999px;
+            z-index: 2;
+            animation: subtle-glow 3s infinite ease-in-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .more-button {
+            width: 100%; padding: 0.8rem; background-color: transparent; border: 1px solid var(--border-color);
+            border-radius: 0.5rem; color: var(--text-primary); cursor: pointer; margin-top: 1rem;
+            font-weight: 600; transition: background-color 0.2s, border-color 0.2s;
+        }
+        .more-button:hover { background-color: rgba(88, 166, 255, 0.1); border-color: var(--accent-blue); }
+        
+        /* --- NEW PAYMENT SECTION STYLES START --- */
+        .payment-category { margin-bottom: 1rem; }
+        .payment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .payment-header:hover { background-color: rgba(255, 255, 255, 0.1); }
+        .payment-header-info { display: flex; align-items: center; gap: 1rem; }
+        .payment-header-info h3 { margin: 0; font-size: 1rem; font-weight: 600; }
+        .payment-method-icons-preview { display: flex; gap: 0.5rem; align-items: center; }
+        .payment-method-icons-preview img { height: 20px; max-width: 32px; object-fit: contain; filter: grayscale(50%) opacity(0.7); }
+        .payment-category.expanded .payment-method-icons-preview { display: none; }
+        .payment-header-price { display: flex; align-items: center; gap: 1rem; font-weight: 600; }
+        .payment-toggle-icon { transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .payment-category.expanded .payment-toggle-icon { transform: rotate(180deg); }
+        .payment-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out, padding-top 0.4s ease-in-out; padding-top: 0; }
+        .payment-category.expanded .payment-content { max-height: 1000px; padding-top: 1.5rem; }
+        .payment-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1rem; }
+        
+        .payment-box {
+            background: rgba(10,10,10,0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .payment-box-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .payment-box img {
+            height: 35px;
+            width: 35px;
+            object-fit: contain;
+            border-radius: 0.25rem;
+        }
+        .payment-box-info { text-align: left; }
+        .payment-box h4 { margin: 0 0 0.25rem 0; font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
+        .payment-box .pay-price { margin: 0; font-weight: 500; font-size: 0.8rem; color: var(--text-secondary); }
+        
+        .payment-box:hover:not(.disabled) { transform: translateY(-3px); border-color: var(--accent-blue); }
+        .payment-box.selected {
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+        }
+        .payment-box.selected::after {
+            content: '\f058'; /* Font Awesome Solid Check Circle */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 1.5rem;
+            color: white;
+            background: var(--accent-pink);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: grid;
+            place-items: center;
+            border: 2px solid var(--background-dark);
+        }
+
+        .payment-box.disabled { opacity: 0.5; cursor: not-allowed; filter: grayscale(100%); }
+        .payment-box.disabled:hover { border-color: var(--border-color); transform: none; }
+        /* --- PAYMENT SECTION STYLES END --- */
+
+
+        #order-summary { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+        #order-summary .summary-row { display: flex; justify-content: space-between; padding: 0.5rem 0; font-size: 0.9rem; }
+        #order-summary .summary-row.total { font-weight: 700; font-size: 1.1rem; color: var(--text-primary); border-top: 1px solid var(--border-color); margin-top: 0.5rem; padding-top: 0.5rem; }
+        #summary-discount-amount { color: var(--success-color); font-weight: 600; }
+        #orderBtn {
+            width: 100%; display: block; margin: 1.5rem auto 0 auto; padding: 1rem; font-size: 1.1rem; font-weight: 700;
+            background: var(--accent-gradient); color: var(--background-dark); border: none; border-radius: 0.5rem;
+            cursor: pointer; transition: all 0.2s;
+        }
+        #orderBtn:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(88, 166, 255, 0.2); }
+        #orderBtn:active { transform: translateY(0); }
+        #orderBtn:disabled { background: var(--border-color); color: var(--text-secondary); cursor: not-allowed; transform: none; box-shadow: none; }
+        
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border-color); font-size: 0.9rem; color: var(--text-secondary); margin-top: 2rem; }
+        
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); backdrop-filter: blur(5px); z-index: 1000; display: none; align-items: center; justify-content: center; }
+        .modal-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            padding: 2rem; border-radius: 1rem; width: 90%; max-width: 450px;
+            border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform: scale(0.95); opacity: 0; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .modal-overlay.open .modal-content { transform: scale(1); opacity: 1; }
+        
+        #modal-summary-view, #modal-processing-view { transition: opacity 0.3s, transform 0.3s; }
+        .modal-content.processing #modal-summary-view {
+            opacity: 0;
+            transform: scale(0.9);
+            display: none;
+        }
+        #modal-processing-view {
+            display: none;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .modal-content.processing #modal-processing-view {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @keyframes rocket-fly {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(-200px) translateX(200px) rotate(-45deg); opacity: 0; }
+        }
+        #rocket-icon {
+            font-size: 4rem; color: var(--accent-blue);
+        }
+        .modal-content.processing #rocket-icon {
+            animation: rocket-fly 1.5s ease-in forwards;
+        }
+        #processing-text {
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .modal-product-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+        .modal-product-header img { width: 60px; height: 60px; border-radius: 0.75rem; }
+        .modal-product-header .modal-product-info h4 { margin: 0; font-size: 1.1rem; }
+        .modal-product-header .modal-product-info p { margin: 0; font-size: 0.9rem; color: var(--text-secondary); }
+        .modal-section-title { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin: 1.5rem 0 0.5rem 0; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
+        .modal-body .summary-row { display: flex; justify-content: space-between; padding: 0.75rem 0; }
+        .modal-body .summary-row:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .modal-body .summary-label { color: var(--text-secondary); }
+        .modal-body .summary-value { font-weight: 600; text-align: right; }
+        .modal-body .summary-total .summary-value { color: var(--accent-blue); font-size: 1.2rem; }
+        .modal-footer { margin-top: 1.5rem; text-align: center; font-size: 0.8rem; color: var(--text-secondary); }
+        .modal-actions { margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .modal-actions button { padding: 0.8rem; border-radius: 0.5rem; border: none; font-weight: 700; cursor: pointer; transition: transform 0.2s; }
+        .modal-actions button:hover { transform: translateY(-2px); }
+        #cancel-btn { background-color: var(--border-color); color: var(--text-primary); }
+        #confirm-btn { background: var(--accent-gradient); color: var(--background-dark); }
+        
+        /* --- MODERN NOTIFICATION SYSTEM --- */
+        #notif-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 2001;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            width: 350px;
+            max-width: 90%;
+        }
+
+        @keyframes progress {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+
+        .notif {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+            border-left: 5px solid;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            color: var(--text-primary);
+            opacity: 0;
+            transform: translateX(120%);
+            transition: all 0.5s cubic-bezier(0.21, 1.05, 0.53, 1.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notif.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .notif-icon {
+            font-size: 1.5rem;
+            margin-top: 2px;
+        }
+
+        .notif-body {
+            flex-grow: 1;
+        }
+
+        .notif-title {
+            margin: 0 0 0.25rem 0;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .notif-message {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .notif-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 0.5rem;
+            transition: color 0.2s;
+        }
+        .notif-close:hover {
+            color: var(--text-primary);
+        }
+
+        .notif-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+        }
+
+        .notif.success { border-color: var(--success-color); }
+        .notif.success .notif-icon { color: var(--success-color); }
+        .notif.success .notif-progress { background-color: var(--success-color); }
+
+        .notif.error { border-color: var(--error-color); }
+        .notif.error .notif-icon { color: var(--error-color); }
+        .notif.error .notif-progress { background-color: var(--error-color); }
+
+        .notif.warning { border-color: var(--warning-color); }
+        .notif.warning .notif-icon { color: var(--warning-color); }
+        .notif.warning .notif-progress { background-color: var(--warning-color); }
+
+        .notif.info { border-color: var(--info-color); }
+        .notif.info .notif-icon { color: var(--info-color); }
+        .notif.info .notif-progress { background-color: var(--info-color); }
+        /* --- END NOTIFICATION SYSTEM --- */
+
+        .site-footer { margin-top: 4rem; background: transparent; border-radius: 1rem; padding: 2rem; border: 1px solid var(--glass-border); text-align: center; }
+        .footer-description { max-width: 500px; margin: 0 auto 2.5rem auto; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+        .footer-description strong { color: var(--text-primary); font-weight: 600; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: left; }
+        .footer-column h3 { font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem; position: relative; display: inline-block; }
+        .footer-column h3::after { content: ''; position: absolute; left: 0; bottom: -8px; width: 70%; height: 2px; background-color: var(--accent-yellow); }
+        .footer-column ul { list-style: none; padding: 0; margin: 0; }
+        .footer-column ul li { margin-bottom: 0.8rem; }
+        .footer-column ul a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s, transform 0.2s; display: flex; align-items: center; gap: 10px; }
+        .footer-column ul a:hover { color: var(--accent-blue); transform: translateX(4px); }
+        .footer-column ul a i { font-size: 1.1rem; width: 20px; text-align: center; color: var(--text-secondary); transition: color 0.2s; }
+        .footer-column ul a:hover i { color: var(--accent-blue); }
+
+        @media (max-width: 600px) { .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; } }
+        @media (max-width: 420px) { .payment-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 380px) { .footer-grid { grid-template-columns: 1fr; } .header-logo-group .store-name { font-size: 1.8rem; } .header-logo-group img { height: 40px; width: 40px; } }
+        /* --- STYLES UNTUK COLLAPSIBLE CARD (KERANGKA) --- */
+.collapsible-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    overflow: hidden; /* Penting untuk animasi */
+}
+
+.collapsible-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.collapsible-header:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.collapsible-header .header-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.collapsible-header .header-info i {
+    color: var(--accent-blue);
+    font-size: 1.2rem;
+}
+
+.collapsible-header .header-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.collapsible-header .toggle-icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+.collapsible-card.expanded .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+    padding: 0 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.collapsible-card.expanded .collapsible-content {
+    max-height: 1000px; /* Nilai besar untuk memuatkan semua kandungan */
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.collapsible-content h4 {
+    color: var(--text-primary);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.collapsible-content ul, .collapsible-content ol {
+    padding-left: 1.25rem;
+    margin: 1rem 0 0 0;
+}
+/* --- TAMAT STYLES KERANGKA --- */
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Teko:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <nav class="side-menu" id="side-menu">
+        <div class="side-menu-header">
+            <img src="https://h.top4top.io/p_3546isc3j0.png" alt="Logo" class="logo-img">
+            <button class="close-menu-btn" id="close-menu-btn">&times;</button>
+        </div>
+        <div class="side-menu-nav">
+            <h3 class="nav-title">Navigasi</h3>
+            <ul>
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Utama</a></li>
+                <li><a href="#"><i class="fas fa-receipt"></i> Semak Pesanan</a></li>
+            </ul>
+            <h3 class="nav-title">Sokongan</h3>
+            <ul>
+                <li><a href="https://wa.me/601135268529" target="_blank"><i class="fab fa-whatsapp"></i> Hubungi WhatsApp</a></li>
+                <li><a href="#"><i class="fas fa-file-contract"></i> Terma & Syarat</a></li>
+            </ul>
+             <h3 class="nav-title">Ikuti Kami</h3>
+            <ul>
+                <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+            </ul>
+        </div>
+        <div class="side-menu-footer">
+            <p>&copy; 2025 ICEDRAGONSTORE.<br>Hak Cipta Terpelihara.</p>
+        </div>
+    </nav>
+
+    <main>
+        <header class="header">
+            <a href="#" class="header-logo-group">
+                <img src="https://c.top4top.io/p_3294hb2sk0.jpg">
+                <span class="store-name">ICEDRAGONSTORE</span>
+            </a>
+            <div class="nav-icon" id="open-menu-btn"><i class="fas fa-bars"></i></div>
+        </header>
+
+        <div class="banner-slider-container">
+            <div class="banner-slides">
+                <img src="https://e.top4top.io/p_3546b0erw0.jpg" alt="Free Fire Banner">
+                <img src="https://e.top4top.io/p_3546b0erw0.jpg" alt="Promosi Banner">
+                <img src="https://e.top4top.io/p_3546b0erw0.jpg" alt="Membership Banner">
+            </div>
+            <div class="banner-dots"></div>
+        </div>
+        
+        <div class="step-card game-details-card">
+            <img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/icon.png" class="game-icon">
+            <div class="info">
+                <h3>Garena Free Fire</h3>
+                <p><i class="fas fa-id-card"></i> <span>Melalui Player ID</span></p>
+                <p><i class="fas fa-server"></i> <span>Server Malaysia</span></p>
+            </div>
+        </div>
+        <div class="collapsible-card">
+    <div class="collapsible-header">
+        <div class="header-info">
+            <i class="fas fa-info-circle"></i> 
+            <h3>Deskripsi</h3>
+        </div>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+    </div>
+    
+    <div class="collapsible-content">
+        <h4>Free Fire</h4>
+        <p>
+   Free Fire ialah permainan battle royale popular yang penuh dengan aksi pantas dan mencabar. 
+    Sertai pertempuran bersama 49 pemain lain di medan perang dan buktikan siapa yang terakhir bertahan. 
+    Dengan pelbagai pilihan karakter, senjata, dan event menarik, Free Fire sentiasa memberi pengalaman 
+    permainan yang mendebarkan.
+  </p>
+  <p>
+    Topup diamond Free Fire dengan mudah, cepat, dan selamat di sini. Nikmati harga berpatutan serta 
+    proses yang pantas untuk memastikan permainan anda lebih menyeronokkan!
+  </p>
+        </p>
+<ol>
+  <li>Pilih produk yang anda inginkan.</li>
+  <li>Isi maklumat data dengan betul.</li>
+  <li>Pilih kaedah pembayaran.</li>
+  <li>Masukkan kod voucher (jika ada).</li>
+  <li>Masukkan nombor WhatsApp anda.</li>
+  <li>Pembayaran akan diproses melalui aplikasi WhatsApp.</li>
+</ul>
+    </div>
+</div>
+        <div class="step-card">
+            <div class="step-header"><div class="step-number">1</div><h2 class="step-title">Pilih Item</h2></div>
+            <div class="tag-buttons-container">
+                <button class="scroll-btn" id="scroll-left-btn">&lt;</button>
+                <div class="tag-buttons" id="tag-buttons-scroller"></div>
+                <button class="scroll-btn" id="scroll-right-btn">&gt;</button>
+            </div>
+            <div id="countdown-timer">
+                <p id="countdown-label">PROMOSI TAMAT DALAM</p>
+                <span id="timer-display">00H 00J 00M 00S</span>
+            </div>
+            <div class="product-grid"></div>
+            <button class="more-button" id="more-button" style="display: none;">Papar Lagi</button>
+        </div>
+        
+        <div class="step-card" id="user-details-group">
+            <div class="step-header"><div class="step-number">2</div><h2 class="step-title">Masukkan Maklumat</h2></div>
+            <div class="input-group">
+                <label for="player-id">Player ID</label>
+                <input type="tel" id="player-id" placeholder="Masukkan Player ID anda" pattern="[0-9]*">
+            </div>
+             <div class="input-group">
+                <label for="whatsappNo">Nombor Whatsapp</label>
+                <input type="tel" id="whatsappNo" placeholder="cth: 0123456789" pattern="[0-9]*">
+             </div>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-header"><div class="step-number">3</div><h2 class="step-title">Baucar & Ringkasan</h2></div>
+            <div class="input-group">
+                <label>Kod Baucar</label>
+                <div class="voucher-input">
+                    <input type="text" id="voucher-input" placeholder="Cuba kod: ICESESIPADU">
+                    <button id="voucher-btn">Guna</button>
+                </div>
+                 <small>Tinggalkan Jika Tiada Kod</small>
+            </div>
+            <div id="order-summary" style="display: none;">
+                <div class="summary-row"><span id="summary-original-price-label">Harga Asal</span><span id="summary-original-price">RM 0.00</span></div>
+                <div class="summary-row" id="summary-discount-row" style="display: none;"><span id="summary-discount-label">Diskaun (0%)</span><span id="summary-discount-amount">- RM 0.00</span></div>
+                <div class="summary-row" id="summary-payment-fee-row" style="display: none;"><span id="summary-payment-fee-label">Caj Pembayaran</span><span id="summary-payment-fee">RM 0.00</span></div>
+                <div class="summary-row total"><span>Jumlah Bayaran</span><span id="summary-final-total">RM 0.00</span></div>
+            </div>
+        </div>
+
+        <div class="step-card" id="payment-section">
+             <div class="step-header"><div class="step-number">4</div><h2 class="step-title">Pilih Pembayaran</h2></div>
+            <!-- NEW PAYMENT STRUCTURE START -->
+            <div id="payment-group-normal">
+                 <div class="payment-category">
+                    <div class="payment-header">
+                        <div class="payment-header-info">
+                             <h3>E-Wallet / Bank</h3>
+                             <div class="payment-method-icons-preview">
+                                 <img src="https://cdn1.codashop.com/S/content/common/images/mno/FPX_MY_CHNL_LOGO.webp" alt="Bank">
+                                 <img src="https://g.top4top.io/p_3294czyba0.png" alt="TNG">
+                             </div>
+                        </div>
+                        <div class="payment-header-price">
+                            <span class="category-price">RM 0.00</span>
+                            <i class="fas fa-chevron-down payment-toggle-icon"></i>
+                        </div>
+                    </div>
+                    <div class="payment-content">
+                        <div class="payment-grid">
+                            <div class="payment-box" data-method="Touch 'n Go" data-fee="0">
+                                <div class="payment-box-content">
+                                    <img src="https://g.top4top.io/p_3294czyba0.png" alt="Touch 'n Go">
+                                    <div class="payment-box-info"><h4>Touch 'n Go</h4><p class="pay-price">RM 0.00</p></div>
+                                </div>
+                            </div>
+                            <div class="payment-box" data-method="Bank Transfer" data-fee="-0.02">
+                                <div class="payment-box-content">
+                                    <img src="https://cdn1.codashop.com/S/content/common/images/mno/FPX_MY_CHNL_LOGO.webp" alt="Bank Transfer">
+                                    <div class="payment-box-info"><h4>Bank Transfer</h4><p class="pay-price">RM 0.00</p></div>
+                                </div>
+                            </div>
+                            <div class="payment-box disabled" data-method="ShopeePay" data-fee="0.30">
+                                <div class="payment-box-content">
+                                    <img src="https://cdn1.codashop.com/S/content/common/images/mno/SHOPEEPAY_MY_CHNL_LOGO.webp" alt="ShopeePay">
+                                    <div class="payment-box-info"><h4>ShopeePay</h4><p class="pay-price">Tidak Tersedia</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="payment-group-telco" style="display:none;">
+                 <div class="payment-category">
+                    <div class="payment-header">
+                        <div class="payment-header-info">
+                             <h3>Kredit Telco</h3>
+                             <div class="payment-method-icons-preview">
+                                  <img src="https://img-cdn.payermax.com/payWayImg_Rect/DiGi_MY.png" alt="Digi">
+                                  <img src="https://cdn1.codashop.com/S/content/common/images/mno/Celcom_MY_CHNL_LOGO.webp" alt="Celcom">
+                                  <img src="https://cdn1.codashop.com/S/content/common/images/mno/MAXIS_MY_CHNL_LOGO.webp" alt="Maxis">
+                             </div>
+                        </div>
+                        <div class="payment-header-price">
+                             <span class="category-price">RM 0.00</span>
+                            <i class="fas fa-chevron-down payment-toggle-icon"></i>
+                        </div>
+                    </div>
+                    <div class="payment-content">
+                        <div class="payment-grid">
+                            <div class="payment-box" data-method="Digi" data-fee="0.00"><div class="payment-box-content"><img src="https://img-cdn.payermax.com/payWayImg_Rect/DiGi_MY.png" alt="Digi"><div class="payment-box-info"><h4>Pin Digi</h4><p class="pay-price">RM 0.00</p></div></div></div>
+                            <div class="payment-box disabled" data-method="Celcom" data-fee="0.80"><div class="payment-box-content"><img src="https://cdn1.codashop.com/S/content/common/images/mno/Celcom_MY_CHNL_LOGO.webp" alt="Celcom"><div class="payment-box-info"><h4>Celcom</h4><p class="pay-price">Pembayaran Tidak Tersedia</p></div></div></div>
+                            <div class="payment-box disabled" data-method="Maxis" data-fee="0.80"><div class="payment-box-content"><img src="https://cdn1.codashop.com/S/content/common/images/mno/MAXIS_MY_CHNL_LOGO.webp" alt="Maxis"><div class="payment-box-info"><h4>Maxis</h4><p class="pay-price">Pembayaran Tidak Tersedia</p></div></div></div>
+                            <div class="payment-box disabled" data-method="U Mobile" data-fee="0.80"><div class="payment-box-content"><img src="https://cdn1.codashop.com/S/content/common/images/mno/U_MOBILE_MY_CHNL_LOGO.webp" alt="U Mobile"><div class="payment-box-info"><h4>U Mobile</h4><p class="pay-price">Pembayaran Tidak tersedia</p></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- NEW PAYMENT STRUCTURE END -->
+        </div>
+        
+        <button id="orderBtn">Sahkan Pesanan</button>
+
+        <footer class="site-footer">
+            <p class="footer-description"><strong>ICEDRAGONSTORE</strong><br>fast, secure, and trusted top-up platform for all your favorite games.</p>
+            <div class="footer-grid">
+                <div class="footer-column"><h3>CS</h3><ul><li><a href="#"><i class="fas fa-envelope"></i> email</a></li><li><a href="#"><i class="fas fa-headset"></i> Hubungi Kami</a></li></ul></div>
+                <div class="footer-column"><h3>SUPPORT</h3><ul><li><a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a></li><li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li><li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li><li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li></ul></div>
+                <div class="footer-column"><h3>T&S</h3><ul><li><a href="https://icesesi.github.io/icedragonstoree/terma&syarat.html"><i class="fas fa-shield-alt"></i> Kebijakan Privasi</a></li><li><a href="#"><i class="fas fa-file-contract"></i> Syarat & Ketentuan</a></li></ul></div>
+                <div class="footer-column"><h3>FEEDBACK</h3><ul><li><a href="#"><i class="fas fa-comment-dots"></i> Feedback reseller</a></li><li><a href="#"><i class="fas fa-comments"></i> Feedback dm / sesi</a></li></ul></div>
+            </div>
+        </footer>
+
+        <div class="copyright"><p>&copy; 2025 ICEDRAGONSTORE. Hak Cipta Terpelihara.</p></div>
+    </main>
+
+    <div class="modal-overlay" id="confirmation-modal">
+        <div class="modal-content" id="modal-content">
+            <div id="modal-summary-view">
+                <div class="modal-product-header"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/icon.png" alt="Free Fire Icon"><div class="modal-product-info"><h4>Garena Free Fire</h4><p>via Player ID</p></div></div>
+                <div class="modal-body">
+                    <h3 class="modal-section-title">Player Details</h3>
+                    <div class="summary-row"><span class="summary-label">Player ID</span><span class="summary-value" id="summary-userid"></span></div>
+                    <div class="summary-row"><span class="summary-label"><i class="fab fa-whatsapp"></i> WhatsApp</span><span class="summary-value" id="summary-whatsapp"></span></div>
+                    <h3 class="modal-section-title">Order Details</h3>
+                    <div class="summary-row"><span class="summary-label">Item</span><span class="summary-value" id="summary-item"></span></div>
+                    <div class="summary-row"><span class="summary-label">Harga</span><span class="summary-value" id="summary-price"></span></div>
+                    <div class="summary-row"><span class="summary-label">Caj Pembayaran</span><span class="summary-value" id="summary-fee"></span></div>
+                    <div class="summary-row"><span class="summary-label">Diskaun</span><span class="summary-value" id="summary-discount"></span></div>
+                    <div class="summary-row"><span class="summary-label">Baucar</span><span class="summary-value" id="summary-voucher"></span></div>
+                    <div class="summary-row summary-total"><span class="summary-label">Jumlah</span><span class="summary-value" id="summary-total"></span></div>
+                </div>
+                <div class="modal-footer"><p>Sila pastikan maklumat di atas tepat.</p></div>
+                <div class="modal-actions"><button id="cancel-btn">Batal</button><button id="confirm-btn">Sahkan & Bayar</button></div>
+            </div>
+            <div id="modal-processing-view">
+                <i class="fas fa-rocket" id="rocket-icon"></i>
+                <p id="processing-text">Menyediakan pautan pembayaran...</p>
+            </div>
+        </div>
+    </div>
+    <div id="notif-container"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Ruang untuk semua pembolehubah dan fungsi anda (diringkaskan untuk kepantasan)
+    // ...
+    // --- DIUBAH SUAI: Aliran butang pengesahan DENGAN loading ---
+    function closeModal() {
+        confirmationModal.classList.remove('open');
+        setTimeout(() => {
+            confirmationModal.style.display = 'none';
+            modalContent.classList.remove('processing');
+            // Pastikan butang kembali kepada keadaan asal
+            confirmBtn.disabled = false;
+            cancelBtn.disabled = false;
+            confirmBtn.innerHTML = 'Sahkan & Bayar';
+        }, 400);
+    }
+
+    // Dipindahkan ke dalam init() untuk memastikan semua elemen wujud
+    
+    // ...
+    // --- Logik Banner Slider ---
+    const slidesContainer = document.querySelector('.banner-slides');
+    const allSlides = document.querySelectorAll('.banner-slides img');
+    const dotsContainer = document.querySelector('.banner-dots');
+    let currentSlide = 0;
+    let slideInterval;
+
+    if (allSlides.length > 0) {
+        allSlides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('banner-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                goToSlide(i);
+                resetSlideInterval();
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.banner-dot');
+
+        function goToSlide(slideIndex) {
+            slidesContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[slideIndex].classList.add('active');
+            currentSlide = slideIndex;
+        }
+
+        function nextSlide() {
+            let newIndex = currentSlide + 1;
+            if (newIndex >= allSlides.length) {
+                newIndex = 0;
+            }
+            goToSlide(newIndex);
+        }
+
+        function resetSlideInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+        
+        resetSlideInterval();
+    }
+    // ... Sila masukkan semula semua kod JavaScript anda yang lain di sini ...
+    // Pastikan kod init() dan semua fungsi lain ada di sini.
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const products = [
+    // Diamonds
+    { category: 'diamonds', name: '125 Diamonds', price: 5.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '250 Diamonds', price: 10.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '360 Diamonds', price: 15.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '520 Diamonds', price: 20.00, img: 'https://d.top4top.io/p_3546p8zfi0.png', tag: '🔥 Hot' },
+    { category: 'diamonds', name: '645 Diamonds', price: 25.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '770 Diamonds', price: 30.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '880 Diamonds', price: 35.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '1060 Diamonds', price: 40.00, img: 'https://d.top4top.io/p_3546p8zfi0.png', tag: '🌟 Save' },
+    { category: 'diamonds', name: '1185 Diamonds', price: 45.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '1360 Diamonds', price: 50.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '1435 Diamonds', price: 55.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '1580 Diamonds', price: 60.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '1705 Diamonds', price: 65.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '1830 Diamonds', price: 70.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '1955 Diamonds', price: 75.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '2180 Diamonds', price: 80.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '2305 Diamonds', price: 85.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '2430 Diamonds', price: 90.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '2555 Diamonds', price: 95.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds', name: '2775 Diamonds', price: 100.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+
+    { category: 'membership', name: 'Membership Lite', price: 2.50, img: 'https://assets.lapakgaming.com/images/group-product-icon/tr:n-icon_per_denom/free_fire_weekly.png?v=1712289493' },
+    { category: 'membership', name: 'Membership Mingguan', price: 8.00, img: 'https://assets.lapakgaming.com/images/group-product-icon/tr:n-icon_per_denom/free_fire_weekly.png?v=1712289493', tag: '🔥 Hot' },
+    { category: 'membership', name: 'Membership Bulanan', price: 35.00, img: 'https://assets.lapakgaming.com/images/group-product-icon/tr:n-icon_per_denom/free_fire_monthly.png?v=1712289514' },
+    
+    { category: 'package', name: 'Evo Access 3D', price: 2.50, img: 'https://www.lapakgaming.com/static/product/evo_access_3d.webp' },
+    { category: 'package', name: 'Evo Access 7D', price: 3.90, img: 'https://www.lapakgaming.com/static/product/evo_access_7d.webp' },
+    { category: 'package', name: 'Evo Access 30D', price: 11.10, img: 'https://www.lapakgaming.com/static/product/evo_access_30d.webp' },
+    { category: 'package', name: 'Level Up Pass', price: 15.00, img: 'https://e.top4top.io/p_3547sqif20.png' },
+    { category: 'package', name: 'Special Airdrop', price: 5.00, img: 'https://placehold.co/60x60/f87171/white?text=special AirDrop' },
+
+    { category: 'diamonds-telco', name: '100 Diamonds', price: 5.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '200 Diamonds', price: 10.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '310 Diamonds', price: 15.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '410 Diamonds', price: 20.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '520 Diamonds', price: 25.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '620 Diamonds', price: 30.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '720 Diamonds', price: 35.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '830 Diamonds', price: 40.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '930 Diamonds', price: 45.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '1060 Diamonds', price: 50.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '1160 Diamonds', price: 55.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '1260 Diamonds', price: 60.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '1370 Diamonds', price: 65.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '1370 Diamonds', price: 70.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '1580 Diamonds', price: 75.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '1680 Diamonds', price: 80.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '1780 Diamonds', price: 85.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '1890 Diamonds', price: 90.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '1990 Diamonds', price: 95.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'diamonds-telco', name: '2180 Diamonds', price: 100.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+
+    { category: 'membership-telco', name: 'Membership Lite x2', price: 5.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'membership-telco', name: 'Membership Mingguan', price: 10.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+    { category: 'membership-telco', name: 'Membership Bulanan', price: 40.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' },
+
+    { category: 'flash-sale', name: '2775 Diamonds Promo', originalPrice: 100.00, price:95.00, img: 'https://d.top4top.io/p_3546p8zfi0.png', initialStock: 350 },
+    { category: 'flash-sale', name: '100 Diamonds', originalPrice: 5.00, price: 4.20, img: 'https://d.top4top.io/p_3546p8zfi0.png', initialStock: 189 },
+    { category: 'flash-sale', name: '310 Diamonds Promo', originalPrice: 12.00, price: 10.00, img: 'https://d.top4top.io/p_3546p8zfi0.png' , tag: '🔥 Limited' , initialStock: 77 }
+    ];
+    const categories = {
+        'flash-sale': '⚡️ Flash Sale', 'diamonds': 'Diamonds (TNG)', 'membership': 'Membership (TNG)',
+        'package': 'package (TNG)', 'diamonds-telco': 'Diamonds (TOPUP)', 'membership-telco': 'Membership (TOPUP)'
+    };
+    const validVouchers = { "ICESESIPADU": 0.80, "(JSJSW": 5, "SJAJSN": 15 };
+    const openMenuBtn = document.getElementById('open-menu-btn'), closeMenuBtn = document.getElementById('close-menu-btn'), sideMenu = document.getElementById('side-menu'), menuOverlay = document.getElementById('menu-overlay');
+    const productGrid = document.querySelector('.product-grid'), moreButton = document.getElementById('more-button');
+    const playerIdInput = document.getElementById('player-id'), userDetailsGroup = document.getElementById('user-details-group');
+    const whatsappInput = document.getElementById('whatsappNo'), voucherInput = document.getElementById('voucher-input'), voucherBtn = document.getElementById('voucher-btn'), orderBtn = document.getElementById('orderBtn');
+    const confirmationModal = document.getElementById('confirmation-modal'), modalContent = document.getElementById('modal-content'), cancelBtn = document.getElementById('cancel-btn'), confirmBtn = document.getElementById('confirm-btn');
+    const paymentSection = document.getElementById('payment-section');
+    const orderSummary = document.getElementById('order-summary'), summaryOriginalPrice = document.getElementById('summary-original-price'), summaryDiscountRow = document.getElementById('summary-discount-row');
+    const summaryDiscountLabel = document.getElementById('summary-discount-label'), summaryDiscountAmount = document.getElementById('summary-discount-amount');
+    const summaryPaymentFeeRow = document.getElementById('summary-payment-fee-row'), summaryPaymentFee = document.getElementById('summary-payment-fee'), summaryFinalTotal = document.getElementById('summary-final-total');
+    const normalPaymentGroup = document.getElementById('payment-group-normal');
+    const telcoPaymentGroup = document.getElementById('payment-group-telco');
+    const tagButtonsScroller = document.getElementById('tag-buttons-scroller');
+    const scrollLeftBtn = document.getElementById('scroll-left-btn');
+    const scrollRightBtn = document.getElementById('scroll-right-btn');
+    const countdownTimerEl = document.getElementById('countdown-timer');
+    const countdownLabelEl = document.getElementById('countdown-label');
+    const timerDisplayEl = document.getElementById('timer-display');
+    let activeCategory = 'diamonds', selectedProduct = null, selectedPayment = null, voucherDiscount = 0, voucherCode = "";
+    const PRODUCTS_PER_PAGE = 6;
+    let itemsShown = PRODUCTS_PER_PAGE;
+    let countdownInterval;
+    let currentPromoState = '';
+
+    const PROMO_ONE_END_STRING = '2025-09-30T16:48:59';
+    const PROMO_TWO_START_STRING = '2025-11-01T16:51:59';
+    const PROMO_TWO_END_STRING = '2025-09-29T23:59:59';
+
+    function showNotif(options) {
+        const { message, type = 'info', title = '', duration = 4000 } = options;
+        const notifContainer = document.getElementById('notif-container');
+        const notif = document.createElement('div');
+        notif.className = `notif ${type}`;
+        const icons = { success: 'fa-check-circle', error: 'fa-times-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle' };
+        notif.innerHTML = `<div class="notif-icon"><i class="fas ${icons[type] || 'fa-info-circle'}"></i></div><div class="notif-body">${title ? `<h4 class="notif-title">${title}</h4>` : ''}<p class="notif-message">${message}</p></div><button class="notif-close">&times;</button><div class="notif-progress"></div>`;
+        const progressBar = notif.querySelector('.notif-progress');
+        progressBar.style.animation = `progress ${duration / 1000}s linear forwards`;
+        notifContainer.appendChild(notif);
+        setTimeout(() => notif.classList.add("show"), 50);
+        const closeNotif = () => { notif.classList.remove("show"); notif.addEventListener("transitionend", () => notif.remove(), { once: true }); };
+        const closeTimeout = setTimeout(closeNotif, duration);
+        notif.querySelector('.notif-close').addEventListener('click', () => { clearTimeout(closeTimeout); closeNotif(); });
+    }
+
+    function updateAllPrices() {
+        if (!selectedProduct) { 
+            orderSummary.style.display = 'none'; 
+            document.querySelectorAll('.category-price').forEach(p => p.textContent = 'RM 0.00');
+        } else {
+            orderSummary.style.display = 'block';
+            const basePrice = selectedProduct.price;
+            const discountAmount = basePrice * (voucherDiscount / 100);
+            const priceAfterDiscount = basePrice - discountAmount;
+            const paymentFee = selectedPayment ? selectedPayment.fee : 0;
+            const finalTotal = priceAfterDiscount + paymentFee;
+            summaryOriginalPrice.textContent = `RM ${basePrice.toFixed(2)}`;
+            summaryDiscountRow.style.display = voucherDiscount > 0 ? 'flex' : 'none';
+            summaryDiscountLabel.textContent = `Diskaun (${voucherDiscount}%)`;
+            summaryDiscountAmount.textContent = `- RM ${discountAmount.toFixed(2)}`;
+            summaryPaymentFeeRow.style.display = selectedPayment ? 'flex' : 'none';
+            summaryPaymentFee.textContent = `RM ${paymentFee.toFixed(2)}`;
+            summaryFinalTotal.textContent = `RM ${finalTotal.toFixed(2)}`;
+            
+            // DIBAIKI: Tukar kepada 'finalTotal' supaya harga header kategori dikemas kini
+            document.querySelectorAll('.category-price').forEach(p => p.textContent = `RM ${finalTotal.toFixed(2)}`);
+        }
+        let priceAfterDiscount = selectedProduct ? selectedProduct.price * (1 - voucherDiscount / 100) : 0;
+        document.querySelectorAll('.payment-box:not(.disabled)').forEach(box => {
+            const fee = parseFloat(box.dataset.fee) || 0;
+            box.querySelector('.pay-price').textContent = `RM ${(priceAfterDiscount > 0 ? priceAfterDiscount + fee : 0).toFixed(2)}`;
+        });
+    }
+
+    function renderProducts() {
+        productGrid.innerHTML = '';
+        selectedProduct = null;
+        
+        const now = new Date().getTime();
+        const promoOneEndTime = new Date(PROMO_ONE_END_STRING).getTime();
+        const promoTwoStartTime = new Date(PROMO_TWO_START_STRING).getTime();
+
+        if (activeCategory === 'flash-sale' && now >= promoOneEndTime && now < promoTwoStartTime) {
+            productGrid.innerHTML = `<p style="grid-column: 1 / -1; text-align:center; color: var(--text-secondary); margin-top: 2rem;">Produk promosi akan dipaparkan di sini apabila jualan bermula.</p>`;
+            moreButton.style.display = 'none';
+            updateAllPrices();
+            return;
+        }
+
+        const filtered = products.filter(p => p.category === activeCategory);
+        const PROMO_START_TIME = new Date('2025-09-18T00:00:00').getTime();
+        filtered.slice(0, itemsShown).forEach(product => {
+            const div = document.createElement('div');
+            div.className = 'product-item';
+            let contentHTML = '', isOutOfStock = false;
+            if (product.category === 'flash-sale') {
+                div.classList.add('promo');
+                const jumlahInterval = Math.floor(Math.max(0, (now - PROMO_START_TIME) / 7200000));
+                let totalStockSold = 0;
+                for (let i = 1; i <= jumlahInterval; i++) {
+                    let stockSoldThisInterval = 1 + Math.floor(Math.abs(Math.sin(i * 0.5) * 3));
+                    totalStockSold += stockSoldThisInterval;
+                }
+                const currentStock = Math.max(0, product.initialStock - totalStockSold);
+                isOutOfStock = currentStock <= 0;
+                contentHTML = `<div class="product-item-content"><img src="${product.img}" alt="${product.name}"><p>${product.name}</p><p class="original-price">RM ${product.originalPrice.toFixed(2)}</p><p class="price promo-price">RM ${product.price.toFixed(2)}</p><p class="stock-display">Stok: <span class="stock-count">${currentStock}</span></p></div>`;
+            } else {
+                contentHTML = `<div class="product-item-content"><img src="${product.img}" alt="${product.name}"><p>${product.name}</p><p class="price">RM ${product.price.toFixed(2)}</p></div>`;
+            }
+            div.innerHTML = contentHTML;
+            if (product.tag) { const tag = document.createElement('div'); tag.className = 'modern-tag'; tag.textContent = product.tag; div.appendChild(tag); }
+            if (isOutOfStock) {
+                div.classList.add('out-of-stock');
+                const overlay = document.createElement('div'); overlay.className = 'stock-overlay'; overlay.textContent = 'Stok Habis'; div.appendChild(overlay);
+            } else {
+                div.addEventListener('click', () => {
+                    document.querySelectorAll('.product-item.selected').forEach(el => el.classList.remove('selected'));
+                    div.classList.add('selected');
+                    selectedProduct = product;
+                    updateAllPrices();
+                    userDetailsGroup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            }
+            productGrid.appendChild(div);
+        });
+        moreButton.style.display = itemsShown < filtered.length ? 'block' : 'none';
+        updateAllPrices();
+    }
+
+    function handleOrder() {
+        const basePriceRaw = selectedProduct.price;
+        const discountAmount = basePriceRaw * (voucherDiscount / 100);
+        const total = (basePriceRaw - discountAmount + selectedPayment.fee).toFixed(2);
+        let message = `# ORDER ICEDRAGONSTORE #\n\n📱 *Whatsapp:* ${whatsappInput.value.trim()}\n🎮 *Order:* Garena Free Fire\n📂 *Item:* ${selectedProduct.name}\n🆔 *Player ID:* ${playerIdInput.value.trim()}\n💳 *Pembayaran:* ${selectedPayment.method}\n💵 *Jumlah (RM):* ${total}`;
+        if (voucherDiscount > 0) { message += `\n🏷️ *Baucar:* ${voucherCode} (${voucherDiscount}%)`; }
+        window.open(`https://wa.me/601135268529?text=${encodeURIComponent(message)}`, '_blank');
+    }
+    
+    function startCountdown(endTime, label) {
+        clearInterval(countdownInterval);
+        countdownLabelEl.textContent = label;
+        const updateTimer = () => {
+            const distance = endTime - new Date().getTime();
+            if (distance < 0) { clearInterval(countdownInterval); init(); return; }
+            const days = Math.floor(distance / 86400000);
+            const hours = Math.floor((distance % 86400000) / 3600000);
+            const minutes = Math.floor((distance % 3600000) / 60000);
+            const seconds = Math.floor((distance % 60000) / 1000);
+            timerDisplayEl.textContent = `${days}H ${hours}J ${minutes}M ${seconds}S`;
+        };
+        updateTimer();
+        countdownInterval = setInterval(updateTimer, 1000);
+    }
+    
+    function setupTagButtons(showFlashSale) {
+        tagButtonsScroller.innerHTML = '';
+        Object.keys(categories).forEach(key => {
+            if (key === 'flash-sale' && !showFlashSale) return;
+            const button = document.createElement('button');
+            button.className = 'tag-button';
+            if (key === 'flash-sale') button.classList.add('flash-sale');
+            button.dataset.category = key;
+            button.textContent = categories[key];
+            tagButtonsScroller.appendChild(button);
+        });
+        const activeButton = tagButtonsScroller.querySelector(`.tag-button[data-category="${activeCategory}"]`);
+        if (activeButton) activeButton.classList.add('active');
+        tagButtonsScroller.querySelectorAll('.tag-button').forEach(button => {
+            button.addEventListener('click', () => {
+                tagButtonsScroller.querySelector('.active')?.classList.remove('active');
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                itemsShown = PRODUCTS_PER_PAGE;
+                countdownTimerEl.style.display = activeCategory === 'flash-sale' && new Date().getTime() < new Date(PROMO_TWO_END_STRING).getTime() ? 'flex' : 'none';
+                const isTelco = activeCategory.includes('telco');
+                normalPaymentGroup.style.display = isTelco ? 'none' : 'block';
+                telcoPaymentGroup.style.display = isTelco ? 'block' : 'none';
+                voucherInput.disabled = isTelco;
+                voucherBtn.disabled = isTelco;
+                voucherInput.placeholder = isTelco ? "Diskaun tidak tersedia" : "Guna kod 'DISKAUN'";
+                if (isTelco && voucherDiscount > 0) {
+                    showNotif({ title: "Diskaun Dibatalkan", message: "Baucar tidak sah untuk pembayaran telco.", type: 'warning' });
+                    voucherDiscount = 0; voucherCode = "";
+                }
+                renderProducts();
+                updateAllPrices(); 
+            });
+        });
+    }
+
+    function init() {
+        if(init.done) clearInterval(countdownInterval);
+
+        const promoOneEndTime = new Date(PROMO_ONE_END_STRING).getTime();
+        const promoTwoStartTime = new Date(PROMO_TWO_START_STRING).getTime();
+        const promoTwoEndTime = new Date(PROMO_TWO_END_STRING).getTime();
+        const now = new Date().getTime();
+
+        let showFlashSaleTab = true;
+        let newPromoState = '';
+        
+        if (now < promoOneEndTime) {
+            newPromoState = 'active_promo_1';
+            activeCategory = 'flash-sale';
+            startCountdown(promoOneEndTime, 'PROMOSI TAMAT DALAM');
+        } else if (now >= promoOneEndTime && now < promoTwoStartTime) {
+            newPromoState = 'between_promos';
+            activeCategory = 'diamonds';
+            startCountdown(promoTwoStartTime, 'PROMOSI BERMULA DALAM');
+        } else if (now >= promoTwoStartTime && now < promoTwoEndTime) {
+            newPromoState = 'active_promo_2';
+            activeCategory = 'flash-sale';
+            startCountdown(promoTwoEndTime, 'PROMOSI TAMAT DALAM');
+        } else {
+            newPromoState = 'ended';
+            showFlashSaleTab = false;
+            activeCategory = 'diamonds';
+            countdownTimerEl.style.display = 'none';
+        }
+
+        if (init.done && newPromoState !== currentPromoState) {
+            if (newPromoState === 'between_promos' || newPromoState === 'ended') {
+                showNotif({ title: "Promosi Tamat", message: "Jualan kilat telah berakhir. Nantikan promosi seterusnya!", type: 'info' });
+            } else if (newPromoState === 'active_promo_2') {
+                 showNotif({ title: "Promosi Bermula!", message: "Jualan flash sale baharu kini bermula, ayo beli sekarang", type: 'success', duration: 6000 });
+            }
+        }
+        currentPromoState = newPromoState;
+
+        if (!init.done) setupTagButtons(showFlashSaleTab);
+        else if (!showFlashSaleTab) document.querySelector('.tag-button[data-category="flash-sale"]')?.remove();
+        
+        renderProducts();
+        const activeTabIsFlashSale = document.querySelector('.tag-button.active')?.dataset.category === 'flash-sale';
+        if (activeTabIsFlashSale && newPromoState !== 'ended') {
+            countdownTimerEl.style.display = 'flex';
+        } else {
+            countdownTimerEl.style.display = 'none';
+        }
+
+        if (init.done) return;
+        
+        document.querySelectorAll('.payment-box:not(.disabled)').forEach(box => {
+            box.addEventListener('click', () => {
+                document.querySelector('.payment-box.selected')?.classList.remove('selected');
+                box.classList.add('selected');
+                selectedPayment = { method: box.dataset.method, fee: parseFloat(box.dataset.fee) };
+                updateAllPrices();
+            });
+        });
+        document.querySelectorAll('input[type="tel"]').forEach(input => { input.addEventListener('input', function () { this.value = this.value.replace(/[^0-9]/g, ''); }); });
+        [openMenuBtn, closeMenuBtn, menuOverlay].forEach(el => el.addEventListener('click', () => { sideMenu.classList.toggle('open'); menuOverlay.classList.toggle('open'); }));
+        moreButton.addEventListener('click', () => { itemsShown += PRODUCTS_PER_PAGE; renderProducts(); });
+        document.querySelectorAll('.payment-header').forEach(header => {
+            header.addEventListener('click', () => {
+                if (!selectedProduct) { showNotif({ title: "Perhatian", message: "Sila pilih produk dahulu.", type: 'warning' }); return; }
+                header.closest('.payment-category').classList.toggle('expanded');
+            });
+        });
+
+        voucherBtn.addEventListener('click', () => {
+            if (!selectedProduct) return showNotif({ title: "Perhatian", message: "Pilih produk sebelum guna baucar.", type: 'warning' });
+            const code = voucherInput.value.trim().toUpperCase();
+            if (validVouchers[code]) {
+                voucherDiscount = validVouchers[code]; voucherCode = code; 
+                showNotif({ title: "Berjaya!", message: `Diskaun ${voucherDiscount}% telah digunakan.`, type: 'success' });
+            } else {
+                voucherDiscount = 0; voucherCode = ""; 
+                showNotif({ title: "Gagal", message: "Kod baucar tidak sah.", type: 'error' });
+            }
+            updateAllPrices();
+        });
+
+// --- Logik untuk semua Collapsible Cards ---
+document.querySelectorAll('.collapsible-header').forEach(header => {
+    header.addEventListener('click', () => {
+        // Cari parent terdekat '.collapsible-card' dan toggle class 'expanded'
+        header.closest('.collapsible-card').classList.toggle('expanded');
+    });
+});
+
+        orderBtn.addEventListener('click', () => {
+            if (!selectedProduct) { showNotif({ title: "Ralat", message: "Sila pilih item.", type: 'error' }); return; }
+            if (!playerIdInput.value.trim() || !whatsappInput.value.trim()) { 
+                showNotif({ title: "Ralat", message: "Sila isi Player ID dan nombor Whatsapp.", type: 'error' });
+                userDetailsGroup.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+                userDetailsGroup.classList.add('highlight'); 
+                setTimeout(() => userDetailsGroup.classList.remove('highlight'), 2500); 
+                return; 
+            }
+            if (!selectedPayment) {
+                showNotif({ title: "Ralat", message: "Sila pilih kaedah pembayaran.", type: 'error' });
+                // DIKEMASKINI: Terus ke bahagian pembayaran dan buka kotak
+                paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                paymentSection.classList.add('highlight');
+                setTimeout(() => paymentSection.classList.remove('highlight'), 2500);
+
+                const activePaymentGroup = telcoPaymentGroup.style.display !== 'none' ? telcoPaymentGroup : normalPaymentGroup;
+                const paymentCategory = activePaymentGroup.querySelector('.payment-category');
+                if (paymentCategory && !paymentCategory.classList.contains('expanded')) {
+                    paymentCategory.classList.add('expanded');
+                }
+                return;
+            }
+            const basePriceRaw = selectedProduct.price;
+            const discountAmount = basePriceRaw * (voucherDiscount / 100);
+            const total = (basePriceRaw - discountAmount + selectedPayment.fee).toFixed(2);
+            document.getElementById('summary-userid').textContent = playerIdInput.value.trim();
+            document.getElementById('summary-item').textContent = selectedProduct.name;
+            document.getElementById('summary-price').textContent = `RM ${basePriceRaw.toFixed(2)}`;
+            document.getElementById('summary-fee').textContent = `RM ${selectedPayment.fee.toFixed(2)}`;
+            document.getElementById('summary-discount').textContent = `- RM ${discountAmount.toFixed(2)}`;
+            document.getElementById('summary-voucher').textContent = voucherCode || '-';
+            document.getElementById('summary-total').textContent = `RM ${total}`;
+            document.getElementById('summary-whatsapp').textContent = whatsappInput.value.trim();
+            confirmationModal.style.display = 'flex';
+            setTimeout(() => confirmationModal.classList.add('open'), 10);
+        });
+
+        const closeModal = () => { confirmationModal.classList.remove('open'); setTimeout(() => { confirmationModal.style.display = 'none'; modalContent.classList.remove('processing'); confirmBtn.disabled = false; cancelBtn.disabled = false; confirmBtn.innerHTML = 'Sahkan & Bayar'; }, 400); };
+        cancelBtn.addEventListener('click', closeModal);
+        confirmBtn.addEventListener('click', () => {
+            confirmBtn.disabled = true; cancelBtn.disabled = true; confirmBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Memproses...`;
+            setTimeout(() => { modalContent.classList.add('processing'); setTimeout(() => { handleOrder(); closeModal(); }, 1800); }, 500);
+        });
+        confirmationModal.addEventListener('click', e => { if (e.target === confirmationModal) closeModal(); });
+        
+        const checkScrollButtons = () => {
+            const maxScrollLeft = tagButtonsScroller.scrollWidth - tagButtonsScroller.clientWidth;
+            scrollLeftBtn.classList.toggle('visible', tagButtonsScroller.scrollLeft > 5);
+            scrollRightBtn.classList.toggle('visible', tagButtonsScroller.scrollLeft < maxScrollLeft - 5);
+        };
+        scrollLeftBtn.addEventListener('click', () => tagButtonsScroller.scrollBy({ left: -200, behavior: 'smooth' }));
+        scrollRightBtn.addEventListener('click', () => tagButtonsScroller.scrollBy({ left: 200, behavior: 'smooth' }));
+        tagButtonsScroller.addEventListener('scroll', checkScrollButtons);
+        new ResizeObserver(checkScrollButtons).observe(tagButtonsScroller);
+        setTimeout(checkScrollButtons, 150);
+        
+        init.done = true;
+    }
+    
+    init();
+});
+</script>
+
+</body>
+</html>
