@@ -1,172 +1,762 @@
+<!DOCTYPE html>
 <html lang="ms">
 <head>
-	<link rel="shortcut icon" href="https://h.top4top.io/s_3151vzau50.jpg" type="image/x-icon">
-    <meta name="description" content="Jom tukar kredit topup Digi ke e-Wallet seperti bank atau Touch 'n Go dengan mudah dan pantas!">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONVERT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LD-Shop - Tetapan Akaun & Keselamatan</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .verification-logo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .verification-logo img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-        .verification-logo p {
-            margin-top: 10px;
-            font-size: 14px;
-            color: green;
-            font-weight: bold;
-        }
-        h1 {
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .form-group button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .form-group button:hover {
-            background-color: #0056b3;
-        }
-        .result, .contact-info, .back-to-home {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #e9ecef;
-            border-radius: 4px;
-        }
-        .contact-info {
-            text-align: center;
-            font-size: 16px;
-        }
-        .contact-info a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .back-to-home {
-            text-align: center;
-            font-size: 16px;
-        }
-        .back-to-home a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .back-to-home a:hover {
-            text-decoration: underline;
-        }
+        body { font-family: 'Outfit', sans-serif; background-color: #09090b; color: white; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #18181b; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 3px; }
+        
+        /* Animations */
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .animate-up { animation: slideUp 0.4s ease-out forwards; }
+        .animate-slide-left { animation: slideLeft 0.3s ease-out forwards; }
+        @keyframes slideLeft { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+        /* Glass Effects */
+        .glass-nav { background: rgba(9, 9, 11, 0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-panel { background: rgba(24, 24, 27, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        /* Badges */
+        .badge { font-size: 9px; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
+        .badge-admin { background: #ef4444; color: white; }
+        .badge-gold { background: #facc15; color: black; border: 1px solid #eab308; }
+        .badge-silver { background: #d1d5db; color: black; border: 1px solid #9ca3af; }
+        
+        /* Background Glow */
+        .bg-glow { position: fixed; width: 600px; height: 600px; background: radial-gradient(circle, rgba(250, 204, 21, 0.05) 0%, rgba(0,0,0,0) 70%); top: -200px; left: 50%; transform: translateX(-50%); z-index: -1; pointer-events: none; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="verification-logo">
-            <img src="https://c.top4top.io/p_3294hb2sk0.jpg" alt="ICESESI">
-            <p>Convert by Icedragonstore</p>
+<body class="antialiased selection:bg-yellow-500 selection:text-black flex flex-col min-h-screen">
+
+    <div class="bg-glow"></div>
+    <div id="toast-container" class="fixed top-20 right-5 z-[120] space-y-2 pointer-events-none"></div>
+
+    <nav class="glass-nav fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 h-16 flex justify-between items-center">
+            <div onclick="window.location.href='index.html'" class="flex items-center gap-3 cursor-pointer select-none group">
+                <div class="bg-yellow-400 text-black font-black px-3 py-1 rounded-lg text-xl italic transform -skew-x-12 group-hover:scale-105 transition">LD</div>
+                <div class="font-bold text-lg hidden sm:block tracking-tight text-white">SHOP <span class="text-[9px] bg-white/10 border border-white/10 px-1.5 py-0.5 rounded text-yellow-400 align-top ml-1">V4.9</span></div>
+            </div>
+
+            <div class="flex items-center gap-3 sm:gap-5">
+                <button onclick="openModal('inbox-modal'); markNotificationsRead();" class="relative text-gray-400 hover:text-white transition">
+                    <i class="ph ph-bell text-2xl"></i>
+                    <div id="nav-notif-dot" class="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[#0f1014] hidden"></div>
+                </button>
+
+                <a href="rank.html" class="text-gray-400 hover:text-yellow-400 transition">
+                    <i class="ph ph-trophy text-2xl"></i>
+                </a>
+
+                <div id="auth-section">
+                    <div class="w-28 h-9 bg-white/10 rounded-full animate-pulse border border-white/5"></div>
+                </div>
+            </div>
         </div>
-        <h1>CONVERT DIGI - TNG/BANK</h1>
-        <form id="conversionForm">
-            <div class="form-group">
-                <label for="amount">Jumlah Topup DIGI (RM):</label>
-                <input type="number" id="amount" name="amount" min="1" step="0.01" max="1000" required>
+    </nav>
+
+    <main class="container mx-auto px-4 mt-28 max-w-lg animate-up flex-grow pb-20">
+        
+        <div id="loading-overlay" class="fixed inset-0 bg-[#09090b] z-40 flex flex-col items-center justify-center">
+            <div class="w-8 h-8 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mb-2"></div>
+            <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Memuatkan Profil...</p>
+        </div>
+
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+            
+            <div class="text-center mb-8">
+                <div class="relative w-24 h-24 mx-auto mb-4 group">
+                    <img id="acc-img-preview" src="https://via.placeholder.com/150" onerror="this.src='https://via.placeholder.com/150'" class="w-full h-full rounded-full object-cover border-4 border-[#18181b] outline outline-2 outline-yellow-400 shadow-lg bg-gray-800">
+                    <div class="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition cursor-pointer" onclick="document.getElementById('acc-avatar-url').focus()">
+                        <i class="ph ph-pencil text-white text-xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-xl font-bold text-white" id="acc-display-email">Loading...</h2>
+                <div id="acc-badge-container" class="flex justify-center mt-2"></div>
             </div>
-            <div class="form-group">
-                <label for="conversionType">Jenis Penukaran:</label>
-                <select id="conversionType" name="conversionType" required>
-                    <option value="tng">DIGI ke TNG</option>
-                    <option value="BANK">DIGI ke BANK</option>
-                </select>
+
+            <div class="space-y-8">
+                
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold text-yellow-500 uppercase tracking-widest border-b border-white/5 pb-2">Info Peribadi</h3>
+                    
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] uppercase font-bold text-gray-500 ml-1">Email (Kekal)</label>
+                        <input type="email" id="acc-email" disabled class="w-full bg-[#18181b] border border-gray-700 rounded-xl py-3 px-4 text-gray-400 cursor-not-allowed text-sm">
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] uppercase font-bold text-gray-500 ml-1">Nama Pengguna</label>
+                        <input type="text" id="acc-username" placeholder="Username Anda" class="w-full bg-[#09090b] border border-gray-700 rounded-xl py-3 px-4 text-white focus:border-yellow-400 outline-none text-sm transition font-bold">
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] uppercase font-bold text-gray-500 ml-1">Nombor Telefon (WhatsApp)</label>
+                        <input type="tel" id="acc-phone" placeholder="Contoh: 0123456789" class="w-full bg-[#09090b] border border-gray-700 rounded-xl py-3 px-4 text-white focus:border-yellow-400 outline-none text-sm transition">
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] uppercase font-bold text-gray-500 ml-1">URL Gambar Profil</label>
+                        <input type="text" id="acc-avatar-url" placeholder="https://..." oninput="document.getElementById('acc-img-preview').src = this.value || 'https://via.placeholder.com/150'" class="w-full bg-[#09090b] border border-gray-700 rounded-xl py-3 px-4 text-white focus:border-yellow-400 outline-none text-xs transition font-mono">
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold text-green-400 uppercase tracking-widest border-b border-white/5 pb-2 flex justify-between items-center">
+                        Keselamatan Wallet
+                        <span id="pin-status-badge" class="text-[9px] bg-gray-700 text-white px-2 py-0.5 rounded">Checking...</span>
+                    </h3>
+                    
+                    <div class="bg-green-400/5 border border-green-400/10 rounded-xl p-4 space-y-3">
+                        <div class="flex items-start gap-3 mb-2">
+                            <i class="ph ph-shield-check text-green-400 text-xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">PIN Transaksi (6-Digit)</h4>
+                                <p class="text-[10px] text-gray-400 leading-tight mt-1">Digunakan untuk pengesahan pembelian.</p>
+                            </div>
+                        </div>
+
+                        <div id="container-old-pin" class="hidden">
+                            <input type="number" id="acc-pin-old" placeholder="Masukkan PIN Lama" class="w-full bg-[#09090b] border border-gray-700 rounded-xl py-3 px-4 text-white focus:border-green-400 outline-none text-sm text-center tracking-[0.5em] font-bold font-mono transition placeholder:tracking-normal placeholder:font-sans placeholder:text-gray-600">
+                        </div>
+
+                        <input type="number" id="acc-pin-new" placeholder="Set PIN Baru" class="w-full bg-[#09090b] border border-gray-700 rounded-xl py-3 px-4 text-white focus:border-green-400 outline-none text-sm text-center tracking-[0.5em] font-bold font-mono transition placeholder:tracking-normal placeholder:font-sans placeholder:text-gray-600">
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold text-blue-400 uppercase tracking-widest border-b border-white/5 pb-2">Pengesahan 2-Faktor (2FA)</h3>
+                    
+                    <div class="bg-blue-400/5 border border-blue-400/10 rounded-xl p-4">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-start gap-3">
+                                <i class="ph ph-qr-code text-blue-400 text-xl"></i>
+                                <div>
+                                    <h4 class="text-sm font-bold text-white">Google Authenticator</h4>
+                                    <p class="text-[10px] text-gray-400 leading-tight mt-1">Lindungi akaun dengan kod OTP.</p>
+                                </div>
+                            </div>
+                            <div id="2fa-status-badge" class="badge bg-gray-700 text-white">OFF</div>
+                        </div>
+
+                        <div id="2fa-setup-container" class="hidden space-y-4 animate-up">
+                            <div class="bg-white p-3 rounded-lg w-max mx-auto shadow-lg shadow-white/10">
+                                <div id="qrcode" class="w-[128px] h-[128px]"></div>
+                            </div>
+                            <div class="text-center space-y-3">
+                                <p class="text-[10px] text-gray-400 bg-white/5 p-2 rounded">Scan QR code ini menggunakan app <b>Google Authenticator</b> atau <b>Authy</b>.</p>
+                                <input type="number" id="2fa-code-input" placeholder="000 000" class="w-full bg-[#09090b] border border-gray-700 rounded-xl py-3 px-4 text-white text-center font-mono text-lg tracking-[0.5em] focus:border-blue-400 outline-none placeholder:tracking-normal placeholder:text-sm">
+                                <button onclick="verifyAndEnable2FA()" class="w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 rounded-lg text-xs transition shadow-lg shadow-blue-500/20">SAHKAN & AKTIFKAN</button>
+                            </div>
+                        </div>
+
+                        <div id="2fa-action-btns">
+                            <button id="btn-enable-2fa" onclick="start2FASetup()" class="w-full bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/20 font-bold py-2.5 rounded-lg transition text-xs flex items-center justify-center gap-2">
+                                <i class="ph ph-shield-plus"></i> AKTIFKAN 2FA
+                            </button>
+                            <button id="btn-disable-2fa" onclick="disable2FA()" class="hidden w-full bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 font-bold py-2.5 rounded-lg transition text-xs flex items-center justify-center gap-2">
+                                <i class="ph ph-shield-slash"></i> PADAM 2FA
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold text-purple-400 uppercase tracking-widest border-b border-white/5 pb-2">Peranti Log Masuk</h3>
+                    
+                    <div class="bg-purple-400/5 border border-purple-400/10 rounded-xl p-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-sm font-bold text-white">Sesi Aktif</h4>
+                            <button onclick="logoutAllOtherDevices()" class="text-[9px] bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition font-bold shadow-lg shadow-red-500/20">LOG KELUAR SEMUA</button>
+                        </div>
+                        
+                        <div id="device-list" class="space-y-2 max-h-40 overflow-y-auto pr-1 custom-scrollbar">
+                            <div class="text-center text-[10px] text-gray-500 py-2">Memuatkan peranti...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold text-red-400 uppercase tracking-widest border-b border-white/5 pb-2">Tukar Kata Laluan</h3>
+                    
+                    <div class="bg-red-400/5 border border-red-400/10 rounded-xl p-4 space-y-3">
+                        <div class="flex items-start gap-3 mb-2">
+                            <i class="ph ph-lock-key text-red-400 text-xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Akses Akaun</h4>
+                                <p class="text-[10px] text-gray-400 leading-tight mt-1">Biarkan kosong jika tidak mahu menukar kata laluan.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="relative">
+                                <input type="password" id="acc-pass-old" placeholder="Password Lama" class="w-full bg-[#09090b] border border-gray-700 rounded-xl py-3 px-4 pr-10 text-white focus:border-red-400 outline-none text-xs transition">
+                                <button type="button" onclick="togglePassword('acc-pass-old', this)" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white outline-none">
+                                    <i class="ph ph-eye-slash"></i>
+                                </button>
+                            </div>
+
+                            <div class="relative">
+                                <input type="password" id="acc-pass-new" placeholder="Password Baru" class="w-full bg-[#09090b] border border-gray-700 rounded-xl py-3 px-4 pr-10 text-white focus:border-red-400 outline-none text-xs transition">
+                                <button type="button" onclick="togglePassword('acc-pass-new', this)" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white outline-none">
+                                    <i class="ph ph-eye-slash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-2 space-y-3">
+                    <button onclick="saveAccountSettings()" id="btn-save-acc" class="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-3.5 rounded-xl transition shadow-lg shadow-yellow-400/20 uppercase tracking-wide text-sm flex items-center justify-center gap-2">
+                        <i class="ph ph-floppy-disk"></i> Simpan Perubahan
+                    </button>
+                    
+                    <button onclick="handleLogout()" class="w-full bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 font-bold py-3.5 rounded-xl transition uppercase tracking-wide text-sm">
+                        Log Keluar
+                    </button>
+                </div>
+
             </div>
-            <div class="form-group">
-                <button type="submit">Kira</button>
+        </div>
+
+        <div class="text-center mt-6 text-[10px] text-gray-600 font-mono">
+            &copy; 2024 LD-SHOP System.
+        </div>
+    </main>
+
+    <footer class="bg-[#0c0c0e] border-t border-white/5 pt-16 pb-12 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-10">
+                <div class="col-span-2 md:col-span-5 space-y-6">
+                    <div class="flex items-center gap-3 select-none">
+                        <div class="bg-yellow-400 text-black font-black px-3 py-1 rounded-lg text-xl italic transform -skew-x-12">LD</div>
+                        <div class="font-bold text-lg tracking-tight text-white">SHOP</div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed pr-4">
+                        Top up game & voucher terlaris, murah, aman legal 100% buka 24 Jam dengan payment terlengkap Malaysia.
+                    </p>
+                </div>
+                <div class="col-span-1 md:col-span-2">
+                    <h4 class="text-yellow-500 font-bold mb-6 uppercase tracking-wider text-xs">Peta Situs</h4>
+                    <ul class="space-y-4 text-sm text-gray-400 font-medium">
+                        <li><a href="index.html" class="hover:text-yellow-400 transition">Beranda</a></li>
+                        <li><a href="account.html" class="hover:text-yellow-400 transition">Akaun</a></li>
+                    </ul>
+                </div>
             </div>
-            <div id="result" class="result"></div>
-            <div class="contact-info">
-                <p>FOR CONVERT TOPUP DIGI KE TNG / BANK CHAT ICE <a href="https://wa.me/601135268529">TEKAN SINI</a> TQ.</p>
+            <div class="border-t border-white/5 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                 <p class="text-xs text-gray-600 font-mono">LD-SHOP v4.9 &copy; 2024. All Rights Reserved.</p>
             </div>
-            <div class="back-to-home">
-                <p><a href="index.html">Kembali ke Laman Utama</a></p>
+        </div>
+    </footer>
+
+    <div id="profile-modal" class="fixed inset-0 bg-black/80 hidden z-[70] justify-end backdrop-blur-sm transition-opacity">
+        <div class="glass-panel w-full max-w-xs h-full border-l border-gray-800 overflow-y-auto shadow-2xl animate-slide-left bg-[#09090b] flex flex-col ml-auto">
+            <div class="p-6 pb-2">
+                <div class="flex justify-between items-start mb-6">
+                    <button onclick="closeModal('profile-modal')" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition text-gray-400"><i class="ph ph-x"></i></button>
+                    <div onclick="handleLogout()" class="text-xs font-bold text-red-500 hover:text-red-400 cursor-pointer py-1.5 px-3 rounded-full bg-red-500/10 border border-red-500/20">LOG KELUAR</div>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <img id="profile-img" src="https://via.placeholder.com/150" onerror="this.src='https://via.placeholder.com/150'" class="w-20 h-20 rounded-full object-cover border-4 border-[#18181b] outline outline-2 outline-yellow-400 bg-gray-800 mb-3 shadow-lg">
+                    <div class="font-bold text-white text-base truncate w-full px-4" id="profile-email">User</div>
+                    <div id="profile-badges" class="flex flex-wrap justify-center gap-1 mt-2"></div>
+                </div>
             </div>
-        </form>
+            <div class="p-6 pt-2">
+                <div class="bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-3xl p-6 text-black shadow-lg shadow-yellow-500/20 relative overflow-hidden group">
+                    <div class="absolute -right-4 -bottom-4 text-9xl opacity-10 transform rotate-12 transition group-hover:rotate-0"><i class="ph ph-wallet"></i></div>
+                    <div class="relative z-10">
+                        <div class="text-[10px] font-black opacity-70 mb-1 tracking-widest uppercase">Baki Wallet</div>
+                        <div class="text-3xl font-black mb-4 tracking-tighter">RM <span id="sidebar-balance">0.00</span></div>
+                        <button onclick="openModal('pin-modal'); closeModal('profile-modal')" class="bg-black/20 hover:bg-black/30 w-full py-2.5 rounded-xl text-[10px] font-bold flex items-center justify-center gap-2 transition backdrop-blur-sm uppercase tracking-wide">
+                            <i class="ph ph-plus-circle text-base"></i> Tambah Baki
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 flex-grow space-y-1">
+                <div class="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-3 pl-2">Menu Utama</div>
+                <button onclick="window.location.href='account.html'" class="w-full text-left p-3.5 rounded-xl hover:bg-white/5 flex items-center gap-4 text-gray-300 hover:text-white transition group border border-transparent hover:border-white/5">
+                    <div class="w-9 h-9 rounded-lg bg-[#18181b] border border-gray-700 text-gray-400 flex items-center justify-center group-hover:border-purple-500 group-hover:text-purple-400 transition shadow-sm"><i class="ph ph-user-gear text-lg"></i></div>
+                    <span class="text-sm font-semibold">Kemaskini Profil</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="inbox-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-[80] backdrop-blur-sm p-4 animate-up">
+        <div class="glass-panel w-full max-w-md rounded-3xl flex flex-col h-[70vh] relative shadow-2xl overflow-hidden">
+            <div class="px-6 py-5 border-b border-white/10 flex justify-between items-center bg-white/5">
+                <div><h2 class="text-lg font-bold text-white flex items-center gap-2"><i class="ph ph-tray text-yellow-400"></i> Peti Masuk</h2></div>
+                <button onclick="closeModal('inbox-modal')" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 hover:text-white flex items-center justify-center transition text-gray-400"><i class="ph ph-x"></i></button>
+            </div>
+            <div id="inbox-list" class="flex-grow overflow-y-auto p-4 space-y-3 bg-[#09090b]/50"></div>
+        </div>
+    </div>
+    
+    <div id="pin-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-[70] p-4 animate-up">
+        <div class="glass-panel p-8 rounded-3xl w-full max-w-sm relative">
+            <button onclick="closeModal('pin-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="ph ph-x"></i></button>
+            <div class="text-center mb-6">
+                <h3 class="font-bold text-lg text-white mb-1 flex items-center justify-center gap-2"><i class="ph ph-gift text-green-400"></i> Tebus Voucher</h3>
+                <p class="text-xs text-gray-500">Masukkan kod voucher untuk tambah baki.</p>
+            </div>
+            <div class="space-y-4">
+                <input type="text" id="pin-input" placeholder="XXXX-XXXX" class="w-full bg-black border border-gray-700 rounded-xl p-4 text-white text-center tracking-widest font-mono uppercase text-lg focus:border-green-500 outline-none transition">
+                <button onclick="redeemPin()" class="w-full bg-green-600 text-white font-bold py-3.5 rounded-xl hover:bg-green-500 transition shadow-lg shadow-green-500/20">TEBUS SEKARANG</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        document.getElementById('conversionForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+        // --- SUPABASE CONFIG ---
+        const supabaseUrl = 'https://bgajuffwueesfibkdtvo.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJnYWp1ZmZ3dWVlc2ZpYmtkdHZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY0MTE5OTksImV4cCI6MjA4MTk4Nzk5OX0.xCkGSeV0YvW5Zf3mKvJYNEUB40H4tP-osuxlQ_ra34M';
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-            const amount = parseFloat(document.getElementById('amount').value);
-            const conversionType = document.getElementById('conversionType').value;
+        // VARIABLES
+        let currentUser = null;
+        let currentProfile = null;
+        let currentFactorId = null;
 
-            if (isNaN(amount) || amount <= 0 || amount > 1000) {
-                document.getElementById('result').innerText = 'Sila masukkan jumlah yang sah (maksimum RM1000).';
-                return;
-            }
+        // DEVICE ID 
+        let localDeviceId = localStorage.getItem('ld_device_id');
+        if (!localDeviceId) {
+            localDeviceId = 'dev_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('ld_device_id', localDeviceId);
+        }
 
-            let fee;
-            if (amount <= 10) {
-                fee = 4;
-            } else if (amount <= 20) {
-                fee = 8;
-            } else if (amount <= 30) {
-                fee = 9;
-            } else if (amount <= 40) {
-                fee = 10;
-            } else if (amount <= 50) {
-                fee = 14;
-            } else if (amount <= 100) {
-                fee = 20;
-            } else if (amount <= 200) {
-                fee = 30;
-            } else if (amount <= 1000) {
-                fee = 200;
+        // UTILITY
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            if (!container) return; 
+            
+            // Limit toast spam (max 2 at a time)
+            if(container.children.length > 1) container.removeChild(container.firstChild);
+
+            const toast = document.createElement('div');
+            toast.className = `p-4 rounded-xl shadow-lg border flex items-center gap-3 animate-slide-left ${
+                type === 'success' ? 'bg-green-500/10 border-green-500/20 text-green-400' : 
+                type === 'error' ? 'bg-red-500/10 border-red-500/20 text-red-400' : 
+                'bg-[#18181b] border-gray-700 text-white'
+            }`;
+            let icon = type === 'success' ? 'check-circle' : type === 'error' ? 'warning-circle' : 'info';
+            toast.innerHTML = `<i class="ph ph-${icon} text-xl"></i> <span class="text-xs font-bold">${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
+        }
+
+        function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace('ph-eye-slash', 'ph-eye');
+                icon.classList.add('text-yellow-400');
             } else {
-                fee = 60;
+                input.type = "password";
+                icon.classList.replace('ph-eye', 'ph-eye-slash');
+                icon.classList.remove('text-yellow-400');
+            }
+        }
+
+        // WINDOW ONLOAD
+        window.onload = async () => {
+            setTimeout(() => {
+                const loadingOverlay = document.getElementById('loading-overlay');
+                if(loadingOverlay && loadingOverlay.style.opacity !== '0') {
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => loadingOverlay.remove(), 500);
+                }
+            }, 3000);
+            
+            await checkSession();
+        };
+
+        // --- AUTH & PROFILE ---
+        async function checkSession() {
+            try {
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                const authSection = document.getElementById('auth-section');
+
+                if (session) {
+                    currentUser = session.user;
+                    const { data } = await supabaseClient.from('profiles').select('*').eq('id', currentUser.id).single();
+                    
+                    if (!data) return;
+                    currentProfile = data;
+
+                    if (currentProfile.is_banned) {
+                        await supabaseClient.auth.signOut();
+                        alert("Akaun Banned");
+                        window.location.href='index.html';
+                        return;
+                    }
+
+                    // Setup UI (Navbar & Modal)
+                    const avatar = currentProfile.avatar_url || 'https://via.placeholder.com/150';
+                    const name = currentProfile.username || currentUser.email.split('@')[0];
+                    const balance = currentProfile.wallet_balance ? currentProfile.wallet_balance.toFixed(2) : '0.00';
+
+                    // Update Navbar
+                    if(authSection) {
+                        authSection.innerHTML = `
+                            <div onclick="openModal('profile-modal')" class="flex items-center gap-3 cursor-pointer bg-white/5 hover:bg-white/10 py-1.5 px-2 pl-4 rounded-full border border-white/5 transition group backdrop-blur-sm animate-up">
+                                <div class="text-right leading-none hidden sm:block">
+                                    <div class="text-[9px] text-gray-400 uppercase font-bold tracking-wider">Baki</div>
+                                    <div class="text-xs font-bold text-yellow-400 group-hover:text-white transition">RM ${balance}</div>
+                                </div>
+                                <img src="${avatar}" onerror="this.src='https://via.placeholder.com/150'" class="w-9 h-9 rounded-full border-2 border-yellow-400/50 object-cover shadow-sm">
+                            </div>
+                        `;
+                    }
+                    
+                    // Update Sidebar Modal (FIXED)
+                    document.getElementById('profile-img').src = avatar;
+                    document.getElementById('profile-email').innerText = name;
+                    document.getElementById('sidebar-balance').innerText = balance;
+
+                    fillAccountPageData();
+                    check2FAStatus();
+                    updateDeviceList(); // Safe wrapper
+                    loadInbox();
+
+                } else {
+                    window.location.href = 'index.html';
+                }
+            } catch (error) {
+                console.error("Session Error:", error);
+            } finally {
+                const loadingOverlay = document.getElementById('loading-overlay');
+                if(loadingOverlay) {
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => loadingOverlay.remove(), 500);
+                }
+            }
+        }
+
+        function fillAccountPageData() {
+            if (!document.getElementById('acc-email')) return;
+            document.getElementById('acc-email').value = currentUser.email;
+            
+            const displayName = currentProfile.username || currentUser.user_metadata?.username || currentUser.email.split('@')[0];
+            document.getElementById('acc-display-email').innerText = displayName;
+            document.getElementById('acc-username').value = displayName;
+            if (currentProfile.phone) document.getElementById('acc-phone').value = currentProfile.phone;
+            if (currentProfile.avatar_url) {
+                document.getElementById('acc-avatar-url').value = currentProfile.avatar_url;
+                document.getElementById('acc-img-preview').src = currentProfile.avatar_url;
             }
 
-            const totalAmount = amount - fee;
-
-            if (totalAmount < 0) {
-                document.getElementById('result').innerText = 'Jumlah duit tidak mencukupi untuk menampung caj.';
+            // PIN Logic
+            const pinBadge = document.getElementById('pin-status-badge');
+            const oldPinContainer = document.getElementById('container-old-pin');
+            if (currentProfile.security_pin) {
+                pinBadge.innerText = "PIN TELAH DISET";
+                pinBadge.classList.add("bg-green-500", "text-black");
+                pinBadge.classList.remove("bg-red-500", "text-white");
+                oldPinContainer.classList.remove("hidden"); 
             } else {
-                document.getElementById('result').innerText = `Jumlah ${conversionType === 'tng' ? 'TNG' : 'BANK'} yang akan diterima adalah RM${totalAmount.toFixed(2)} (Caj RM${fee})`;
+                pinBadge.innerText = "BELUM DISET";
+                pinBadge.classList.add("bg-red-500", "text-white");
+                pinBadge.classList.remove("bg-green-500", "text-black");
+                oldPinContainer.classList.add("hidden"); 
             }
-        });
+
+            // Badges
+            const badgeContainer = document.getElementById('acc-badge-container');
+            if(badgeContainer) {
+                let badgesHtml = '';
+                if (currentProfile.role === 'admin') badgesHtml += '<span class="badge badge-admin mr-1">ADMIN</span>';
+                badgeContainer.innerHTML = badgesHtml;
+            }
+        }
+
+        async function saveAccountSettings() {
+            const btn = document.getElementById('btn-save-acc');
+            const originalText = btn.innerHTML;
+            
+            const username = document.getElementById('acc-username').value;
+            const avatarUrl = document.getElementById('acc-avatar-url').value;
+            const phone = document.getElementById('acc-phone').value;
+            const oldPin = document.getElementById('acc-pin-old').value;
+            const newPin = document.getElementById('acc-pin-new').value;
+            const oldPass = document.getElementById('acc-pass-old').value;
+            const newPass = document.getElementById('acc-pass-new').value;
+
+            btn.innerHTML = `<i class="ph ph-spinner animate-spin"></i> Menyimpan...`;
+            btn.disabled = true;
+
+            try {
+                let profileUpdates = {};
+                if (!username) throw new Error("Username tidak boleh kosong.");
+                
+                if (username !== currentProfile.username) profileUpdates.username = username;
+                if (avatarUrl && avatarUrl !== currentProfile.avatar_url) profileUpdates.avatar_url = avatarUrl;
+                if (phone && phone !== currentProfile.phone) profileUpdates.phone = phone;
+
+                // PIN
+                if (newPin) {
+                    if (newPin.length !== 6) throw new Error("PIN mestilah tepat 6 digit.");
+                    if (currentProfile.security_pin) {
+                        if (!oldPin) throw new Error("Sila masukkan PIN Lama.");
+                        if (oldPin !== currentProfile.security_pin) throw new Error("PIN Lama tidak sah!");
+                    }
+                    profileUpdates.security_pin = newPin;
+                }
+
+                // Password
+                if (newPass) {
+                    if (!oldPass) throw new Error("Masukkan Password Lama.");
+                    if (newPass.length < 6) throw new Error("Password mesti > 6 karakter.");
+                    const { error } = await supabaseClient.auth.signInWithPassword({ email: currentUser.email, password: oldPass });
+                    if (error) throw new Error("Password Lama salah!");
+                    const { error: updatePassError } = await supabaseClient.auth.updateUser({ password: newPass });
+                    if (updatePassError) throw new Error(updatePassError.message);
+                    showToast("Password berjaya ditukar!", "success");
+                }
+
+                if (Object.keys(profileUpdates).length > 0) {
+                    const { error } = await supabaseClient.from('profiles').update(profileUpdates).eq('id', currentUser.id);
+                    if (error) throw error;
+                }
+
+                showToast("Tetapan berjaya disimpan!", "success");
+                setTimeout(() => location.reload(), 1500);
+
+            } catch (err) {
+                showToast(err.message, "error");
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // --- 2FA / TOTP LOGIC (FIXED: FRIENDLY NAME & CLEANUP) ---
+        async function check2FAStatus() {
+            try {
+                const { data, error } = await supabaseClient.auth.mfa.getAuthenticatorAssuranceLevel();
+                const statusBadge = document.getElementById('2fa-status-badge');
+                const btnEnable = document.getElementById('btn-enable-2fa');
+                const btnDisable = document.getElementById('btn-disable-2fa');
+
+                if (data && data.currentLevel === 'aal2') {
+                    statusBadge.innerText = "AKTIF";
+                    statusBadge.classList.replace("bg-gray-700", "bg-green-500");
+                    btnEnable.classList.add("hidden");
+                    btnDisable.classList.remove("hidden");
+                } else {
+                    const { data: factors } = await supabaseClient.auth.mfa.listFactors();
+                    if(!factors) return;
+                    
+                    const totpFactor = factors.totp.find(f => f.status === 'verified');
+                    
+                    if (totpFactor) {
+                        currentFactorId = totpFactor.id;
+                        statusBadge.innerText = "AKTIF";
+                        statusBadge.classList.replace("bg-gray-700", "bg-green-500");
+                        btnEnable.classList.add("hidden");
+                        btnDisable.classList.remove("hidden");
+                    } else {
+                        statusBadge.innerText = "OFF";
+                        btnEnable.classList.remove("hidden");
+                        btnDisable.classList.add("hidden");
+                    }
+                }
+            } catch (e) { console.error("2FA Check Error:", e); }
+        }
+
+        async function start2FASetup() {
+            const btn = document.getElementById('btn-enable-2fa');
+            btn.innerHTML = `<i class="ph ph-spinner animate-spin"></i> Loading...`;
+            btn.disabled = true;
+
+            try {
+                // 1. Cleanup old unverified factors
+                const { data: factors, error: listError } = await supabaseClient.auth.mfa.listFactors();
+                if (!listError && factors) {
+                    const unverifiedFactor = factors.totp.find(f => f.status === 'unverified');
+                    if (unverifiedFactor) {
+                        await supabaseClient.auth.mfa.unenroll({ factorId: unverifiedFactor.id });
+                    }
+                }
+
+                // 2. Enroll New (Guna Date.now() untuk elak duplicate friendly name error)
+                const { data, error } = await supabaseClient.auth.mfa.enroll({ 
+                    factorType: 'totp',
+                    friendlyName: 'LD-Shop-' + Date.now() 
+                });
+                
+                if (error) throw error;
+
+                currentFactorId = data.id;
+                
+                const setupContainer = document.getElementById('2fa-setup-container');
+                setupContainer.classList.remove('hidden');
+                document.getElementById('2fa-action-btns').classList.add('hidden');
+                
+                document.getElementById('qrcode').innerHTML = "";
+                new QRCode(document.getElementById("qrcode"), {
+                    text: data.totp.uri,
+                    width: 128,
+                    height: 128
+                });
+
+            } catch (err) {
+                console.error(err);
+                showToast("Gagal memulakan 2FA: " + err.message, "error");
+                btn.innerHTML = `<i class="ph ph-shield-plus"></i> AKTIFKAN 2FA`;
+                btn.disabled = false;
+            }
+        }
+
+        async function verifyAndEnable2FA() {
+            const code = document.getElementById('2fa-code-input').value;
+            if(!code) return showToast("Masukkan kod!", "error");
+
+            try {
+                const { data, error } = await supabaseClient.auth.mfa.challengeAndVerify({
+                    factorId: currentFactorId,
+                    code: code
+                });
+                
+                if (error) throw error;
+
+                showToast("2FA Berjaya Diaktifkan!", "success");
+                setTimeout(() => location.reload(), 1500);
+
+            } catch (err) {
+                showToast("Kod salah atau tamat tempoh.", "error");
+            }
+        }
+
+        async function disable2FA() {
+            if(!confirm("Matikan 2FA? Akaun anda akan kurang selamat.")) return;
+            
+            try {
+                const { error } = await supabaseClient.auth.mfa.unenroll({ factorId: currentFactorId });
+                if(error) throw error;
+                showToast("2FA Dimatikan.", "success");
+                setTimeout(() => location.reload(), 1500);
+            } catch(err) {
+                showToast("Gagal mematikan 2FA.", "error");
+            }
+        }
+
+
+        // --- DEVICE MANAGEMENT (FIXED: ERROR HANDLING) ---
+        async function updateDeviceList() {
+            try {
+                // Upsert device info
+                const userAgent = navigator.userAgent;
+                let deviceName = "Unknown Device";
+                if(userAgent.includes("iPhone")) deviceName = "iPhone";
+                else if(userAgent.includes("Android")) deviceName = "Android Phone";
+                else if(userAgent.includes("Mac")) deviceName = "Mac Device";
+                else if(userAgent.includes("Windows")) deviceName = "Windows PC";
+
+                const { error: upsertError } = await supabaseClient.from('user_devices').upsert({
+                    user_id: currentUser.id,
+                    device_id: localDeviceId,
+                    device_name: deviceName + " (" + (navigator.platform || 'Web') + ")",
+                    last_active: new Date().toISOString()
+                }, { onConflict: 'device_id' });
+
+                if (upsertError) throw upsertError;
+
+                // Fetch list
+                const { data: devices, error: fetchError } = await supabaseClient.from('user_devices').select('*').eq('user_id', currentUser.id).order('last_active', { ascending: false });
+                
+                if (fetchError) throw fetchError;
+
+                const listEl = document.getElementById('device-list');
+                if(listEl && devices) {
+                    listEl.innerHTML = devices.map(dev => {
+                        const isCurrent = dev.device_id === localDeviceId;
+                        const dateStr = new Date(dev.last_active).toLocaleString('ms-MY', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
+                        return `
+                            <div class="flex justify-between items-center bg-[#18181b] p-3 rounded-lg border border-gray-700">
+                                <div class="flex items-center gap-3">
+                                    <i class="ph ${dev.device_name.toLowerCase().includes('phone') ? 'ph-device-mobile' : 'ph-monitor'} text-gray-400 text-lg"></i>
+                                    <div>
+                                        <div class="text-xs font-bold text-white flex items-center gap-2">
+                                            ${dev.device_name}
+                                            ${isCurrent ? '<span class="text-[9px] bg-green-500/20 text-green-400 px-1.5 rounded border border-green-500/20">THIS DEVICE</span>' : ''}
+                                        </div>
+                                        <div class="text-[9px] text-gray-500">Last login: ${dateStr}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            } catch (err) {
+                console.log("Device Management Error (Ignore if table missing):", err.message);
+                document.getElementById('device-list').innerHTML = '<div class="text-center text-[10px] text-gray-600 py-2">Info peranti tidak tersedia.</div>';
+            }
+        }
+
+        async function logoutAllOtherDevices() {
+            if(!confirm("Log keluar semua peranti lain?")) return;
+            const { error } = await supabaseClient.from('user_devices').delete().eq('user_id', currentUser.id).neq('device_id', localDeviceId);
+            if(error) showToast("Gagal memproses (Database error).", "error");
+            else {
+                showToast("Berjaya.", "success");
+                updateDeviceList();
+            }
+        }
+
+        // --- GENERAL ---
+        async function handleLogout() { await supabaseClient.auth.signOut(); window.location.href = 'index.html'; }
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); document.getElementById(id).classList.add('flex'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('flex'); }
+        async function markNotificationsRead() {
+            document.getElementById('nav-notif-dot').classList.add('hidden');
+            await supabaseClient.from('notifications').update({ is_read: true }).eq('user_id', currentUser.id).eq('is_read', false);
+        }
+        async function loadInbox() {
+            const { data } = await supabaseClient.from('notifications').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
+            const list = document.getElementById('inbox-list');
+            if (!data || !list) return;
+            const hasUnread = data.some(n => !n.is_read);
+            if (hasUnread) document.getElementById('nav-notif-dot').classList.remove('hidden');
+            
+            list.innerHTML = data.length ? data.map(n => 
+                `<div class="bg-[#1e1f24] p-4 rounded-2xl mb-2 flex gap-3 ${!n.is_read ? 'border-l-4 border-yellow-400' : ''}">
+                    <i class="ph ph-info text-blue-400 text-xl mt-0.5"></i>
+                    <div><h4 class="text-sm font-bold text-white">${n.title}</h4><p class="text-xs text-gray-400">${n.message}</p></div>
+                </div>`
+            ).join('') : '<div class="text-center text-gray-500 text-xs py-10">Tiada notifikasi.</div>';
+        }
+
+        async function redeemPin() {
+            const pin = document.getElementById('pin-input').value;
+            if(!pin) return showToast("Masukkan PIN", "error");
+            
+            const { data } = await supabaseClient.from('wallet_pins').select('*').eq('pin_code', pin).eq('is_used', false).single();
+            if (!data) return showToast("PIN Tidak Sah / Digunakan", "error");
+            
+            await supabaseClient.from('wallet_pins').update({ is_used: true }).eq('id', data.id);
+            await supabaseClient.from('profiles').update({ wallet_balance: currentProfile.wallet_balance + data.amount }).eq('id', currentUser.id);
+            await supabaseClient.from('notifications').insert({ user_id: currentUser.id, title: 'Topup Berjaya', message: `Wallet ditambah RM${data.amount}.`, type: 'success' });
+            
+            showToast(`Berjaya Topup RM${data.amount}`, "success");
+            setTimeout(() => location.reload(), 1500);
+        }
     </script>
 </body>
 </html>
