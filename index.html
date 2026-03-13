@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+
+<html lang="ms">
+
+<head>
+
+    <meta name="theme-color" content="#0f172a">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="preconnect" href="https://bgajuffwueesfibkdtvo.supabase.co" crossorigin>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+
+<link rel="dns-prefetch" href="https://bgajuffwueesfibkdtvo.supabase.co">
+
+    <title>LD-Shop - Laman Utama</title>
+
+    
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    
+
+    <link rel="stylesheet" href="css/style.css">
+
+    
+
+    <style>
+
+        /* =========================================
+
+           CORE STYLES & ANIMATIONS
+
+           ========================================= */
+
+        body { 
+
+            font-family: 'Inter', sans-serif; 
+
+            background-color: #09090b; 
+
+            color: white; 
+
+            -webkit-tap-highlight-color: transparent; 
+
+            transition: background-color 0.3s ease, color 0.3s ease; 
+
+        }
+
+        
+
+        /* Custom Scrollbar */
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+
+        ::-webkit-scrollbar-track { background: transparent; }
+
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 3px; }
+
+        ::-webkit-scrollbar-thumb:hover { background: #52525b; }
+
+
+
+        /* Hide Scrollbar Utility */
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+
+
+        /* Animations */
+
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        @keyframes slideLeft { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        
+
+        .animate-up { animation: slideUp 0.4s ease-out forwards; }
+
+        .animate-down { animation: slideDown 0.3s ease-out forwards; }
+
+        .animate-slide-left { animation: slideLeft 0.3s ease-out forwards; }
+
+        .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+
+        
+
+        /* Glassmorphism Defaults (Dark Mode) */
+
+        .glass-nav { 
+
+            background: rgba(9, 9, 11, 0.85);
+
+            backdrop-filter: blur(20px);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+
+        }
+
+        .glass-panel { 
+
+            background: rgba(24, 24, 27, 0.9); 
+
+            backdrop-filter: blur(16px); 
+
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+
+        }
+
+
+
+        /* Buttons & Badges */
+
+        .cat-btn { white-space: nowrap; transition: all 0.2s ease; }
+
+        .cat-btn.active { 
+
+            background-color: #facc15 !important; 
+
+            color: black !important; 
+
+            border-color: #facc15 !important;
+
+            /* box-shadow dibuang */
+
+            transform: scale(1.05);
+
+        }
+
+
+
+        /* =========================================
+
+           LIGHT MODE OVERRIDES (Unified)
+
+           ========================================= */
+
+        html.light-mode body {
+
+            background-color: #f3f4f6 !important;
+
+            color: #111827 !important;
+
+        }
+
+        
+
+        html.light-mode .glass-nav {
+
+            background: rgba(255, 255, 255, 0.9) !important;
+
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+
+        }
+
+
+
+        html.light-mode .glass-panel {
+
+            background: #ffffff !important;
+
+            border: 1px solid #e5e7eb !important;
+
+            color: #111827 !important;
+
+        }
+
+
+
+        /* Text Color Inversions */
+
+        html.light-mode .text-white { color: #111827 !important; }
+
+        html.light-mode .text-gray-400 { color: #6b7280 !important; }
+
+        html.light-mode .text-gray-300 { color: #4b5563 !important; }
+
+        html.light-mode .text-gray-500 { color: #6b7280 !important; }
+
+
+
+        /* Form Elements in Light Mode */
+
+        html.light-mode input {
+
+            background-color: #f9fafb !important;
+
+            color: #111827 !important;
+
+            border-color: #d1d5db !important;
+
+        }
+
+        html.light-mode input::placeholder { color: #9ca3af !important; }
+
+
+
+        /* Background Utilities in Light Mode */
+
+        html.light-mode .bg-\[\#09090b\] { background-color: #f3f4f6 !important; }
+
+        html.light-mode .bg-\[\#18181b\] { background-color: #ffffff !important; border: 1px solid #e5e7eb !important; }
+
+        html.light-mode .hover\:bg-white\/5:hover { background-color: rgba(0,0,0,0.05) !important; }
+
+        html.light-mode .bg-white\/5 { background-color: rgba(0,0,0,0.05) !important; }
+
+        html.light-mode .bg-white\/10 { background-color: rgba(0,0,0,0.1) !important; }
+
+        html.light-mode .border-white\/5, 
+
+        html.light-mode .border-white\/10 { border-color: rgba(0,0,0,0.1) !important; }
+
+
+
+        /* Footer Exception: Keep Dark */
+
+        html.light-mode footer {
+
+            background-color: #1f2937 !important;
+
+            color: white !important;
+
+        }
+
+        html.light-mode footer .text-white { color: white !important; }
+
+        html.light-mode footer .text-gray-400 { color: #9ca3af !important; }
+
+        html.light-mode footer a:hover { color: #facc15 !important; }
+
+
+
+        /* Modals in Light Mode */
+
+        html.light-mode #search-modal { background-color: rgba(255,255,255,0.98) !important; }
+
+        html.light-mode #login-modal, 
+
+        html.light-mode #delete-confirm-modal { background-color: rgba(0,0,0,0.5) !important; }
+
+        html.light-mode #inbox-modal { background-color: rgba(0,0,0,0.6) !important; }
+
+
+
+        /* INBOX Specific Light Mode Fixes */
+
+        html.light-mode #inbox-list { background-color: transparent !important; }
+
+        html.light-mode #inbox-list > div {
+
+            background-color: #ffffff !important;
+
+            border: 1px solid #e5e7eb !important;
+
+        }
+
+        html.light-mode #inbox-list h4 { color: #111827 !important; }
+
+        html.light-mode #inbox-list p { color: #4b5563 !important; }
+
+
+
+        /* HERO SLIDER Exceptions: Text must remain WHITE even in Light Mode */
+
+        html.light-mode #hero-slider-container .text-white,
+
+        html.light-mode #hero-slider-container h1,
+
+        html.light-mode #hero-slider-container h2,
+
+        html.light-mode #hero-slider-container h3,
+
+        html.light-mode #hero-slider-container p,
+
+        html.light-mode #hero-slider-container span {
+
+            color: #ffffff !important;
+
+        }
+
+        /* Remove any dark overlays on images in light mode if needed, or keep them for contrast */
+
+        html.light-mode #hero-slider-container img { box-shadow: none !important; }
+
+        /* Tambah dalam style tag */
+
+#inbox-list {
+
+    scroll-behavior: smooth;
+
+}
+
+
+
+#inbox-list::-webkit-scrollbar {
+
+    width: 4px;
+
+}
+
+
+
+#inbox-list::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+
+
+#inbox-list::-webkit-scrollbar-thumb {
+
+    background: rgba(255, 255, 255, 0.1);
+
+    border-radius: 2px;
+
+}
+
+
+
+/* Animation for new notifications */
+
+@keyframes highlightPulse {
+
+    0% { background-color: rgba(250, 204, 21, 0.1); }
+
+    50% { background-color: rgba(250, 204, 21, 0.05); }
+
+    100% { background-color: rgba(250, 204, 21, 0.1); }
+
+}
+
+
+
+.notification-highlight {
+
+    animation: highlightPulse 2s ease-in-out infinite;
+
+}
+
+
+
+    </style>
+
+</head>
+
+<body class="antialiased selection:bg-yellow-500 selection:text-black font-sans bg-[#09090b] text-white overflow-x-hidden">
+
+
+
+    <div id="toast-container" class="fixed top-24 right-5 z-[110] space-y-2 pointer-events-none"></div>
+
+
+
+    <nav class="glass-nav fixed w-full top-0 z-50 transition-all duration-300">
+
+        <div class="container mx-auto px-4 h-16 flex justify-between items-center">
+
+            
+
+            <div onclick="window.location.href='#'" class="flex items-center gap-3 cursor-pointer select-none group">
+
+                <div class="bg-yellow-400 text-black font-black px-3 py-1 rounded-lg text-xl italic transform -skew-x-12 transition group-hover:scale-105">
+
+                  LD
+
+                </div>
+
+                <div class="font-bold text-lg hidden sm:block tracking-tight text-white group-hover:text-yellow-400 transition">
+
+                    SHOP <span class="text-[9px] bg-white/10 border border-white/10 px-1.5 py-0.5 rounded text-yellow-400 align-top ml-1">V5.0</span>
+
+                </div>
+
+            </div>
+
+            
+
+            <div class="flex items-center gap-2 sm:gap-6">
+
+               
+
+                <button onclick="openSearchUI()" class="w-10 h-10 rounded-full hover:bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition active:scale-95">
+
+                    <i class="ph ph-magnifying-glass text-xl sm:text-2xl"></i>
+
+                </button>
+
+
+
+                <div class="flex items-center gap-1 sm:gap-4">
+
+                    
+
+<!-- Tukar kepada: -->
+
+<button onclick="handleInboxClick()" class="relative w-10 h-10 rounded-full hover:bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition">
+
+    <i class="ph-fill ph-envelope text-xl sm:text-2xl"></i>
+
+    <!-- Dot untuk notifikasi baru -->
+
+    <div id="nav-notif-dot" class="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[#0f1014] hidden animate-pulse"></div>
+
+    <!-- Counter untuk jumlah notifikasi baru -->
+
+    <div id="nav-notif-counter" class="absolute -top-1 -right-1 bg-red-600 text-white text-[9px] font-black px-1.5 min-w-[18px] h-[18px] rounded-full border-2 border-[#0f1014] hidden items-center justify-center shadow-lg"></div>
+
+</button>
+
+                
+
+                <button onclick="window.location.href='order.html'" class="hidden md:flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-white uppercase tracking-wider bg-white/5 px-4 py-2 rounded-full border border-white/5 hover:border-white/20 transition hover:bg-white/10 ml-2">
+
+                    <i class="ph ph-magnifying-glass"></i> Track
+
+                </button>
+
+
+
+                <div id="auth-section" class="pl-2 border-l border-white/10 ml-1">
+
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 rounded-full animate-pulse border border-white/5"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+<button onclick="window.location.href='order.html'" 
+
+class="md:hidden fixed bottom-5 right-5 z-40 bg-gray-800/90 backdrop-blur-md border border-gray-700 p-4 rounded-full text-yellow-400 hover:bg-gray-700 transition active:scale-95">
+
+    <i class="ph ph-magnifying-glass text-xl"></i>
+
+</button>
+
+
+
+<button onclick="scrollToTop()" id="back-to-top" 
+
+class="fixed bottom-24 right-5 z-40 w-12 h-12 rounded-full bg-gray-800/90 backdrop-blur-md border border-gray-600/50 text-gray-300 hover:text-yellow-400 flex items-center justify-center hover:scale-105 transition-all duration-300 hidden opacity-0 pointer-events-none">
+
+    <i class="ph ph-arrow-up text-xl"></i>
+
+</button>
+
+
+
+    <main class="container mx-auto px-4 mt-28 min-h-screen pb-10">
+
+        <div id="view-home" class="animate-up">
+
+            
+
+            <div class="relative w-full h-56 sm:h-80 rounded-3xl bg-gray-800 mb-8 overflow-hidden group border border-white/5">
+
+                <div id="hero-slider-container" class="w-full h-full relative">
+
+                    <div class="absolute inset-0 flex items-center justify-center bg-[#18181b]">
+
+                        <div class="w-10 h-10 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin"></div>
+
+                    </div>
+
+                </div>
+
+                <div id="slider-dots" class="absolute bottom-4 right-6 flex gap-2 z-20"></div>
+
+            </div>
+
+
+
+            <div id="home-flash-sale-section" class="hidden mb-8 animate-up">
+
+                <div class="flex items-center justify-between mb-4 px-1">
+
+                    <h3 class="text-lg font-black text-white italic tracking-wider flex items-center gap-2">
+
+                        <i class="ph-fill ph-lightning text-yellow-400 animate-pulse"></i> 
+
+                        FLASH SALE
+
+                    </h3>
+
+                    <div class="flex items-center gap-2">
+
+                        <span class="text-[10px] text-gray-400 font-mono font-bold">LIMITED TIME</span>
+
+                        <div class="w-12 h-1 bg-gray-800 rounded-full overflow-hidden">
+
+                            <div class="h-full bg-red-500 w-2/3 animate-[pulse_2s_infinite]"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div id="home-flash-sale-wrapper" class="w-full overflow-x-auto overflow-y-hidden relative cursor-pointer select-none no-scrollbar">
+
+                    <div id="flash-sale-track" class="flex gap-3 pb-2 will-change-transform">
+
+                        </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="mb-8 space-y-4">
+
+                <div class="flex overflow-x-auto gap-3 pb-2 w-full no-scrollbar" id="category-container">
+
+                    <button class="cat-btn active px-6 py-2.5 rounded-full bg-yellow-400 text-black font-bold text-[11px] border border-yellow-400 flex items-center gap-2 uppercase">
+
+                        <i class="ph-fill ph-squares-four text-lg"></i> SEMUA
+
+                    </button>
+
+                    <div class="w-20 h-9 bg-white/5 rounded-full animate-pulse"></div>
+
+                    <div class="w-24 h-9 bg-white/5 rounded-full animate-pulse"></div>
+
+                </div>
+
+
+
+                <div class="flex items-center justify-between mb-6 pt-2">
+
+                    <h3 class="text-xl font-bold flex items-center gap-2 text-white">
+
+                        <div class="w-1 h-6 bg-yellow-400 rounded-full"></div> Senarai Game
+
+                    </h3>
+
+                </div>
+
+            
+
+                <div id="games-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 sm:gap-6 mb-10">
+
+                    </div>
+
+            
+
+                <div id="no-results" class="hidden text-center py-16 opacity-50 flex flex-col items-center animate-fade-in">
+
+                    <i class="ph ph-ghost text-5xl mb-3 text-gray-600"></i>
+
+                    <p class="text-sm font-semibold text-gray-400">Tiada hasil carian dijumpai.</p>
+
+                    <button onclick="setCategory('all', document.querySelector('.cat-btn'))" class="mt-4 text-yellow-400 hover:underline text-xs">Reset Filter</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <footer class="bg-[#0c0c0e] border-t border-white/5 pt-16 pb-24 relative z-10">
+
+        <div class="container mx-auto px-6">
+
+            <div class="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-10">
+
+                <div class="col-span-2 md:col-span-5 space-y-6">
+
+                    <div class="flex items-center gap-3 select-none">
+
+                        <div class="bg-yellow-400 text-black font-black px-3 py-1 rounded-lg text-xl italic transform -skew-x-12">LD</div>
+
+                        <div class="font-bold text-lg tracking-tight text-white">SHOP</div>
+
+                    </div>
+
+                    <p class="text-gray-400 text-sm leading-relaxed pr-4">
+
+                        Top up game & voucher terlaris, murah, aman legal 100% buka 24 Jam dengan payment terlengkap Malaysia.
+
+                    </p>
+
+                    <div class="flex gap-3">
+
+                        <a href="#" class="w-10 h-10 rounded-lg bg-gradient-to-tr from-yellow-600 to-pink-600 flex items-center justify-center text-white hover:scale-105 transition shadow-lg"><i class="ph ph-instagram-logo text-xl"></i></a>
+
+                        <a href="#" class="w-10 h-10 rounded-lg bg-[#25D366] flex items-center justify-center text-white hover:scale-105 transition shadow-lg"><i class="ph ph-whatsapp-logo text-xl"></i></a>
+
+                    </div>
+
+                </div>
+
+                <div class="col-span-1 md:col-span-2">
+
+                    <h4 class="text-yellow-500 font-bold mb-6 uppercase tracking-wider text-xs">Peta Situs</h4>
+
+                    <ul class="space-y-4 text-sm text-gray-400 font-medium">
+
+                        <li><a href="index.html" class="hover:text-yellow-400 transition">Beranda</a></li>
+
+                        <li><a href="login.html" class="hover:text-yellow-400 transition text-left">Masuk</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-span-1 md:col-span-2">
+
+                    <h4 class="text-yellow-500 font-bold mb-6 uppercase tracking-wider text-xs">Dukungan</h4>
+
+                    <ul class="space-y-4 text-sm text-gray-400 font-medium">
+
+                        <li><a href="#" class="hover:text-yellow-400 transition">Hubungi Kami</a></li>
+
+                        <li><a href="#" class="hover:text-yellow-400 transition">Ulasan</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-span-2 md:col-span-3">
+
+                    <h4 class="text-yellow-500 font-bold mb-6 uppercase tracking-wider text-xs">Legalitas</h4>
+
+                    <ul class="space-y-4 text-sm text-gray-400 font-medium">
+
+                        <li><a href="#" class="hover:text-yellow-400 transition">Kebijakan Pribadi</a></li>
+
+                        <li><a href="#" class="hover:text-yellow-400 transition">Syarat & Ketentuan</a></li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="border-t border-white/5 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+
+                 <p class="text-xs text-gray-600 font-mono">LD-SHOP v5.0 &copy; 2025. All Rights Reserved.</p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <div id="search-modal" class="fixed inset-0 z-[100] bg-black/95 hidden flex-col animate-fade-in backdrop-blur-xl transition-colors duration-300">
+
+        <div class="container mx-auto px-4 pt-4 pb-2 border-b border-white/5">
+
+            <div class="flex items-center gap-4">
+
+                <button onclick="closeSearchUI()" class="w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition text-gray-400 hover:text-white">
+
+                    <i class="ph ph-arrow-left text-xl"></i>
+
+                </button>
+
+                <div class="flex-grow relative">
+
+                    <i class="ph ph-magnifying-glass absolute left-0 top-1/2 transform -translate-y-1/2 text-yellow-400 text-lg"></i>
+
+                    <input type="text" id="modal-search-input" placeholder="Cari Mobile Legends, Valorant..." 
+
+                        class="w-full bg-transparent border-none outline-none text-white placeholder-gray-600 text-lg font-medium pl-8 py-3 focus:ring-0">
+
+                </div>
+
+                <div id="search-loading" class="hidden animate-spin w-5 h-5 border-2 border-yellow-400 border-t-transparent rounded-full"></div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="flex-grow overflow-y-auto container mx-auto px-4 py-6 scroll-smooth">
+
+            <div id="search-default-view" class="space-y-8 animate-down">
+
+                <div id="search-history-section">
+
+                    <h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3 flex items-center justify-between">
+
+                        Carian Terkini
+
+                        <button onclick="clearAllHistory()" class="text-[10px] text-red-500 hover:text-red-400 transition">PADAM SEMUA</button>
+
+                    </h4>
+
+                    <div id="search-history-list" class="flex flex-wrap items-center"></div>
+
+                </div>
+
+
+
+                <div id="popular-section">
+
+                    <h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+
+                        <i class="ph ph-fire text-orange-500"></i> Popular
+
+                    </h4>
+
+                    <div id="popular-search-list" class="space-y-1"></div>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="search-results-view" class="hidden">
+
+                <h4 class="text-xs font-bold text-yellow-400 uppercase tracking-widest mb-4" id="search-result-count">Hasil Carian</h4>
+
+                <div id="modal-results-container" class="space-y-2"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<div id="profile-modal" class="fixed inset-0 bg-black/90 hidden z-[70] justify-end backdrop-blur-md transition-all duration-300">
+
+    <div class="w-full max-w-xs h-full border-l border-white/10 overflow-y-auto animate-slide-left bg-[#09090b] flex flex-col ml-auto relative shadow-2xl shadow-black">
+
+        
+
+        <div class="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+
+
+        <div class="p-6 pb-4">
+
+            <div class="flex justify-between items-center mb-8">
+
+                <button onclick="closeModal('profile-modal')" class="w-9 h-9 rounded-full bg-zinc-800/50 hover:bg-zinc-700/80 flex items-center justify-center transition-all text-zinc-400 hover:text-white border border-white/5 active:scale-90 group">
+
+                    <i class="ph ph-x text-lg group-hover:rotate-90 transition-transform duration-300"></i>
+
+                </button>
+
+
+
+                <div class="flex items-center gap-2">
+
+                    <button onclick="toggleTheme()" id="profile-theme-btn" class="h-9 w-9 rounded-full bg-zinc-800/50 hover:bg-yellow-500/20 border border-white/5 hover:border-yellow-500/50 flex items-center justify-center transition-all duration-300 group active:scale-95">
+
+                        <i class="ph-fill ph-moon-stars text-zinc-400 group-hover:text-yellow-400 transition-colors"></i>
+
+                    </button>
+
+
+
+                    <button onclick="handleLogout()" class="h-9 flex items-center gap-2 text-[10px] font-bold text-red-400 hover:text-white cursor-pointer px-4 rounded-full bg-red-500/10 border border-red-500/20 hover:bg-red-600 hover:border-red-500 transition-all duration-300 active:scale-95 tracking-wide">
+
+                        <i class="ph-bold ph-sign-out"></i> KELUAR
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="flex flex-col items-center text-center relative group">
+
+                <div class="relative mb-3">
+
+
+
+                    <div id="profile-rank-border" class="relative p-[5px] rounded-full bg-gradient-to-tr from-gray-700 via-gray-800 to-black transition-all duration-500">
+
+
+
+    <div class="absolute inset-[2px] rounded-full bg-gradient-to-br from-white/25 to-transparent pointer-events-none"></div>
+
+
+
+    <img id="profile-img" src="https://ui-avatars.com/api/?name=User&background=random"
+
+        class="w-20 h-20 rounded-full object-cover border-[3px] border-[#09090b] bg-zinc-800">
+
+</div>
+
+<button onclick="openEditProfile()" class="absolute bottom-0 right-0 w-7 h-7 bg-white border-2 border-white rounded-full flex items-center justify-center text-gray-700 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-colors shadow-md">
+
+    <i class="ph-bold ph-pencil-simple text-xs"></i>
+
+</button>
+
+                </div>
+
+
+
+                <div class="font-bold text-white text-lg truncate w-full px-4" id="profile-email">pengguna</div>
+
+                <div class="text-xs text-zinc-500 font-medium mt-0.5 mb-2">user</div>
+
+                <div id="profile-badges" class="flex flex-wrap justify-center gap-1 mt-1 opacity-80"></div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="flex-1 overflow-y-auto px-6 pb-24 space-y-6">
+
+            
+
+            <div class="p-0 pt-2">
+
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-yellow-500 to-orange-600 p-4 sm:p-5 min-h-[150px] max-h-[180px] shadow-lg shadow-orange-500/10 mb-6 border border-white/5" style="transform: translateZ(0);">
+
+                    <div class="absolute top-0 right-0 p-5 opacity-10 translate-x-3 -translate-y-3">
+
+                        <i class="ph-fill ph-wallet text-7xl sm:text-8xl text-black"></i>
+
+                    </div>
+
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+
+                    <div class="relative z-10 flex flex-col gap-6 text-black h-full">
+
+                        <div class="flex justify-between items-start">
+
+                            <div class="flex items-center gap-2">
+
+                                <i class="ph-fill ph-wallet text-lg"></i>
+
+                                <span class="text-xs font-bold uppercase tracking-widest opacity-70">Dompet Saya</span>
+
+                            </div>
+
+                            <div class="font-black italic text-base opacity-80">LD-PAY</div>
+
+                        </div>
+
+                        <div>
+
+                            <div class="text-[10px] opacity-60 font-bold uppercase mb-1">Baki Semasa</div>
+
+                            <div class="flex items-end justify-between">
+
+                                <div class="text-2xl sm:text-3xl font-black tracking-tight">
+
+                                    RM <span id="sidebar-balance">0.00</span>
+
+                                </div>
+
+                                <button onclick="window.location.href='wallet.html'" class="bg-black text-yellow-400 text-xs font-bold px-4 py-2 rounded-full hover:scale-105 transition flex items-center gap-1">
+
+                                    <i class="ph-bold ph-plus"></i> TOPUP
+
+                                </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+<div class="grid grid-cols-2 gap-4 shrink-0 mb-4">
+
+
+
+    <!-- XP CARD -->
+
+    <div onclick="window.location.href='xp.html'"
+
+        class="relative group cursor-pointer rounded-3xl p-[1px]
+
+               bg-gradient-to-tr from-purple-400 via-fuchsia-500 to-indigo-500
+
+               hover:shadow-xl transition-all duration-300">
+
+
+
+        <div class="relative bg-white rounded-[22px] p-4 overflow-hidden
+
+                    border border-white/60
+
+                    hover:translate-y-[-1px] transition-all duration-300">
+
+
+
+            <!-- floating icon -->
+
+            <div class="absolute -right-3 -top-3 opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
+
+                <i class="ph-fill ph-star text-[42px] text-purple-500"></i>
+
+            </div>
+
+
+
+            <!-- subtle shine -->
+
+            <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none"></div>
+
+
+
+            <div class="relative">
+
+                <div class="text-[10px] font-bold uppercase tracking-widest text-gray-500 group-hover:text-purple-600 mb-1">
+
+                    Jumlah XP
+
+                </div>
+
+
+
+                <div class="flex items-end gap-2">
+
+                    <span id="profile-xp-display" class="text-xl font-black text-gray-900">0</span>
+
+                    <span class="text-[9px] font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded-full border border-purple-200">
+
+                        XP
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- VOUCHER CARD -->
+
+    <div onclick="openModal('voucher-modal')"
+
+        class="relative group cursor-pointer rounded-3xl p-[1px]
+
+               bg-gradient-to-tr from-blue-400 via-cyan-500 to-sky-500
+
+               hover:shadow-xl transition-all duration-300">
+
+
+
+        <div class="relative bg-white rounded-[22px] p-4 overflow-hidden
+
+                    border border-white/60
+
+                    hover:translate-y-[-1px] transition-all duration-300">
+
+
+
+            <!-- floating icon -->
+
+            <div class="absolute -right-3 -top-3 opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
+
+                <i class="ph-fill ph-ticket text-[42px] text-blue-500"></i>
+
+            </div>
+
+
+
+            <!-- subtle shine -->
+
+            <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none"></div>
+
+
+
+            <div class="relative">
+
+                <div class="text-[10px] font-bold uppercase tracking-widest text-gray-500 group-hover:text-blue-600 mb-1">
+
+                    Baucer
+
+                </div>
+
+
+
+                <div class="flex items-end gap-2">
+
+                    <span id="profile-voucher-display" class="text-xl font-black text-gray-900">0</span>
+
+                    <span class="text-[9px] font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full border border-blue-200">
+
+                        UNIT
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="space-y-3 pt-2 border-t border-gray-200">
+
+    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest px-2 mt-2 mb-2">Pautan Pantas</h4>
+
+
+
+    <button onclick="window.location.href='xp.html'" class="w-full text-left p-3 rounded-xl bg-white hover:bg-gray-50 flex items-center gap-3 text-gray-700 hover:text-gray-900 transition-all group border border-gray-200 hover:border-yellow-500 active:scale-[0.98] shadow-sm hover:shadow-md">
+
+        <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center group-hover:bg-yellow-500 group-hover:text-black transition-all shadow-sm">
+
+            <i class="ph-fill ph-gift text-lg"></i>
+
+        </div>
+
+        <div class="flex flex-col">
+
+            <span class="text-xs font-bold">Reward Center</span>
+
+            <span class="text-[10px] text-gray-500 group-hover:text-gray-600">Tebus hadiah</span>
+
+        </div>
+
+        <i class="ph-bold ph-caret-right ml-auto text-gray-400 group-hover:text-gray-700"></i>
+
+    </button>
+
+
+
+    <button onclick="openEditProfile()" class="w-full text-left p-3 rounded-xl bg-white hover:bg-gray-50 flex items-center gap-3 text-gray-700 hover:text-gray-900 transition-all group border border-gray-200 hover:border-purple-500 active:scale-[0.98] shadow-sm hover:shadow-md">
+
+        <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center group-hover:bg-purple-500 group-hover:text-white transition-all shadow-sm">
+
+            <i class="ph-fill ph-user-gear text-lg"></i>
+
+        </div>
+
+        <div class="flex flex-col">
+
+            <span class="text-xs font-bold">Tetapan Akaun</span>
+
+            <span class="text-[10px] text-gray-500 group-hover:text-gray-600">Kemaskini profil</span>
+
+        </div>
+
+        <i class="ph-bold ph-caret-right ml-auto text-gray-400 group-hover:text-gray-700"></i>
+
+    </button>
+
+
+
+    <button onclick="window.location.href='order.html'" class="w-full text-left p-3 rounded-xl bg-white hover:bg-gray-50 flex items-center gap-3 text-gray-700 hover:text-gray-900 transition-all group border border-gray-200 hover:border-blue-500 active:scale-[0.98] shadow-sm hover:shadow-md">
+
+        <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-all shadow-sm">
+
+            <i class="ph-fill ph-receipt text-lg"></i>
+
+        </div>
+
+        <div class="flex flex-col">
+
+            <span class="text-xs font-bold">Pesanan Saya</span>
+
+            <span class="text-[10px] text-gray-500 group-hover:text-gray-600">Sejarah transaksi</span>
+
+        </div>
+
+        <i class="ph-bold ph-caret-right ml-auto text-gray-400 group-hover:text-gray-700"></i>
+
+    </button>
+
+    
+
+    <button onclick="window.location.href='rank.html'" class="w-full text-left p-3 rounded-xl bg-white hover:bg-gray-50 flex items-center gap-3 text-gray-700 hover:text-gray-900 transition-all group border border-gray-200 hover:border-emerald-500 active:scale-[0.98] shadow-sm hover:shadow-md">
+
+        <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-all shadow-sm">
+
+            <i class="ph-fill ph-trophy text-lg"></i>
+
+        </div>
+
+        <div class="flex flex-col">
+
+            <span class="text-xs font-bold">Monthly Rank</span>
+
+            <span class="text-[10px] text-gray-500 group-hover:text-gray-600">Top Spender</span>
+
+        </div>
+
+        <i class="ph-bold ph-caret-right ml-auto text-gray-400 group-hover:text-gray-700"></i>
+
+    </button>
+
+</div>
+
+    </div>
+
+    </div>
+
+</div>
+
+</div>
+
+    <div id="inbox-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-[80] backdrop-blur-sm p-4 animate-up">
+
+        <div class="glass-panel w-full max-w-md rounded-3xl flex flex-col h-[70vh] relative shadow-2xl overflow-hidden">
+
+            <div class="px-6 py-5 border-b border-white/10 flex justify-between items-center bg-white/5">
+
+                <div>
+  <h2 class="text-lg font-bold text-white flex items-center gap-2">
+    <i class="ph-fill ph-envelope text-yellow-400"></i>
+    Peti Masuk
+  </h2>
+</div>
+
+                <div class="flex items-center gap-2">
+
+                    <button onclick="deleteAllNotifications()" class="text-[10px] bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 px-2 py-1 rounded flex items-center gap-1 transition">
+
+                        <i class="ph ph-trash"></i> Padam Semua
+
+                    </button>
+
+                    <button onclick="closeModal('inbox-modal')" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 hover:text-white flex items-center justify-center transition text-gray-400"><i class="ph ph-x"></i></button>
+
+                </div>
+
+            </div>
+
+            <div id="inbox-list" class="flex-grow overflow-y-auto p-4 space-y-3 bg-[#09090b]/50">
+
+                </div>
+
+        </div>
+
+    </div>
+
+    
+
+<div id="delete-confirm-modal" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-[120] backdrop-blur-md p-4 animate-up">
+
+    <div class="glass-panel w-full max-w-sm rounded-3xl relative overflow-hidden border border-red-500/20">
+
+        <div class="p-6 text-center">
+
+            <div class="w-14 h-14 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-red-500/20">
+
+                <i class="ph ph-trash text-2xl text-red-500"></i>
+
+            </div>
+
+            <h2 class="text-lg font-bold text-white mb-2">Padam Notifikasi?</h2>
+
+            <p class="text-xs text-gray-400 leading-relaxed">
+
+                Adakah anda pasti mahu memadam mesej ini? Tindakan ini tidak boleh dikembalikan.
+
+            </p>
+
+            <div class="grid grid-cols-2 gap-3 mt-6">
+
+                <button onclick="closeModal('delete-confirm-modal')" 
+
+                class="bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-xl transition text-xs border border-white/5">
+
+                    TIDAK
+
+                </button>
+
+                <button onclick="confirmDeleteNotification()" 
+
+                class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-xl transition text-xs">
+
+                    YA, PADAM
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <script src="js/cache.js" defer></script>
+
+    <script src="js/badges.js" defer></script>    
+
+    <script src="js/theme.js" defer></script>
+
+    <script src="js/script.js" defer></script>
+
+</body>
+
+</html>
